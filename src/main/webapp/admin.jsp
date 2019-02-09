@@ -8,17 +8,15 @@
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="bello-bootstrap-ui.min.css">
-
 </head>
 <body>
     <h1>Admin panel</h1>
     <h2 align="left">
         <button type="button" class="btn btn-danger" rel="${pageContext.request.contextPath}/admin" >Кафе</button>
         <button type="button" class="btn btn-info" rel="${pageContext.request.contextPath}/admin" >Аптеки</button>
-        <button type="button" class="btn btn-info" rel="${pageContext.request.contextPath}/admin" >Салоны крассоты</button>
-        <button type="button" class="btn btn-info" rel="${pageContext.request.contextPath}/admin" >Продукты</button>
-        <button type="button" class="btn btn-info" rel="${pageContext.request.contextPath}/admin" >Одежда</button>
-
+        <button type="button" class="btn btn-warning" rel="${pageContext.request.contextPath}/admin" >Салоны крассоты</button>
+        <button type="button" class="btn btn-success" rel="${pageContext.request.contextPath}/admin" >Продукты</button>
+        <button type="button" class="btn btn-primary" rel="${pageContext.request.contextPath}/admin" >Одежда</button>
     </h2>
     <div align="left">
         <table class = "table table-bordered">
@@ -29,6 +27,7 @@
             <th>Adress</th>
             <th>Сoordinate</th>
             <th>Buseness tipe</th>
+            <th>Options</th>
         </tr>
         </thead>
         <c:forEach items="${points}" var="point" >
