@@ -1,6 +1,10 @@
 package util;
 
 //import model.*;
+import model.Admin;
+import model.BizType;
+import model.District;
+import model.Point;
 import org.hibernate.cfg.Configuration;
 
 public class DBHelper {
