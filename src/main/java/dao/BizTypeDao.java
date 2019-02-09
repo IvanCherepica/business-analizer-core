@@ -1,6 +1,6 @@
 package dao;
 
-import entity.BizType;
+import model.BizType;
 import org.hibernate.SessionFactory;
 
 public class BizTypeDao extends AbstractDao<BizType> {

@@ -26,7 +26,8 @@ public class Point {
     @Column(name = "typeId")
     private int typeId;
 
-    public Point() {}
+    public Point() {
+    }
 
     public Point(String name, String addres, long longitude, long latitude, int typeId) {
         this.setName(name);
@@ -35,15 +36,6 @@ public class Point {
         this.setLatitude(latitude);
         this.setTypeId(typeId);
     }
-
-//    public Point(long id, String name, String addres, long longitude, long latitude, int typeId) {
-//        this.setId(id);
-//        this.setName(name);
-//        this.setAddres(addres);
-//        this.setLongitude(longitude);
-//        this.setLatitude(latitude);
-//        this.setTypeId(typeId);
-//    }
 
     public long getId() {
         return id;
@@ -91,5 +83,17 @@ public class Point {
 
     public void setTypeId(int typeId) {
         this.typeId = typeId;
+    }
+
+    @Override
+    public String toString() {
+        return "Point{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", addres='" + addres + '\'' +
+                ", longitude=" + longitude +
+                ", latitude=" + latitude +
+                ", typeId=" + typeId +
+                '}';
     }
 }
