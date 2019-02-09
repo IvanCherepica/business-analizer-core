@@ -2,35 +2,35 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <title>Books Store Application</title>
+    <title>Buseness analyzer</title>
+    <link rel="shortcut icon" href="/favicon.png" type="image/x-icon">
 </head>
 <body>
 <center>
-    <h1>Users management</h1>
+    <h1>Admin panel</h1>
     <h2>
-        <a href="${pageContext.request.contextPath}/admin/addUser">Add New User</a>
+        <a href="${pageContext.request.contextPath}/admin">Apteki</a>
     </h2>
 </center>
 <div align="center">
     <table border="1" cellpadding="5">
-        <caption><h2>List of Users</h2></caption>
+        <caption><h2>List of Points</h2></caption>
         <tr>
-            <th>ID</th>
             <th>Name</th>
-            <th>Password</th>
-            <th>Role</th>
-            <th>Actions</th>
+            <th>Adress</th>
+            <th>Сoordinate</th>
+            <th>Buseness tipe</th>
         </tr>
-        <c:forEach items="${users}" var="user" varStatus="status">
+        <c:forEach items="${points}" var="user" varStatus="status">
             <tr>
-                <td>${user.id}</td>
-                <td>${user.name}</td>
-                <td>${user.password}</td>
-                <td>${user.role}</td>
+                <td>${points.getName}</td>
+                <td>${points.getAddres}</td>
+                <td>${points.getLongitude}/${points.getLatitude}</td>
+                <td>${points.getTypeId}</td>
                 <td>
-                    <a href="${pageContext.servletContext.contextPath}/admin/edit?id=${user.id}">Edit</a>
+                    <a href="${pageContext.servletContext.contextPath}/admin/edit?id=${points.getTypeId}">Edit</a>
                     &nbsp;&nbsp;&nbsp;&nbsp;
-                    <a href="${pageContext.servletContext.contextPath}/admin/delete?id=${user.id}">Delete</a>
+                    <a href="${pageContext.servletContext.contextPath}/admin/delete?id=${points.getTypeId}">Delete</a>
                 </td>
             </tr>
         </c:forEach>
