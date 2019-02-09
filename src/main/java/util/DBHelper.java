@@ -1,31 +1,16 @@
 package util;
 
-
-import model.User;
+import model.*;
 import org.hibernate.cfg.Configuration;
-
-import java.sql.Connection;
-import java.sql.Driver;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 
 public class DBHelper {
 
-	static public Connection getConnection() throws SQLException, ClassNotFoundException, IllegalAccessException, InstantiationException {
-
-		DriverManager.registerDriver((Driver) Class.forName(PropertiesReader.getProperties("driver.class")).newInstance());
-
-		String url = PropertiesReader.getProperties("connection.url") + "?user=" +
-				PropertiesReader.getProperties("username") + "&password=" +
-				PropertiesReader.getProperties("password");
-
-		return DriverManager.getConnection(url);
-
-	}
-
 	static public Configuration getConfiguration() {
 		Configuration configuration = new Configuration();
-		configuration.addAnnotatedClass(User.class);
+		configuration.addAnnotatedClass(Admin.class);
+		configuration.addAnnotatedClass(BizType.class);
+		configuration.addAnnotatedClass(District.class);
+		configuration.addAnnotatedClass(Point.class);
 
 		configuration.setProperty("hibernate.dialect", PropertiesReader.getProperties("dialect"));
 		configuration.setProperty("hibernate.connection.driver_class", PropertiesReader.getProperties("driver.class"));
