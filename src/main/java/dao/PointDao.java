@@ -1,7 +1,7 @@
 package dao;
 
-import entity.Point;
-import org.hibernate.SessionFactory;
+import model.Point;
+import org.hibernate.*;
 
 import java.util.List;
 
@@ -11,9 +11,18 @@ public class PointDao extends AbstractDao<Point> {
         super(sessionFactory);
     }
 
-//    public List<Point> getByBizType(long bizTypeId) {
-//
-//    }
+    public List<Point> getByBizType(Integer bizTypeId) {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
 
-    //List<Point> getByBizType(long bizTypeId);
+        Query query = session.createQuery("FROM Point p WHERE p.typeId = :bizTypeId");
+        query.setParameter("bizTypeId", bizTypeId);
+
+        List<Point> result = query.list();
+
+        transaction.commit();
+        session.close();
+
+        return result;
+    }
 }

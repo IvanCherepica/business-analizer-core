@@ -11,17 +11,15 @@ import java.util.List;
 public abstract class AbstractDao<T> {
 
     protected final SessionFactory sessionFactory;
-
     private final Class<T> persistentClass;
-
     private final String getAllQuery;
 
     public AbstractDao(SessionFactory sessionFactory) {
-        this.persistentClass = (Class<T>) ((ParameterizedType)this.getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+        this.persistentClass = (Class<T>) ((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[0];
         this.sessionFactory = sessionFactory;
 
         String genericClassName = persistentClass.toGenericString();
-        String className = genericClassName.substring(genericClassName.lastIndexOf('.')+1);
+        String className = genericClassName.substring(genericClassName.lastIndexOf('.') + 1);
         this.getAllQuery = "FROM " + className;
     }
 
@@ -83,13 +81,5 @@ public abstract class AbstractDao<T> {
         session.close();
 
         return result;
-
     }
-
-
-//    1. T getById(long id);
-//	2. save(T t);
-//	3. remove(long id);
-//	4. update(T t);
-//	5. List<T> getAll();
 }

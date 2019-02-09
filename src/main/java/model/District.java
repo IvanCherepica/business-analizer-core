@@ -6,7 +6,6 @@ import javax.persistence.*;
 @Table(name = "district")
 public class District {
 
-
     @Id
     @Column(name = "id", unique = true)
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -18,18 +17,13 @@ public class District {
     @Column(name = "coords")
     private String coords; // (JSON)
 
-    public District() {}
+    public District() {
+    }
 
     public District(String name, String coords) {
         this.setName(name);
         this.setCoords(coords);
     }
-
-//    public District(long id, String name, String coords) {
-//        this.setId(id);
-//        this.setName(name);
-//        this.setCoords(coords);
-//    }
 
     public long getId() {
         return id;

@@ -17,18 +17,13 @@ public class Admin {
     @Column(name = "password")
     private String password;
 
-    public Admin() {}
+    public Admin() {
+    }
 
     public Admin(String login, String password) {
         this.setLogin(login);
         this.setPassword(password);
     }
-
-//    public Admin(long id, String login, String password) {
-//        this.setId(id);
-//        this.setLogin(login);
-//        this.setPassword(password);
-//    }
 
     public long getId() {
         return id;
@@ -52,5 +47,14 @@ public class Admin {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "Admin{" +
+                "id=" + id +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }

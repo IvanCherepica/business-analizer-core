@@ -14,16 +14,12 @@ public class BizType {
     @Column(name = "name")
     private String name;
 
-    public BizType() {}
+    public BizType() {
+    }
 
     public BizType(String name) {
         this.setName(name);
     }
-
-//    public BizType(long id, String name) {
-//        this.setId(id);
-//        this.setName(name);
-//    }
 
     public long getId() {
         return id;
