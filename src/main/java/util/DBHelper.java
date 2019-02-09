@@ -1,7 +1,7 @@
 package util;
 
 
-import model.User;
+//import model.User;
 import org.hibernate.cfg.Configuration;
 
 import java.sql.Connection;
@@ -25,7 +25,7 @@ public class DBHelper {
 
 	static public Configuration getConfiguration() {
 		Configuration configuration = new Configuration();
-		configuration.addAnnotatedClass(User.class);
+		//configuration.addAnnotatedClass(User.class);
 
 		configuration.setProperty("hibernate.dialect", PropertiesReader.getProperties("dialect"));
 		configuration.setProperty("hibernate.connection.driver_class", PropertiesReader.getProperties("driver.class"));
