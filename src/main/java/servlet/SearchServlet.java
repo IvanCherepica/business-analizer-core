@@ -59,26 +59,26 @@ public class SearchServlet extends HttpServlet {
 
         System.out.println(jsonData);
 
-        JSONObject Jobject = new JSONObject(jsonData);
-        JSONArray Jarray_feature = Jobject.getJSONArray("features");
+        JSONObject jsonObject = new JSONObject(jsonData);
+        JSONArray jarrayFeature = jsonObject.getJSONArray("features");
 
 
-        for (int i = 0; i < Jarray_feature.length(); i++) {
+        for (int i = 0; i < jarrayFeature.length(); i++) {
 
-            JSONObject object_geom = Jarray_feature.getJSONObject(i);
-            JSONArray Jarray_geom = object_geom.getJSONArray("geometries");
-            JSONObject Jarray_prop = object_geom.getJSONObject("properties");
+            JSONObject objectGeom = jarrayFeature.getJSONObject(i);
+            JSONArray jarrayGeom = objectGeom.getJSONArray("geometries");
+            JSONObject jarrayProp = objectGeom.getJSONObject("properties");
 
-            String busName = Jarray_prop.getString("name");
-            String busAddress = Jarray_prop.getJSONObject("CompanyMetaData").getString("address");
+            String busName = jarrayProp.getString("name");
+            String busAddress = jarrayProp.getJSONObject("CompanyMetaData").getString("address");
 
-            for (int j = 0; j < Jarray_geom.length(); j++) {
+            for (int j = 0; j < jarrayGeom.length(); j++) {
 
-                JSONObject coord = Jarray_geom.getJSONObject(j);
-                JSONArray Jarray_coord = coord.getJSONArray("coordinates");
+                JSONObject coord = jarrayGeom.getJSONObject(j);
+                JSONArray jarrayCoord = coord.getJSONArray("coordinates");
 
-                float longitude = Jarray_coord.getFloat(0);
-                float latitude = Jarray_coord.getFloat(1);
+                float longitude = jarrayCoord.getFloat(0);
+                float latitude = jarrayCoord.getFloat(1);
 
                 pointsAsked.add(new Point(busName, busAddress, longitude, latitude, 2)); // 2 = АПТЕКИ
 
