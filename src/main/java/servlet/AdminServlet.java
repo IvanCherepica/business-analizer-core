@@ -19,8 +19,6 @@ public class AdminServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html utf-8");
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/admin.html");
-        dispatcher.forward(request, response);
         List <Point> points = new LinkedList<>();
         points.add(new Point("Озерки","Московский просп., 25/1",59915585,30317665,2));
         points.add(new Point("ГорЗдрав","Бронницкая ул., 5",59916293, 30320225,2 ));
@@ -29,6 +27,12 @@ public class AdminServlet extends HttpServlet {
         points.add(new Point("Петрофарм","Большая Конюшенная ул., 14",59936341, 30322866,2 ));
         points.add(new Point("Петербургские аптеки", "Невский просп., 50",59934592, 30334778,2 ));
         request.setAttribute("points", points);
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/admin.jsp");
+        dispatcher.forward(request, response);
+
+
+
 
     }
 }
