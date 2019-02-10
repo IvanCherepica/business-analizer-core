@@ -3,6 +3,11 @@ package util;
 import model.*;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+//import model.*;
+import model.Admin;
+import model.BizType;
+import model.District;
+import model.Point;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
