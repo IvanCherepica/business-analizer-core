@@ -16,9 +16,34 @@
 
         function init () {
             var myMap = new ymaps.Map('map', {
-                center: [59.934472, 30.314262], // СПБ
-                zoom: 10,
-                controls: ['zoomControl']
+                    center: [59.934472, 30.314262],
+                    zoom: 10
+                }, {
+                    searchControlProvider: 'yandex#search'
+                }),
+                objectManager = new ymaps.ObjectManager({
+                    // Чтобы метки начали кластеризоваться, выставляем опцию.
+                    clusterize: true,
+                    // ObjectManager принимает те же опции, что и кластеризатор.
+                    gridSize: 32,
+                    clusterDisableClickZoom: true
+                });
+
+            // Чтобы задать опции одиночным объектам и кластерам,
+            // обратимся к дочерним коллекциям ObjectManager.
+            objectManager.objects.options.set('preset', 'islands#greenDotIcon');
+            objectManager.clusters.options.set('preset', 'islands#greenClusterIcons');
+            myMap.geoObjects.add(objectManager);
+
+            $('#businessType').on('click', function () {  //когда пользователь кликнет на кнопку с ид somebutton
+
+                $.get("/search?type="+value(), function(data){   //аякс отправит гет запрос на адрес /someservlet
+                    for(var key in data){               //цикл, который проходится по массиву data
+
+                        $('#data_list').append('<li>id: ' + data[key]['id'] + '; name: ' + data[key]['name'] + '</li>');   //добавляем в список новые элементы
+
+                    }
+                });
             });
         }
     </script>
@@ -93,13 +118,16 @@
     <div class="row">
         <div class="wrapper">
             <div class="right-sidebar"><div class = "bar-text"> <h2>Выберите тип бизнесса</h2>
+
                 <ul style="list-style-type: none; margin-left: 0; padding-left: 0;">
-                    <li><button class="new">Кафе</button></li>
-                    <li><button class="new">Аптеки</button> </li>
-                    <li><button class="new">Салоны красоты</button></li>
-                    <li><button class="new">Продукты</button></li>
-                    <li><button class="new">Одежда</button></li>
+
+                    <li><form><button class="new" formmethod="get" formaction="/user/map" value="кафе" name="type">Кафе</button></form></li>
+                    <li><form><button id="businessType">Аптеки</button></form> </li>
+                    <li><form><button class="new" formmethod="get" formaction="/user/map" value="cалон красоты" name="businessType">Салон красоты</button></form></li>
+                    <li><form><button class="new" formmethod="get" formaction="/user/map" value="Продукты" name="businessType">Продукты</button></form></li>
+                    <li><form><button class="new" formmethod="get" formaction="/user/map" value="Одежда" name="businessType">Одежда</button></form></li>
                 </ul>
+
             </div>
             </div>
         </div>
