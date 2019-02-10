@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@WebServlet("/search/")
+@WebServlet("/search")
 public class SearchServlet extends HttpServlet {
 
     @Override
