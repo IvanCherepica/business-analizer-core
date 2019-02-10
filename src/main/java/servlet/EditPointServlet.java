@@ -1,7 +1,9 @@
 package servlet;
 
+import model.Point;
 import service.PointServiceImpl;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/admin/delete")
+@WebServlet("/admin/edit")
 public class EditPointServlet extends HttpServlet {
 
 	private PointServiceImpl pointService = new PointServiceImpl();
@@ -17,10 +19,25 @@ public class EditPointServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/edit.jsp");
+		dispatcher.forward(request, response);
+
 		long id = Long.parseLong(request.getParameter("id"));
 
-		pointService.update();
+		String name = request.getParameter("name");
+		String address = request.getParameter("address");
 
-		response.sendRedirect("/admin");
+		double longitude = Double.parseDouble(request.getParameter("longitude"));
+		double latitude = Double.parseDouble(request.getParameter("latitude"));
+
+		int typeId = Integer.parseInt(request.getParameter("typeId"));
+
+		pointService.update(id, new Point(name, address, longitude, latitude, typeId));
+
+//		RequestDispatcher dispatcher = request.getRequestDispatcher("/edit.jsp");
+//		dispatcher.forward(request, response);
+
+		//response.sendRedirect("/admin");
 	}
 }

@@ -43,8 +43,6 @@ public abstract class AbstractDao<T> {
 
         transaction.commit();
         session.close();
-
-        //sessionFactory.openSession().persist(t);
     }
 
     public void saveList(List<T> listT) throws HibernateException {  // TODO убрать запросы в цикле

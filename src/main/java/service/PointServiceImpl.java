@@ -43,8 +43,8 @@ public class PointServiceImpl implements PointService {
     }
 
     @Override
-    public void update(Point t) throws HibernateException {
-        pointDao.update(t);
+    public void update(long id, Point t) throws HibernateException {
+        pointDao.update(id, t);
     }
 
     @Override
