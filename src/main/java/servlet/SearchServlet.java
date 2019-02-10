@@ -81,6 +81,8 @@ public class SearchServlet extends HttpServlet {
             e.printStackTrace();
         }
 
+
+
         System.out.println(jsonData);
 
         JSONObject jsonObject = new JSONObject(jsonData);
@@ -110,10 +112,19 @@ public class SearchServlet extends HttpServlet {
 
         }
 
+
+
         Gson gson = new Gson();
 
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
+
+        System.out.println(gson.toJson(pointsAsked));
         response.getWriter().write(gson.toJson(pointsAsked));
+
+        String toSend = gson.toJson(pointsAsked);
+
     }
+
+
 }

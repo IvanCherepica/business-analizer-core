@@ -14,7 +14,7 @@ public interface PointService {
     void save(Point t) throws HibernateException;
     void saveList(List<Point> listT) throws HibernateException;
     void remove(long id) throws HibernateException;
-    void update(Point t) throws HibernateException;
+    void update(long id, Point t) throws HibernateException;
     List<Point> getAll() throws HibernateException;
 
 }
