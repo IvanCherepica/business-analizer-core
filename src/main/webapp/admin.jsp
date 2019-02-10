@@ -20,6 +20,7 @@
             <button formmethod="get" formaction="/admin/clothes" class="btn btn-primary" >Одежда</button>
         </form>
     </h2>
+
     <div align="left">
         <table class = "table table-bordered">
             <caption><h2>List of Points</h2></caption>
