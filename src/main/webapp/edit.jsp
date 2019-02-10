@@ -39,6 +39,8 @@
 
         <form action="${pageContext.servletContext.contextPath}/admin/edit" method="POST">
 
+            <input type="hidden" name="id" value="${point.id}">
+
             <tr>
                 <td>
                     <div class="field">
@@ -71,7 +73,7 @@
                 <td>
                     <div class="field">
                         <label for="typeId"></label>
-                        <input type="text" id="typeId" name="name" value="${point.typeId}" />
+                        <input type="number" id="typeId" name="typeId" min="1" max="5" value="${point.typeId}" />
                     </div>
                 </td>
 

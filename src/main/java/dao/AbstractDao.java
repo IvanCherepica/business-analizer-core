@@ -71,7 +71,7 @@ public abstract class AbstractDao<T> {
         session.close();
     }
 
-    public void update(long id, T t) throws HibernateException {
+    public void update(long id, T t) throws HibernateException { //TODO native query
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
 
