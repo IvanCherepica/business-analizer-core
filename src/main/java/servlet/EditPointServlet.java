@@ -35,9 +35,6 @@ public class EditPointServlet extends HttpServlet {
 
 		pointService.update(id, new Point(name, address, longitude, latitude, typeId));
 
-//		RequestDispatcher dispatcher = request.getRequestDispatcher("/edit.jsp");
-//		dispatcher.forward(request, response);
-
-		//response.sendRedirect("/admin");
+		response.sendRedirect("/admin");
 	}
 }
