@@ -93,13 +93,12 @@
 
                 <ul style="list-style-type: none; margin-left: 0; padding-left: 0;" id = "buttons">
 
-                    <li><form><button class="new" onclick="init(1)" value="1">Кафе</button></form></li>
-                    <li><button class="new" id = "button"  value="2">Аптека</button> </li>
-                    <li><button class="new" id = "bu" value="3" >Салон красоты</button></li>
-                    <li><form><button class="new"  value="4" >Продукты</button></form></li>
-                    <li><form><button class="new" value="5">Одежда</button></form></li>
+                    <li><button class="new" onclick="bt(1)">Кафе</button></li>
+                    <li><button class="new"  onclick="bt(2)">Аптека</button> </li>
+                    <li><button class="new"  onclick="bt(3)" >Салон красоты</button></li>
+                    <li><button class="new"  onclick="bt(4)" >Продукты</button></li>
+                    <li><button class="new" onclick="bt(5)"> Одежда</button></li>
                 </ul>
-
             </div>
             </div>
         </div>
@@ -130,12 +129,15 @@
             });
 
     }
-    function clic(onc){
+    var url;
+    var val;
+    function bt(val){
+    // url = "/search?type="+val;
 
-    }
-    $('#button').on('click', function () {  //когда пользователь кликнет на кнопку с ид send_date
+   //когда пользователь кликнет на кнопку с ид send_date
 
-            var message = $('#button').val();
+            var message = val;
+
             console.log(message);
             var url = "/search?type="+message;
 
@@ -159,8 +161,7 @@
 
                 }
 
-        });
-    });
-</script>
+        });}
+  </script>
 </body>
 </html>
