@@ -36,4 +36,12 @@ public class BizType {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+        return "BizType{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }
