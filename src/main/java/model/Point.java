@@ -18,10 +18,10 @@ public class Point {
     private String addres;
 
     @Column(name = "longitude")
-    private float longitude;
+    private double longitude;
 
     @Column(name = "latitude")
-    private float latitude;
+    private double latitude;
 
     @Column(name = "typeId")
     private int typeId;
@@ -29,7 +29,7 @@ public class Point {
     public Point() {
     }
 
-    public Point(String name, String addres, float longitude, float latitude, int typeId) {
+    public Point(String name, String addres, double longitude, double latitude, int typeId) {
         this.setName(name);
         this.setAddres(addres);
         this.setLongitude(longitude);
@@ -61,19 +61,19 @@ public class Point {
         this.addres = addres;
     }
 
-    public float getLongitude() {
+    public double getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(float longitude) {
+    public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
 
-    public float getLatitude() {
+    public double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(float latitude) {
+    public void setLatitude(double latitude) {
         this.latitude = latitude;
     }
 

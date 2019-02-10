@@ -20,11 +20,13 @@ public class DBHelper {
 		configuration.addAnnotatedClass(District.class);
 		configuration.addAnnotatedClass(Point.class);
 
+		// ALTER DATABASE db_schema CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+
 		configuration.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
 		configuration.setProperty("hibernate.connection.driver_class", "com.mysql.jdbc.Driver");
 		configuration.setProperty("hibernate.connection.url", "jdbc:mysql://localhost:3306/db_schema");
 		configuration.setProperty("hibernate.connection.username", "root");
-		configuration.setProperty("hibernate.connection.password", "admin");
+		configuration.setProperty("hibernate.connection.password", "root");
 		configuration.setProperty("hibernate.show_sql", "true");
 		configuration.setProperty("hibernate.hbm2ddl.auto", "update");
 		return configuration;
