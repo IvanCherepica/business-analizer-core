@@ -22,6 +22,7 @@ public class PointDaoServiceImpl extends AbstractDao<Point> implements PointDaoS
     private PointDao pointDao = new PointDao(sessionFactory);
 
     public PointDaoServiceImpl(SessionFactory sessionFactory) {
+
         super(sessionFactory);
     }
 
