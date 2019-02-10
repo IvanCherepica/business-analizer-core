@@ -47,7 +47,7 @@ public abstract class AbstractDao<T> {
         //sessionFactory.openSession().persist(t);
     }
 
-    public void saveList(List<T> listT) throws HibernateException {
+    public void saveList(List<T> listT) throws HibernateException {  // TODO убрать запросы в цикле
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
 

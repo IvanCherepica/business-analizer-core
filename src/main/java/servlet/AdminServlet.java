@@ -3,7 +3,7 @@ package servlet;
 import model.Point;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-import service.PointDaoServiceImpl;
+import service.PointServiceImpl;
 import util.DBHelper;
 
 
@@ -25,10 +25,7 @@ public class AdminServlet extends HttpServlet {
         response.setContentType("text/html utf-8");
         request.setCharacterEncoding("utf-8");
 
-        Configuration configuration = DBHelper.getConfiguration();
-        SessionFactory sessionFactory = createSessionFactory(configuration);
-
-        PointDaoServiceImpl pointDaoService = new PointDaoServiceImpl(sessionFactory);
+        PointServiceImpl pointService = new PointServiceImpl();
 
         List<Point> pointList = new ArrayList<>();
 
@@ -41,19 +38,9 @@ public class AdminServlet extends HttpServlet {
         pointList.add(new Point("Петербургские аптеки", "Невский просп., 50",59.934592, 30.334778,2));
 
 
-        pointDaoService.saveList(pointList);
+        pointService.saveList(pointList);
 
-        List <Point> points = pointDaoService.getAll();
-
-
-//        List <Point> points = new LinkedList<>();
-//        points.add(new Point("Озерки","Московский просп., 25/1",59915585,30317665,2));
-//        points.add(new Point("ГорЗдрав","Бронницкая ул., 5",59916293, 30320225,2 ));
-//        points.add(new Point("Софосбувир СПб", "Клинский просп., 21",59914669, 30321186,2 ));
-//        points.add(new Point("Синофарм СПб Китайская медицина","наб. Обводного канала, 92, эт. 1, оф. 102-2",59908638, 30322031,2 ));
-//        points.add(new Point("Петрофарм","Большая Конюшенная ул., 14",59936341, 30322866,2 ));
-//        points.add(new Point("Петербургские аптеки", "Невский просп., 50",59934592, 30334778,2 ));
-
+        List <Point> points = pointService.getAll();
 
         request.setAttribute("points", points);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/admin.jsp");
