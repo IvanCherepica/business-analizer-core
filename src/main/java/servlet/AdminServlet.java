@@ -35,8 +35,8 @@ public class AdminServlet extends HttpServlet {
 //        pointList.add(new Point("Петрофарм","Большая Конюшенная ул., 14",59.936341, 30.322866,2));
 //        pointList.add(new Point("Петербургские аптеки", "Невский просп., 50",59.934592, 30.334778,2));
 
-        pointList.add(new Point("Crop", "ул. Чехова, 9",59915585,30317665,3));
-        pointList.add(new Point("Waxabar", "ул. Марата, 77",59914669, 30321186,3 ));
+        pointList.add(new Point("Crop", "ул. Чехова, 9",59.915585,30.317665,3));
+        pointList.add(new Point("Waxabar", "ул. Марата, 77",59.914669, 30.321186,3 ));
 
         pointList.add(new Point("Food","Moscovskiy prosp 25/1",59.915585,30.317665,4));
         pointList.add(new Point("Super food","Moscovskiy prosp 25/1",59.915585,30.317665,4));
