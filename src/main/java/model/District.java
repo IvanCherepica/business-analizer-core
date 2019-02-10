@@ -48,4 +48,13 @@ public class District {
     public void setCoords(String coords) {
         this.coords = coords;
     }
+
+    @Override
+    public String toString() {
+        return "District{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", coords='" + coords + '\'' +
+                '}';
+    }
 }
