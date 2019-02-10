@@ -47,6 +47,20 @@ public abstract class AbstractDao<T> {
         //sessionFactory.openSession().persist(t);
     }
 
+    public void saveList(List<T> listT) throws HibernateException {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+
+        for (T obj : listT) {
+            session.persist(obj);
+        }
+
+        transaction.commit();
+        session.close();
+
+        //sessionFactory.openSession().persist(t);
+    }
+
     @SuppressWarnings("unchecked")
     public void remove(long id) throws HibernateException {
         Session session = sessionFactory.openSession();
