@@ -16,8 +16,8 @@ import static util.DBHelper.createSessionFactory;
 
 public class PointDaoServiceImpl extends AbstractDao<Point> implements PointDaoService {
 
-//    private Configuration configuration = DBHelper.getConfiguration();
-//    private SessionFactory sessionFactory = createSessionFactory(configuration);
+    private Configuration configuration = DBHelper.getConfiguration();
+    private SessionFactory sessionFactory = createSessionFactory(configuration);
 
     private PointDao pointDao = new PointDao(sessionFactory);
 
