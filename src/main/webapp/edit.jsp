@@ -33,22 +33,20 @@
             <th>Options</th>
         </tr>
         </thead>
-        <c:forEach items="${points}" var="point" >
-            <tbody >
-            <tr>
-                <td>${point.getName()}</td>
-                <td>${point.getAddres()}</td>
-                <td>${point.getLongitude()}/${point.getLatitude()}</td>
-                <td>${point.getTypeId()}</td>
-                <td>
-                    <button formmethod="get" formaction="/admin/edit?id=${point.getId()}" >Edit</button>
 
-                    <%--<button type="button" formmethod="get" class="btn btn-defaul" rel="${pageContext.servletContext.contextPath}/admin/edit?id=${point.getId()}" >Edit</button>--%>
-                    <a href="${pageContext.servletContext.contextPath}/admin/delete?id=${point.getId()}">Delete</a>
-                </td>
-            </tr>
-            </tbody>
-        </c:forEach>
+        <tbody >
+        <tr>
+            <td>${point.getName()}</td>
+            <td>${point.getAddres()}</td>
+            <td>${point.getLongitude()}/${point.getLatitude()}</td>
+            <td>${point.getTypeId()}</td>
+            <td>
+                <button formmethod="get" formaction="/admin/edit?id=${point.getId()}" >Edit</button>
+                <a href="${pageContext.servletContext.contextPath}/admin/delete?id=${point.getId()}">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+
     </table>
 </div>
 </body>
