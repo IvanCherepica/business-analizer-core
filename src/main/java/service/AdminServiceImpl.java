@@ -9,7 +9,6 @@ import java.util.List;
 
 public class AdminServiceImpl implements AdminService {
     private final AdminDao adminDao;
-    private SessionFactory sessionFactory; //TODO добавила, так как в конструкторе AdminDao есть sessionFactory
 
     private static volatile AdminServiceImpl instance;
 

@@ -50,9 +50,10 @@ public class LoginServlet extends HttpServlet {
 
         if (admin.getPassword().equals(password)) {
             HttpSession session = request.getSession();
-            session.setAttribute("user", admin);
+            session.setAttribute("admin", admin);
             response.setContentType("text/html");
             response.sendRedirect("/admin");
+            return;
         } else {
             response.sendRedirect("/user");
         }
