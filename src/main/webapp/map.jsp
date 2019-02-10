@@ -4,12 +4,13 @@
     [<%@ page language="java" contentType="text/html;charset=UTF-8"%>]
     [<%@ page pageEncoding="UTF-8"%>]
     <title>Byseness analizer</title>
-    <link rel="shortcut icon" href="/favicon.png" type="image/x-icon">
+    <!--<link rel="shortcut icon" href="/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-    <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>-->
     <link rel="stylesheet" href="bello-bootstrap-ui.min.css">
     <script src="http://api-maps.yandex.ru/2.1/?load=package.full&lang=ru-RU" type="text/javascript"></script>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script type="text/javascript">
         // Как только будет загружен API и готов DOM, выполняем инициализацию
         ymaps.ready(init);
@@ -35,17 +36,9 @@
             objectManager.clusters.options.set('preset', 'islands#greenClusterIcons');
             myMap.geoObjects.add(objectManager);
 
-            $('#businessType').on('click', function () {  //когда пользователь кликнет на кнопку с ид somebutton
 
-                $.get("/search?type="+value(), function(data){   //аякс отправит гет запрос на адрес /someservlet
-                    for(var key in data){               //цикл, который проходится по массиву data
 
-                        $('#data_list').append('<li>id: ' + data[key]['id'] + '; name: ' + data[key]['name'] + '</li>');   //добавляем в список новые элементы
-
-                    }
-                });
-            });
-        }
+            }
     </script>
     <style>
         @media (min-width: 768px) {
@@ -122,7 +115,7 @@
                 <ul style="list-style-type: none; margin-left: 0; padding-left: 0;">
 
                     <li><form><button class="new" formmethod="get" formaction="/user/map" value="кафе" name="type">Кафе</button></form></li>
-                    <li><form><button id="businessType">Аптеки</button></form> </li>
+                    <li><button id="button" name="аптека">Аптеки</button> </li>
                     <li><form><button class="new" formmethod="get" formaction="/user/map" value="cалон красоты" name="businessType">Салон красоты</button></form></li>
                     <li><form><button class="new" formmethod="get" formaction="/user/map" value="Продукты" name="businessType">Продукты</button></form></li>
                     <li><form><button class="new" formmethod="get" formaction="/user/map" value="Одежда" name="businessType">Одежда</button></form></li>
@@ -133,5 +126,30 @@
         </div>
     </div>
 </div>
+<script>
+    $('#button').on('click', function () {  //когда пользователь кликнет на кнопку с ид send_date
+
+        var message = $('#button').val();
+
+        console.log(message);
+
+        var userObj = {
+            "userName": message
+        };
+
+        var url = "/search";
+
+        $.ajax({
+            url: url,//прописать ссылку на ямап апи
+            method: "get",
+            error: function(message) {
+                console.log(message);
+            },
+            success: function(data) {
+                console.log("data");
+            }
+        });
+    });
+</script>
 </body>
 </html>
