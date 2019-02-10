@@ -133,11 +133,8 @@
 
         console.log(message);
 
-        var userObj = {
-            "userName": message
-        };
 
-        var url = "/search";
+        var url = "/search?type="+message;
 
         $.ajax({
             url: url,//прописать ссылку на ямап апи
