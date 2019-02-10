@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface PointService {
 
-    //List<Point> getByBizType(Integer bizTypeId);
+    List<Point> getByBizType(Integer bizTypeId);
     Point get(long id) throws HibernateException;
     void save(Point t) throws HibernateException;
     void saveList(List<Point> listT) throws HibernateException;

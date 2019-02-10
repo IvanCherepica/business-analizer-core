@@ -19,20 +19,9 @@ public class PointServiceImpl implements PointService {
 
     public PointServiceImpl() {}
 
-//    public List<Point> getByBizType(Integer bizTypeId) {
-//        Session session = sessionFactory.openSession();
-//        Transaction transaction = session.beginTransaction();
-//
-//        Query query = session.createQuery("FROM Point p WHERE p.typeId = :bizTypeId");
-//        query.setParameter("bizTypeId", bizTypeId);
-//
-//        List<Point> result = query.list();
-//
-//        transaction.commit();
-//        session.close();
-//
-//        return result;
-//    }
+    public List<Point> getByBizType(Integer bizTypeId) {
+        return pointDao.getByBizType(bizTypeId);
+    }
 
     @Override
     public Point get(long id) throws HibernateException {
@@ -44,7 +33,7 @@ public class PointServiceImpl implements PointService {
         pointDao.save(t);
     }
 
-    public void saveList(List<Point> listT) throws HibernateException {  // TODO убрать запросы в цикле
+    public void saveList(List<Point> listT) throws HibernateException {  // TODO убрать запросы в цикле в AbstractDao
         pointDao.saveList(listT);
     }
 
