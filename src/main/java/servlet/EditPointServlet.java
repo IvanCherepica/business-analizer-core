@@ -19,9 +19,13 @@ public class EditPointServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/edit.jsp");
 		dispatcher.forward(request, response);
+
+	}
+
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		long id = Long.parseLong(request.getParameter("id"));
 

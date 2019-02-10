@@ -36,69 +36,53 @@
         </thead>
 
         <tbody >
-        <tr>
-            <td>
-                <div class="field">
-                    <label for="name"></label>
-                    <input type="text" id="name" name="name" value="${point.name}" />
-                </div>
-            </td>
-            <td>
-                <div class="field">
-                    <label for="addres"></label>
-                    <input type="text" id="addres" name="addres" value="${point.addres}" />
-                </div>
-            </td>
-            <td>
-                <div class="field">
-                    <label for="longitude"></label>
-                    <input type="text" id="longitude" name="longitude" value="${point.longitude}" />
-                </div>
 
-            </td>
+        <form action="${pageContext.servletContext.contextPath}/admin/edit" method="POST">
 
-            <td>
-                <div class="field">
-                    <label for="latitude"></label>
-                    <input type="text" id="latitude" name="latitude" value="${point.latitude}" />
-                </div>
+            <tr>
+                <td>
+                    <div class="field">
+                        <label for="name"></label>
+                        <input type="text" id="name" name="name" value="${point.name}" />
+                    </div>
+                </td>
+                <td>
+                    <div class="field">
+                        <label for="addres"></label>
+                        <input type="text" id="addres" name="addres" value="${point.addres}" />
+                    </div>
+                </td>
+                <td>
+                    <div class="field">
+                        <label for="longitude"></label>
+                        <input type="text" id="longitude" name="longitude" value="${point.longitude}" />
+                    </div>
 
-            </td>
+                </td>
 
-            <td>
-                <div class="field">
-                    <label for="typeId"></label>
-                    <input type="text" id="typeId" name="name" value="${point.typeId}" />
-                </div>
-            </td>
+                <td>
+                    <div class="field">
+                        <label for="latitude"></label>
+                        <input type="text" id="latitude" name="latitude" value="${point.latitude}" />
+                    </div>
 
-            <td>
-                <div class="submit">
-                    <input type="submit" align="center" value="Submit"/>
-                </div>
-            </td>
-        </tr>
+                </td>
 
-        <%--<form action="${pageContext.servletContext.contextPath}/admin/edit" method="POST">--%>
-            <%--<input type="hidden" name="id" value="${user.id}">--%>
+                <td>
+                    <div class="field">
+                        <label for="typeId"></label>
+                        <input type="text" id="typeId" name="name" value="${point.typeId}" />
+                    </div>
+                </td>
 
-            <%--&lt;%&ndash;<div class="field">&ndash;%&gt;--%>
-                <%--&lt;%&ndash;<label for="uName">Username:</label>&ndash;%&gt;--%>
-                <%--&lt;%&ndash;<input type="text" id="uName" name="name" value="${user.name}" />&ndash;%&gt;--%>
-            <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
-            <%--<div class="field">--%>
-                <%--<label for="uPass">Password:</label>--%>
-                <%--<input type="text" id="uPass" name="password" value="${user.password}" />--%>
-            <%--</div>--%>
-            <%--<div class="field">--%>
-                <%--<label for="uRole">Role:</label>--%>
-                <%--<input type="text" id="uRole" name="role" value="${user.role}" />--%>
-            <%--</div>--%>
-            <%--<div class="submit">--%>
-                <%--<input type="submit" align="center" value="Submit"/>--%>
-            <%--</div>--%>
+                <td>
+                    <div class="submit">
+                        <input type="submit" align="center" value="Submit"/>
+                    </div>
+                </td>
+            </tr>
 
-        <%--</form>--%>
+        </form>
 
         </tbody>
 
