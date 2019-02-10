@@ -10,22 +10,21 @@
     <link rel="stylesheet" href="bello-bootstrap-ui.min.css">
 </head>
 <body>
-    <h1>Admin panel</h1>
-    <h2 align="left">
-        <form>
-            <button formmethod="get" formaction="/admin/cafe" class="btn btn-danger">Кафе</button>
-            <button formmethod="get" formaction="/admin" class="btn btn-info" >Аптеки</button>
-            <button formmethod="get" formaction="/admin/beauty" class="btn btn-warning">Салоны крассоты</button>
-            <button formmethod="get" formaction="/admin/food" class="btn btn-success" >Продукты</button>
-            <button formmethod="get" formaction="/admin/clothes" class="btn btn-primary" >Одежда</button>
-        </form>
-    </h2>
-
-    <div align="left">
-        <table class = "table table-bordered">
-            <caption><h2>List of Points</h2></caption>
+<h1>Admin panel</h1>
+<h2 align="left">
+    <form>
+        <button formmethod="get" formaction="/admin/cafe" class="btn btn-danger">Кафе</button>
+        <button formmethod="get" formaction="/admin" class="btn btn-info" >Аптеки</button>
+        <button formmethod="get" formaction="/admin/beauty" class="btn btn-warning">Салоны крассоты</button>
+        <button formmethod="get" formaction="/admin/food" class="btn btn-success" >Продукты</button>
+        <button formmethod="get" formaction="/admin/clothes" class="btn btn-primary" >Одежда</button>
+    </form>
+</h2>
+<div align="left">
+    <table class = "table table-bordered">
+        <caption><h2>List of Points</h2></caption>
         <thead>
-        <tr class="info">
+        <tr class="warning">
             <th>Name</th>
             <th>Adress</th>
             <th>Сoordinate</th>
