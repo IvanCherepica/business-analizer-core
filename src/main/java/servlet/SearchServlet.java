@@ -1,5 +1,6 @@
 package servlet;
 
+import com.google.gson.Gson;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
@@ -18,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@WebServlet("/search/*")
+@WebServlet("/search")
 public class SearchServlet extends HttpServlet {
 
     @Override
@@ -26,7 +27,30 @@ public class SearchServlet extends HttpServlet {
 
         List<Point> pointsAsked = new ArrayList<>();
 
-        String userBusinessType = request.getParameter("businessType");
+        String userBusinessType = request.getParameter("type");
+
+        int bizTypeId;
+
+        switch (userBusinessType) {
+            case "кафе":
+                bizTypeId = 1;
+                break;
+            case "аптека":
+                bizTypeId = 2;
+                break;
+            case "салон красоты":
+                bizTypeId = 3;
+                break;
+            case "продукты":
+                bizTypeId = 4;
+                break;
+            case "одежда":
+                bizTypeId = 5;
+                break;
+            default:
+                bizTypeId = 6;
+                break;
+        }
 
         // 1 = кафе
         // 2 = аптеки
@@ -81,10 +105,16 @@ public class SearchServlet extends HttpServlet {
                 float longitude = jarrayCoord.getFloat(0);
                 float latitude = jarrayCoord.getFloat(1);
 
-                pointsAsked.add(new Point(busName, busAddress, longitude, latitude, 2)); // 2 = АПТЕКИ
+                pointsAsked.add(new Point(busName, busAddress, longitude, latitude, bizTypeId));
 
             }
 
         }
+
+        Gson gson = new Gson();
+
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(gson.toJson(pointsAsked));
     }
 }
