@@ -20,8 +20,6 @@ public class DBHelper {
 		configuration.addAnnotatedClass(District.class);
 		configuration.addAnnotatedClass(Point.class);
 
-		// ALTER DATABASE db_schema CHARACTER SET utf8 COLLATE utf8_unicode_ci;
-
 		configuration.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
 		configuration.setProperty("hibernate.connection.driver_class", "com.mysql.jdbc.Driver");
 		configuration.setProperty("hibernate.connection.url", "jdbc:mysql://localhost:3306/db_schema?useUnicode=true&characterEncoding=utf8");
