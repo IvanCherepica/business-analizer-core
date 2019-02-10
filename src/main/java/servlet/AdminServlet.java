@@ -26,11 +26,14 @@ public class AdminServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html utf-8");
+        request.setCharacterEncoding("utf-8");
 
         Configuration configuration = DBHelper.getConfiguration();
         SessionFactory sessionFactory = createSessionFactory(configuration);
 
         PointDaoServiceImpl pointDaoService = new PointDaoServiceImpl(sessionFactory);
+
+        pointDaoService.save(new Point("Ozerki","Moscovskiy prosp 25/1",59.915585,30.317665,2));
 
         pointDaoService.save(new Point("Озерки","Московский просп., 25/1",59915585,30317665,2));
         pointDaoService.save(new Point("ГорЗдрав","Бронницкая ул., 5",59916293, 30320225,2 ));
