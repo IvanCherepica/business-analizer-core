@@ -6,7 +6,8 @@
 </head>
 <body>
 
-here will be our app. For login type:  /login
+<form action="" method="GET">
+</form>
 
 </body>
 </html>

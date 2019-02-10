@@ -21,11 +21,11 @@ public class AdminFilter implements Filter {
         HttpSession session = ((HttpServletRequest) request).getSession();
         Admin admin = (Admin) session.getAttribute("admin");
         if (admin != null && admin.getLogin()!=null && admin.getPassword()!=null) {
-            chain.doFilter(request, response);
-            return;
         } else{
             ((HttpServletResponse) response).sendRedirect("/user");
+            return;
         }
+        chain.doFilter(request, response);
     }
 
     @Override
