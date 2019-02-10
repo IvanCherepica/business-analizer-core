@@ -27,28 +27,28 @@ public class SearchServlet extends HttpServlet {
 
         List<Point> pointsAsked = new ArrayList<>();
 
-        String userBusinessType = request.getParameter("type");
+        int bizTypeId = Integer.parseInt(request.getParameter("type"));
 
-        int bizTypeId;
+        String userBusinessType;
 
-        switch (userBusinessType) {
-            case "кафе":
-                bizTypeId = 1;
+        switch (bizTypeId) {
+            case 1:
+                userBusinessType = "кафе";
                 break;
-            case "аптека":
-                bizTypeId = 2;
+            case 2:
+                userBusinessType = "аптека";
                 break;
-            case "салон красоты":
-                bizTypeId = 3;
+            case 3:
+                userBusinessType = "салон красоты";
                 break;
-            case "продукты":
-                bizTypeId = 4;
+            case 4:
+                userBusinessType = "продукты";
                 break;
-            case "одежда":
-                bizTypeId = 5;
+            case 5:
+                userBusinessType = "одежда";
                 break;
             default:
-                bizTypeId = 6;
+                userBusinessType = "другое";
                 break;
         }
 
@@ -82,7 +82,7 @@ public class SearchServlet extends HttpServlet {
             e.printStackTrace();
         }
 
-        System.out.println(jsonData);
+        //System.out.println(jsonData);
 
         JSONObject jsonObject = new JSONObject(jsonData);
         JSONArray jarrayFeature = jsonObject.getJSONArray("features");
@@ -105,6 +105,10 @@ public class SearchServlet extends HttpServlet {
                 float longitude = jarrayCoord.getFloat(0);
                 float latitude = jarrayCoord.getFloat(1);
 
+//                List<Float> newCoord = new ArrayList<>();
+//                newCoord.add(longitude);
+//                newCoord.add(latitude);
+
                 pointsAsked.add(new Point(busName, busAddress, longitude, latitude, bizTypeId));
 
             }
@@ -116,5 +120,6 @@ public class SearchServlet extends HttpServlet {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         response.getWriter().write(gson.toJson(pointsAsked));
+        System.out.println(gson.toJson(pointsAsked));
     }
 }

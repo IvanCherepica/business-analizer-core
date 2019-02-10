@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -11,35 +13,12 @@
     <link rel="stylesheet" href="bello-bootstrap-ui.min.css">
     <script src="http://api-maps.yandex.ru/2.1/?load=package.full&lang=ru-RU" type="text/javascript"></script>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script type="text/javascript">
-        // Как только будет загружен API и готов DOM, выполняем инициализацию
-        ymaps.ready(init);
-
-        function init () {
-            var myMap = new ymaps.Map('map', {
-                    center: [59.934472, 30.314262],
-                    zoom: 10
-                }, {
-                    searchControlProvider: 'yandex#search'
-                }),
-                objectManager = new ymaps.ObjectManager({
-                    // Чтобы метки начали кластеризоваться, выставляем опцию.
-                    clusterize: true,
-                    // ObjectManager принимает те же опции, что и кластеризатор.
-                    gridSize: 32,
-                    clusterDisableClickZoom: true
-                });
-
-            // Чтобы задать опции одиночным объектам и кластерам,
-            // обратимся к дочерним коллекциям ObjectManager.
-            objectManager.objects.options.set('preset', 'islands#greenDotIcon');
-            objectManager.clusters.options.set('preset', 'islands#greenClusterIcons');
-            myMap.geoObjects.add(objectManager);
+    <%--<script src="/js/mapPlaceMarkt.js" type="text/javascript"></script>--%>
 
 
-
-            }
-    </script>
+    <%--<script type="text/javascript">--%>
+        <%--<%@include file="/js/mapPlaceMarkt.js" %>--%>
+    <%--</script>--%>
     <style>
         @media (min-width: 768px) {
             .wrapper {
@@ -112,13 +91,13 @@
         <div class="wrapper">
             <div class="right-sidebar"><div class = "bar-text"> <h2>Выберите тип бизнесса</h2>
 
-                <ul style="list-style-type: none; margin-left: 0; padding-left: 0;">
+                <ul style="list-style-type: none; margin-left: 0; padding-left: 0;" id = "buttons">
 
-                    <li><form><button class="new" formmethod="get" formaction="/user/map" value="кафе" name="type">Кафе</button></form></li>
-                    <li><button id="button" name="аптека">Аптеки</button> </li>
-                    <li><form><button class="new" formmethod="get" formaction="/user/map" value="cалон красоты" name="businessType">Салон красоты</button></form></li>
-                    <li><form><button class="new" formmethod="get" formaction="/user/map" value="Продукты" name="businessType">Продукты</button></form></li>
-                    <li><form><button class="new" formmethod="get" formaction="/user/map" value="Одежда" name="businessType">Одежда</button></form></li>
+                    <li><form><button class="new" onclick="init(1)" value="1">Кафе</button></form></li>
+                    <li><button class="new" id = "button"  value="2">Аптека</button> </li>
+                    <li><button class="new" id = "bu" value="3" >Салон красоты</button></li>
+                    <li><form><button class="new"  value="4" >Продукты</button></form></li>
+                    <li><form><button class="new" value="5">Одежда</button></form></li>
                 </ul>
 
             </div>
@@ -126,25 +105,60 @@
         </div>
     </div>
 </div>
+
 <script>
+    ymaps.ready(init);
+
+    var myMap;
+
+    function init () {
+
+        //alert('wwww');
+
+        myMap = new ymaps.Map('map', {
+                center: [59.930163, 30.311312],
+                zoom: 10
+            }, {
+                searchControlProvider: 'yandex#search'
+            }),
+            objectManager = new ymaps.ObjectManager({
+                // Чтобы метки начали кластеризоваться, выставляем опцию.
+                clusterize: true,
+                // ObjectManager принимает те же опции, что и кластеризатор.
+                gridSize: 32,
+                clusterDisableClickZoom: true
+            });
+
+    }
+    function clic(onc){
+
+    }
     $('#button').on('click', function () {  //когда пользователь кликнет на кнопку с ид send_date
 
-        var message = $('#button').val();
+            var message = $('#button').val();
+            console.log(message);
+            var url = "/search?type="+message;
 
-        console.log(message);
+            $.ajax({
+                url: url,//прописать ссылку на ямап апи
+                method: "get",
+                error: function(message) {
+                    console.log(message);
+                },
+                success: function(data) {
 
+                    console.log(data);
+                    var myMap2 = myMap;
+                    for(var key in data){
+                        var point = data[key];
+                        myMap.geoObjects.add(
+                            new ymaps.Placemark(
+                                [point.latitude,point.longitude]));
 
-        var url = "/search?type="+message;
+                    }
 
-        $.ajax({
-            url: url,//прописать ссылку на ямап апи
-            method: "get",
-            error: function(message) {
-                console.log(message);
-            },
-            success: function(data) {
-                console.log("data");
-            }
+                }
+
         });
     });
 </script>
