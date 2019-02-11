@@ -20,15 +20,15 @@ public class DBHelper {
 		configuration.addAnnotatedClass(District.class);
 		configuration.addAnnotatedClass(Point.class);
 
-//		configuration.setProperty("hibernate.dialect", PropertiesReader.getProperties("dialect"));
-//		configuration.setProperty("hibernate.connection.driver_class", PropertiesReader.getProperties("driver.class"));
-//		configuration.setProperty("hibernate.connection.url", PropertiesReader.getProperties("connection.url"));
-//		configuration.setProperty("hibernate.connection.url", PropertiesReader.getProperties("connection.url"));
-//		configuration.setProperty("hibernate.connection.url", PropertiesReader.getProperties("connection.url"));
-//		configuration.setProperty("hibernate.connection.username", PropertiesReader.getProperties("username"));
-//		configuration.setProperty("hibernate.connection.password", PropertiesReader.getProperties("password"));
-//		configuration.setProperty("hibernate.show_sql", PropertiesReader.getProperties("show_sql"));
-//		configuration.setProperty("hibernate.hbm2ddl.auto", PropertiesReader.getProperties("hbm2ddl.auto"));
+		configuration.setProperty("hibernate.dialect", PropertiesReader.getProperties("dialect"));
+		configuration.setProperty("hibernate.connection.driver_class", PropertiesReader.getProperties("driver.class"));
+		configuration.setProperty("hibernate.connection.url", PropertiesReader.getProperties("connection.url"));
+		configuration.setProperty("hibernate.connection.url", PropertiesReader.getProperties("connection.url"));
+		configuration.setProperty("hibernate.connection.url", PropertiesReader.getProperties("connection.url"));
+		configuration.setProperty("hibernate.connection.username", PropertiesReader.getProperties("username"));
+		configuration.setProperty("hibernate.connection.password", PropertiesReader.getProperties("password"));
+		configuration.setProperty("hibernate.show_sql", PropertiesReader.getProperties("show_sql"));
+		configuration.setProperty("hibernate.hbm2ddl.auto", PropertiesReader.getProperties("hbm2ddl.auto"));
 
 		configuration.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
 		configuration.setProperty("hibernate.connection.driver_class", "com.mysql.jdbc.Driver");
