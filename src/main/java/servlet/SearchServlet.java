@@ -26,28 +26,25 @@ public class SearchServlet extends HttpServlet {
 
         List<Point> pointsAsked = new ArrayList<>();
 
-        String userBusinessType = request.getParameter("type");
+        int bisTypeId =Integer.parseInt(request.getParameter("type"));
 
-        int bizTypeId;
+        String bizType = null;
 
-        switch (userBusinessType) {
-            case "кафе":
-                bizTypeId = 1;
+        switch (bisTypeId) {
+            case 1:
+                bizType = "кафе, рестораны" ;
                 break;
-            case "аптека":
-                bizTypeId = 2;
+            case 2:
+                bizType = "аптека";
                 break;
-            case "салон красоты":
-                bizTypeId = 3;
+            case 3:
+                bizType = "салоны красоты, барбер шоп, парикмахерские, спа, маникюр, студия красоты, солярии";
                 break;
-            case "продукты":
-                bizTypeId = 4;
+            case 4:
+                bizType = "маказины продукты";
                 break;
-            case "одежда":
-                bizTypeId = 5;
-                break;
-            default:
-                bizTypeId = 6;
+            case 5:
+                bizType = "одежда";
                 break;
         }
 
@@ -57,9 +54,9 @@ public class SearchServlet extends HttpServlet {
         // 4 = продукты
         // 5 = одежда
 
-        int maxNumberOfResults = 30;
+        int maxNumberOfResults = 500;
 
-        String url = "https://search-maps.yandex.ru/v1/?text=" + userBusinessType + ", Санкт-Петербург&format=json&results=" + maxNumberOfResults + "&type=biz&lang=ru_RU&apikey=c2c81851-dd41-473e-93e8-cf9ce455c58b";
+        String url = "https://search-maps.yandex.ru/v1/?text=" + bizType + ", Санкт-Петербург&format=json&results=" + maxNumberOfResults + "&type=biz&lang=ru_RU&apikey=c2c81851-dd41-473e-93e8-cf9ce455c58b";
 
         OkHttpClient client = new OkHttpClient();
         Request requestHttp = new Request.Builder()
@@ -106,7 +103,7 @@ public class SearchServlet extends HttpServlet {
                 float longitude = jarrayCoord.getFloat(0);
                 float latitude = jarrayCoord.getFloat(1);
 
-                pointsAsked.add(new Point(busName, busAddress, longitude, latitude, bizTypeId));
+                pointsAsked.add(new Point(busName, busAddress, longitude, latitude, bisTypeId));
 
             }
 
