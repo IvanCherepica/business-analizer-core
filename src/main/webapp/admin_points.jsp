@@ -20,15 +20,16 @@
         <button formmethod="get" formaction="/admin/clothes" class="btn btn-primary" >Одежда</button>
     </form>
 </h2>
+
 <div align="left">
     <table class = "table table-bordered">
         <caption><h2>List of Points</h2></caption>
         <thead>
-        <tr class="success">
+        <tr class="info">
             <th>Name</th>
-            <th>Adress</th>
+            <th>Address</th>
             <th>Сoordinate</th>
-            <th>Buseness tipe</th>
+            <th>Business type</th>
             <th>Options</th>
         </tr>
         </thead>
@@ -42,8 +43,8 @@
                 <td>
                     <a href="${pageContext.servletContext.contextPath}/admin/points/edit?id=${point.getId()}">Edit</a>
                     <a href="${pageContext.servletContext.contextPath}/admin/points/delete?id=${point.getId()}">Delete</a>
-                        <%--<button type="button" class="btn btn-defaul" rel="${pageContext.servletContext.contextPath}/admin/points/edit?id=${point.getId()}" >Edit</button>--%>
-                        <%--<button type="button" class="btn btn-defaul" rel="${pageContext.servletContext.contextPath}/admin/points/delete?id=${point.get()}" >Delete</button>--%>
+                        <%--<button type="button" class="btn btn-defaul" href="${pageContext.servletContext.contextPath}/admin/points/edit?id=${point.getId()}">Edit</button>--%>
+                        <%--<button type="button" class="btn btn-defaul" href="${pageContext.servletContext.contextPath}/admin/points/delete?id=${point.getId()}">Delete</button>--%>
                 </td>
             </tr>
             </tbody>
