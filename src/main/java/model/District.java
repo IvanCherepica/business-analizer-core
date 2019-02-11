@@ -14,15 +14,19 @@ public class District {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "coords")
-    private String coords; // (JSON)
+    @Column(name = "longitude")
+    private double longitude;
+
+    @Column(name = "latitude")
+    private double latitude;// (JSON)
 
     public District() {
     }
 
-    public District(String name, String coords) {
-        this.setName(name);
-        this.setCoords(coords);
+    public District(String name, double longitude, double latitude) {
+        this.name = name;
+        this.longitude = longitude;
+        this.latitude = latitude;
     }
 
     public long getId() {
@@ -33,8 +37,12 @@ public class District {
         return name;
     }
 
-    public String getCoords() {
-        return coords;
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public double getLatitude() {
+        return latitude;
     }
 
     public void setId(long id) {
@@ -45,8 +53,12 @@ public class District {
         this.name = name;
     }
 
-    public void setCoords(String coords) {
-        this.coords = coords;
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
     }
 
     @Override
@@ -54,7 +66,8 @@ public class District {
         return "District{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", coords='" + coords + '\'' +
+                ", longitude=" + longitude +
+                ", latitude=" + latitude +
                 '}';
     }
 }
