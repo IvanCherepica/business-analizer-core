@@ -43,6 +43,18 @@ public abstract class AbstractDao<T> {
 
         transaction.commit();
         session.close();
+    }
+
+    public void saveList(List<T> listT) throws HibernateException {  // TODO убрать запросы в цикле
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+
+        for (T obj : listT) {
+            session.persist(obj);
+        }
+
+        transaction.commit();
+        session.close();
 
         //sessionFactory.openSession().persist(t);
     }
@@ -59,12 +71,14 @@ public abstract class AbstractDao<T> {
         session.close();
     }
 
-    public void update(T t) throws HibernateException {
+    public void update(long id, T t) throws HibernateException { //TODO native query
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
 
-        session.merge(t);
-        //session.update(t);
+        T entity = (T) session.get(persistentClass, id);
+        session.delete(entity);
+
+        session.persist(t);
 
         transaction.commit();
         session.close();
