@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <title>Buseness analyzer</title>
+    <title>Business analyzer</title>
     <link rel="shortcut icon" href="/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
@@ -10,20 +10,20 @@
     <link rel="stylesheet" href="bello-bootstrap-ui.min.css">
 </head>
 <body>
-    <h1>Admin panel</h1>
-    <h2 align="left">
-        <form>
-            <button formmethod="get" formaction="/admin/cafe" class="btn btn-danger">Кафе</button>
-            <button formmethod="get" formaction="/admin" class="btn btn-info" >Аптеки</button>
-            <button formmethod="get" formaction="/admin/beauty" class="btn btn-warning">Салоны крассоты</button>
-            <button formmethod="get" formaction="/admin/food" class="btn btn-success" >Продукты</button>
-            <button formmethod="get" formaction="/admin/clothes" class="btn btn-primary" >Одежда</button>
-        </form>
-    </h2>
+<h1>Admin panel</h1>
+<h2 align="left">
+    <form>
+        <button formmethod="get" formaction="/admin/cafe" class="btn btn-danger">Кафе</button>
+        <button formmethod="get" formaction="/admin/points" class="btn btn-info" >Аптеки</button>
+        <button formmethod="get" formaction="/admin/beauty" class="btn btn-warning">Салоны крассоты</button>
+        <button formmethod="get" formaction="/admin/food" class="btn btn-success" >Продукты</button>
+        <button formmethod="get" formaction="/admin/clothes" class="btn btn-primary" >Одежда</button>
+    </form>
+</h2>
 
-    <div align="left">
-        <table class = "table table-bordered">
-            <caption><h2>List of Points</h2></caption>
+<div align="left">
+    <table class = "table table-bordered">
+        <caption><h2>List of Points</h2></caption>
         <thead>
         <tr class="info">
             <th>Name</th>
@@ -37,7 +37,7 @@
 
         <tbody >
 
-        <form action="${pageContext.servletContext.contextPath}/admin/edit" method="POST">
+        <form action="${pageContext.servletContext.contextPath}/admin/points/edit" method="POST">
 
             <input type="hidden" name="id" value="${point.id}">
 

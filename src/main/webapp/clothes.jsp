@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <title>Buseness analyzer</title>
+    <title>Business analyzer</title>
     <link rel="shortcut icon" href="/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
@@ -14,7 +14,7 @@
 <h2 align="left">
     <form>
         <button formmethod="get" formaction="/admin/cafe" class="btn btn-danger">Кафе</button>
-        <button formmethod="get" formaction="/admin" class="btn btn-info" >Аптеки</button>
+        <button formmethod="get" formaction="/admin/points" class="btn btn-info" >Аптеки</button>
         <button formmethod="get" formaction="/admin/beauty" class="btn btn-warning">Салоны крассоты</button>
         <button formmethod="get" formaction="/admin/food" class="btn btn-success" >Продукты</button>
         <button formmethod="get" formaction="/admin/clothes" class="btn btn-primary" >Одежда</button>
@@ -40,9 +40,11 @@
                 <td>${point.getLongitude()}/${point.getLatitude()}</td>
                 <td>${point.getTypeId()}</td>
                 <td>
-                    <a href="${pageContext.servletContext.contextPath}/admin/edit?id=${point.getId()}">Edit</a>
-
-                    <a href="${pageContext.servletContext.contextPath}/admin/delete?id=${point.getId()}">Delete</a>                </td>
+                    <a href="${pageContext.servletContext.contextPath}/admin/points/edit?id=${point.getId()}">Edit</a>
+                    <a href="${pageContext.servletContext.contextPath}/admin/points/delete?id=${point.getId()}">Delete</a>
+                        <%--<button type="button" class="btn btn-defaul" rel="${pageContext.servletContext.contextPath}/admin/points/edit?id=${point.getId()}" >Edit</button>--%>
+                        <%--<button type="button" class="btn btn-defaul" rel="${pageContext.servletContext.contextPath}/admin/points/delete?id=${point.getId()}" >Delete</button>--%>
+                </td>
             </tr>
             </tbody>
         </c:forEach>

@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/admin/delete")
+@WebServlet("/admin/points/delete")
 public class DeletePointServlet extends HttpServlet {
 
 	private PointServiceImpl pointService = new PointServiceImpl();
@@ -20,6 +20,6 @@ public class DeletePointServlet extends HttpServlet {
 		long id = Long.parseLong(request.getParameter("id"));
 		pointService.remove(id);
 
-		response.sendRedirect("/admin");
+		response.sendRedirect("/admin/points");
 	}
 }
