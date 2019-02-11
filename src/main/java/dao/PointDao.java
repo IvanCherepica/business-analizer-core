@@ -8,6 +8,7 @@ import java.util.List;
 public class PointDao extends AbstractDao<Point> {
 
     public PointDao(SessionFactory sessionFactory) {
+
         super(sessionFactory);
     }
 

@@ -8,7 +8,6 @@ import model.Point;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -27,28 +26,28 @@ public class SearchServlet extends HttpServlet {
 
         List<Point> pointsAsked = new ArrayList<>();
 
-        int bizTypeId = Integer.parseInt(request.getParameter("type"));
+        String userBusinessType = request.getParameter("type");
 
-        String userBusinessType;
+        int bizTypeId;
 
-        switch (bizTypeId) {
-            case 1:
-                userBusinessType = "кафе";
+        switch (userBusinessType) {
+            case "кафе":
+                bizTypeId = 1;
                 break;
-            case 2:
-                userBusinessType = "аптека";
+            case "аптека":
+                bizTypeId = 2;
                 break;
-            case 3:
-                userBusinessType = "салон красоты";
+            case "салон красоты":
+                bizTypeId = 3;
                 break;
-            case 4:
-                userBusinessType = "продукты";
+            case "продукты":
+                bizTypeId = 4;
                 break;
-            case 5:
-                userBusinessType = "одежда";
+            case "одежда":
+                bizTypeId = 5;
                 break;
             default:
-                userBusinessType = "другое";
+                bizTypeId = 6;
                 break;
         }
 
@@ -82,7 +81,9 @@ public class SearchServlet extends HttpServlet {
             e.printStackTrace();
         }
 
-        //System.out.println(jsonData);
+
+
+        System.out.println(jsonData);
 
         JSONObject jsonObject = new JSONObject(jsonData);
         JSONArray jarrayFeature = jsonObject.getJSONArray("features");
@@ -105,21 +106,25 @@ public class SearchServlet extends HttpServlet {
                 float longitude = jarrayCoord.getFloat(0);
                 float latitude = jarrayCoord.getFloat(1);
 
-//                List<Float> newCoord = new ArrayList<>();
-//                newCoord.add(longitude);
-//                newCoord.add(latitude);
-
                 pointsAsked.add(new Point(busName, busAddress, longitude, latitude, bizTypeId));
 
             }
 
         }
 
+
+
         Gson gson = new Gson();
 
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
-        response.getWriter().write(gson.toJson(pointsAsked));
+
         System.out.println(gson.toJson(pointsAsked));
+        response.getWriter().write(gson.toJson(pointsAsked));
+
+        String toSend = gson.toJson(pointsAsked);
+
     }
+
+
 }
