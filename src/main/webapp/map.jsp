@@ -1,52 +1,24 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     [<%@ page language="java" contentType="text/html;charset=UTF-8"%>]
     [<%@ page pageEncoding="UTF-8"%>]
     <title>Byseness analizer</title>
-    <link rel="shortcut icon" href="/favicon.png" type="image/x-icon">
+    <!--<link rel="shortcut icon" href="/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-    <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>-->
     <link rel="stylesheet" href="bello-bootstrap-ui.min.css">
     <script src="http://api-maps.yandex.ru/2.1/?load=package.full&lang=ru-RU" type="text/javascript"></script>
-    <script type="text/javascript">
-        // Как только будет загружен API и готов DOM, выполняем инициализацию
-        ymaps.ready(init);
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <%--<script src="/js/mapPlaceMarkt.js" type="text/javascript"></script>--%>
 
-        function init () {
-            var myMap = new ymaps.Map('map', {
-                    center: [59.934472, 30.314262],
-                    zoom: 10
-                }, {
-                    searchControlProvider: 'yandex#search'
-                }),
-                objectManager = new ymaps.ObjectManager({
-                    // Чтобы метки начали кластеризоваться, выставляем опцию.
-                    clusterize: true,
-                    // ObjectManager принимает те же опции, что и кластеризатор.
-                    gridSize: 32,
-                    clusterDisableClickZoom: true
-                });
 
-            // Чтобы задать опции одиночным объектам и кластерам,
-            // обратимся к дочерним коллекциям ObjectManager.
-            objectManager.objects.options.set('preset', 'islands#greenDotIcon');
-            objectManager.clusters.options.set('preset', 'islands#greenClusterIcons');
-            myMap.geoObjects.add(objectManager);
-
-            $('#businessType').on('click', function () {  //когда пользователь кликнет на кнопку с ид somebutton
-
-                $.get("/search?type="+value(), function(data){   //аякс отправит гет запрос на адрес /someservlet
-                    for(var key in data){               //цикл, который проходится по массиву data
-
-                        $('#data_list').append('<li>id: ' + data[key]['id'] + '; name: ' + data[key]['name'] + '</li>');   //добавляем в список новые элементы
-
-                    }
-                });
-            });
-        }
-    </script>
+    <%--<script type="text/javascript">--%>
+        <%--<%@include file="/js/mapPlaceMarkt.js" %>--%>
+    <%--</script>--%>
     <style>
         @media (min-width: 768px) {
             .wrapper {
@@ -119,19 +91,77 @@
         <div class="wrapper">
             <div class="right-sidebar"><div class = "bar-text"> <h2>Выберите тип бизнесса</h2>
 
-                <ul style="list-style-type: none; margin-left: 0; padding-left: 0;">
+                <ul style="list-style-type: none; margin-left: 0; padding-left: 0;" id = "buttons">
 
-                    <li><form><button class="new" formmethod="get" formaction="/user/map" value="кафе" name="type">Кафе</button></form></li>
-                    <li><form><button id="businessType">Аптеки</button></form> </li>
-                    <li><form><button class="new" formmethod="get" formaction="/user/map" value="cалон красоты" name="businessType">Салон красоты</button></form></li>
-                    <li><form><button class="new" formmethod="get" formaction="/user/map" value="Продукты" name="businessType">Продукты</button></form></li>
-                    <li><form><button class="new" formmethod="get" formaction="/user/map" value="Одежда" name="businessType">Одежда</button></form></li>
+                    <li><button class="new" onclick="bt(1)">Кафе</button></li>
+                    <li><button class="new"  onclick="bt(2)">Аптека</button> </li>
+                    <li><button class="new"  onclick="bt(3)" >Салон красоты</button></li>
+                    <li><button class="new"  onclick="bt(4)" >Продукты</button></li>
+                    <li><button class="new" onclick="bt(5)"> Одежда</button></li>
                 </ul>
-
             </div>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    ymaps.ready(init);
+
+    var myMap;
+
+    function init () {
+
+        //alert('wwww');
+
+        myMap = new ymaps.Map('map', {
+                center: [59.930163, 30.311312],
+                zoom: 10
+            }, {
+                searchControlProvider: 'yandex#search'
+            }),
+            objectManager = new ymaps.ObjectManager({
+                // Чтобы метки начали кластеризоваться, выставляем опцию.
+                clusterize: true,
+                // ObjectManager принимает те же опции, что и кластеризатор.
+                gridSize: 32,
+                clusterDisableClickZoom: true
+            });
+
+    }
+    var url;
+    var val;
+    function bt(val){
+    // url = "/search?type="+val;
+
+   //когда пользователь кликнет на кнопку с ид send_date
+
+            var message = val;
+
+            console.log(message);
+            var url = "/search?type="+message;
+
+            $.ajax({
+                url: url,//прописать ссылку на ямап апи
+                method: "get",
+                error: function(message) {
+                    console.log(message);
+                },
+                success: function(data) {
+
+                    console.log(data);
+                    var myMap2 = myMap;
+                    for(var key in data){
+                        var point = data[key];
+                        myMap.geoObjects.add(
+                            new ymaps.Placemark(
+                                [point.latitude,point.longitude]));
+
+                    }
+
+                }
+
+        });}
+  </script>
 </body>
 </html>
