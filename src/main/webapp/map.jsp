@@ -114,7 +114,7 @@
     background: #FFFFFF;
     opacity: 0.7;
     pointer-events: none;
-    display: none"><div style="text-align: center; margin-top: 20%;"><img src="/294.gif"></div></div>
+    display: none"><div style="margin-top: 20%; text-align: center;"><img src="/ba.png" style=" height: 5%; width: 5%"></div><div style="margin-top: 5px; text-align: center;"><img src="/294.gif" style="width: 5%; height: 5%"></div>
 <script>
     ymaps.ready(init);
 
