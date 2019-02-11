@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
+import dto.MapPointDTO;
 import model.Point;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -24,7 +25,7 @@ public class SearchServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        List<Point> pointsAsked = new ArrayList<>();
+        List<MapPointDTO> pointsAsked = new ArrayList<>();
 
         int bisTypeId =Integer.parseInt(request.getParameter("type"));
 
@@ -103,7 +104,13 @@ public class SearchServlet extends HttpServlet {
                 float longitude = jarrayCoord.getFloat(0);
                 float latitude = jarrayCoord.getFloat(1);
 
-                pointsAsked.add(new Point(busName, busAddress, longitude, latitude, bisTypeId));
+                MapPointDTO dto = new MapPointDTO(new Point(busName, busAddress, longitude, latitude, bisTypeId));
+
+                dto.setCoordinates(new double[] {latitude, longitude});
+
+                pointsAsked.add(dto);
+
+
 
             }
 
