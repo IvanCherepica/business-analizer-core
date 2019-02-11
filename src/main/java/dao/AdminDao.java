@@ -1,10 +1,7 @@
 package dao;
 
 import model.Admin;
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
+import org.hibernate.*;
 
 public class AdminDao extends AbstractDao<Admin> {
     public AdminDao(SessionFactory session) {

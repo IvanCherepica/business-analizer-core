@@ -56,7 +56,6 @@ public abstract class AbstractDao<T> {
         transaction.commit();
         session.close();
 
-        //sessionFactory.openSession().persist(t);
     }
 
     @SuppressWarnings("unchecked")
