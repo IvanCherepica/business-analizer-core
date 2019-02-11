@@ -18,7 +18,7 @@ public class IndexPageServlet extends HttpServlet {
         if (admin != null && admin.getLogin() != null && admin.getPassword() != null) {
             response.sendRedirect("/admin");
         }else {
-            response.sendRedirect("/user");
+            response.sendRedirect("/user/map");
         }
     }
 }

@@ -84,9 +84,10 @@
     top: 0;
     left: 0;
     width: 80%;
-    height: 100%;"></div>
+    height: 100%;
+   "></div>
 
-<div class="container-fluid">
+<div class="container-fluid" id = "sidebar" >
     <div class="row">
         <div class="wrapper">
             <div class="right-sidebar"><div class = "bar-text"> <h2>Выберите тип бизнесса</h2>
@@ -104,7 +105,15 @@
         </div>
     </div>
 </div>
-
+<div id = "noActive" style="position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #FFFFFF;
+    opacity: 0.7;
+    pointer-events: none;
+    display: none"><div style=""><img src="/712%20(1).gif"></div></div>
 <script>
 
     ymaps.ready(init);
@@ -216,19 +225,41 @@
         }
 
     }
+    var url;
+    var val;
 
+function removeAll() {
+  myMap.geoObjects.removeAll();
+}
+function disable() {
+    $('#noActive').css({
+        'display': 'block',
+    });
+    $('#sidebar').css({
+        'pointer-events': 'none',
+    });
+    $('#map').css({
+        'pointer-events': 'none',
+    });
+}
+function noDisable() {
+    $('#noActive').css({
+        'display': 'none',
+    });
+    $('#sidebar').css({
+        'pointer-events': 'auto',
+    });
+    $('#map').css({
+        'pointer-events': 'auto',
+    });
 
-   var url;
-   var val;
-   function bt(val){
-   // url = "/search?type="+val;
-
-  //когда пользователь кликнет на кнопку с ид send_date
-
-       var message = val;
-
-       console.log(message);
-       var url = "/search?type="+message;
+}
+    function bt(val){
+            var message = val;
+        removeAll();
+        disable();
+            console.log(message);
+            var url = "/search?type="+message;
 
        $.ajax({
            url: url,//прописать ссылку на ямап апи
@@ -246,32 +277,33 @@
                        new ymaps.Placemark(
                            [point.latitude,point.longitude]));
 
-               }
-           }
-       });
+                    }
+                    noDisable()
+                }
+
+        });
+
+        function showDistrictByNumberByColor(ind, color) {
+            // Создаем многоугольник, используя вспомогательный класс Polygon.
+            var myPolygon = new ymaps.Polygon(
+                json[ind].geometry.coordinates
+                ,
+                { hintContent : json[ind].properties.Name}
+                ,
+                { fillColor: color,
+                    opacity: 0.5,
+                    strokeColor: '#808080',
+                    strokeWidth: 3}
+            );
+            myMap.geoObjects.add(myPolygon);
+        }
+
+        showDistrictByNumberByColor(0, '#99FF00');
+        showDistrictByNumberByColor(0, '#009900')
 
 
-       function showDistrictByNumberByColor(ind, color) {
-           // Создаем многоугольник, используя вспомогательный класс Polygon.
-           var myPolygon = new ymaps.Polygon(
-               json[ind].geometry.coordinates
-               ,
-               { hintContent : json[ind].properties.Name}
-               ,
-               { fillColor: color,
-                   opacity: 0.5,
-                   strokeColor: '#808080',
-                   strokeWidth: 3}
-           );
-           myMap.geoObjects.add(myPolygon);
-       }
 
-       showDistrictByNumberByColor(0, '#99FF00');
-       showDistrictByNumberByColor(0, '#009900')
-
-
-
-   }
+}
   </script>
 </body>
 </html>
