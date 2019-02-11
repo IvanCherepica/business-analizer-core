@@ -40,7 +40,8 @@
                 <td>${point.getLongitude()}/${point.getLatitude()}</td>
                 <td>${point.getTypeId()}</td>
                 <td>
-                    <button type="button" class="btn btn-defaul" rel="${pageContext.servletContext.contextPath}/admin/edit?id=${point.getTypeId()}" >Edit</button>
+                    <a href="${pageContext.servletContext.contextPath}/admin/edit?id=${point.getId()}">Edit</a>
+
                     <a href="${pageContext.servletContext.contextPath}/admin/delete?id=${point.getId()}">Delete</a>                </td>
             </tr>
             </tbody>
