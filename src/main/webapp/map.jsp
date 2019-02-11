@@ -80,18 +80,20 @@
 </head>
 
 <body>
+
 <div id="map"; style="position: absolute;
     top: 0;
     left: 0;
     width: 80%;
-    height: 100%;"></div>
+    height: 100%;
+   "></div>
 
-<div class="container-fluid">
+<div class="container-fluid" id = "sidebar" >
     <div class="row">
         <div class="wrapper">
             <div class="right-sidebar"><div class = "bar-text"> <h2>Выберите тип бизнесса</h2>
 
-                <ul style="list-style-type: none; margin-left: 0; padding-left: 0;" id = "buttons">
+                <ul style="list-style-type: none; margin-left: 0; padding-left: 0;" id = "buttons ">
 
                     <li><button class="new" onclick="bt(1)">Кафе</button></li>
                     <li><button class="new"  onclick="bt(2)">Аптека</button> </li>
@@ -104,7 +106,15 @@
         </div>
     </div>
 </div>
-
+<div id = "noActive" style="position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #FFFFFF;
+    opacity: 0.7;
+    pointer-events: none;
+    display: none"><div style=""><img src="/712%20(1).gif"></div></div>
 <script>
     ymaps.ready(init);
 
@@ -131,13 +141,37 @@
     }
     var url;
     var val;
+
+function removeAll() {
+  myMap.geoObjects.removeAll();
+}
+function disable() {
+    $('#noActive').css({
+        'display': 'block',
+    });
+    $('#sidebar').css({
+        'pointer-events': 'none',
+    });
+    $('#map').css({
+        'pointer-events': 'none',
+    });
+}
+function noDisable() {
+    $('#noActive').css({
+        'display': 'none',
+    });
+    $('#sidebar').css({
+        'pointer-events': 'auto',
+    });
+    $('#map').css({
+        'pointer-events': 'auto',
+    });
+
+}
     function bt(val){
-    // url = "/search?type="+val;
-
-   //когда пользователь кликнет на кнопку с ид send_date
-
             var message = val;
-
+        removeAll();
+        disable();
             console.log(message);
             var url = "/search?type="+message;
 
@@ -158,7 +192,7 @@
                                 [point.latitude,point.longitude]));
 
                     }
-
+                    noDisable()
                 }
 
         });}
