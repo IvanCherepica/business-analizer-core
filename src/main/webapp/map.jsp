@@ -80,6 +80,107 @@
             width:100%;
             height: 4em;
         }
+
+        button.empty {
+            margin-top: 5px;
+            display: inline-block;
+            font-family: arial,sans-serif;
+            font-size: 11px;
+            font-weight: bold;
+            color: rgb(51,51,51);
+            text-decoration: none;
+            user-select: none;
+            padding: .1em 1.2em;
+
+            border: 1px solid rgba(0,0,0,.1);
+            border-radius: 2px;
+            background: #f4f4f4 linear-gradient(#f4f4f4, #f1f1f1);
+            width:100%;
+            height: 10em;
+        }
+        button.color1 {
+            display: inline-block;
+            font-family: arial,sans-serif;
+            font-size: 11px;
+            font-weight: bold;
+            color: rgb(51,51,51);
+            text-decoration: none;
+            user-select: none;
+            padding: .1em 1.2em;
+
+            border: 1px solid #ff0000;
+            border-radius: 2px;
+            background: #ff0000;  /*linear-gradient(#f4f4f4, #f1f1f1);*/
+            width:100%;
+            height: 4em;
+        }
+        button.color2 {
+            display: inline-block;
+            font-family: arial,sans-serif;
+            font-size: 11px;
+            font-weight: bold;
+            color: rgb(51,51,51);
+            text-decoration: none;
+            user-select: none;
+            padding: .1em 1.2em;
+
+            border: 1px solid #ff7f2e;
+            border-radius: 2px;
+            background: #ff7f2e;  /*linear-gradient(#f4f4f4, #f1f1f1);*/
+            width:100%;
+            height: 4em;
+        }
+
+        button.color3 {
+            display: inline-block;
+            font-family: arial,sans-serif;
+            font-size: 11px;
+            font-weight: bold;
+            color: rgb(51,51,51);
+            text-decoration: none;
+            user-select: none;
+            padding: .1em 1.2em;
+
+            border: 1px solid #ffd31b;
+            border-radius: 2px;
+            background: #ffd31b;  /*linear-gradient(#f4f4f4, #f1f1f1);*/
+            width:100%;
+            height: 4em;
+        }
+
+        button.color4 {
+            display: inline-block;
+            font-family: arial,sans-serif;
+            font-size: 11px;
+            font-weight: bold;
+            color: rgb(51,51,51);
+            text-decoration: none;
+            user-select: none;
+            padding: .1em 1.2em;
+
+            border: 1px solid #b3ff3a;
+            border-radius: 2px;
+            background: #b3ff3a;  /*linear-gradient(#f4f4f4, #f1f1f1);*/
+            width:100%;
+            height: 4em;
+        }
+
+        button.color5 {
+            display: inline-block;
+            font-family: arial,sans-serif;
+            font-size: 11px;
+            font-weight: bold;
+            color: rgb(51,51,51);
+            text-decoration: none;
+            user-select: none;
+            padding: .1em 1.2em;
+
+            border: 1px solid #00ff00;
+            border-radius: 2px;
+            background: #00ff00;  /*linear-gradient(#f4f4f4, #f1f1f1);*/
+            width:100%;
+            height: 4em;
+        }
     </style>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300&amp;subset=cyrillic" rel="stylesheet">
 </head>
@@ -104,7 +205,17 @@
                     <li><button class="new"  onclick="bt(3)" >Салон красоты</button></li>
                     <li><button class="new"  onclick="bt(4)" >Продукты</button></li>
                     <li><button class="new" onclick="bt(5)"> Одежда</button></li>
+
+                    <li><button class="empty" > </button></li>
+
+                    <li><button class="new" > Условные обозначения</button></li>
+                    <li><button class="color1" > Максимальное количество</button></li>
+                    <li><button class="color2" > Больше среднего</button></li>
+                    <li><button class="color3" > Среднее количество</button></li>
+                    <li><button class="color4" > Меньше среднего</button></li>
+                    <li><button class="color5" > Минимальное количество</button></li>
                 </ul>
+                <div><ul><></div>
             </div>
             </div>
         </div>
