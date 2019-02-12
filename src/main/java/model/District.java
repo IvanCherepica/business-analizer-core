@@ -1,5 +1,7 @@
 package model;
 
+import com.google.gson.annotations.SerializedName;
+
 import javax.persistence.*;
 
 @Entity
@@ -8,19 +10,24 @@ public class District {
 
     @Id
     @Column(name = "id", unique = true)
+    @SerializedName("id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     @Column(name = "name")
+    @SerializedName("name")
     private String name;
 
     @Column(name = "population")
+    @SerializedName("population")
     private int population;
 
     @Column(name = "area")
+    @SerializedName("area")
     private double area;
 
     @Column(name = "coordinates")
+    @SerializedName("coordinates")
     private String coordinates;
 
     public District() {};
