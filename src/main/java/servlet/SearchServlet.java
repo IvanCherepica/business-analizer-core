@@ -9,6 +9,7 @@ import model.Point;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import service.BizTypeServiceImpl;
+import service.PointServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,6 +26,8 @@ public class SearchServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        //PointServiceImpl pointService = new PointServiceImpl();
 
         List<MapPointDTO> pointsAsked = new ArrayList<>();
 
@@ -83,12 +86,15 @@ public class SearchServlet extends HttpServlet {
                 float longitude = jarrayCoord.getFloat(0);
                 float latitude = jarrayCoord.getFloat(1);
 
-                MapPointDTO dto = new MapPointDTO(new Point(busName, busAddress, longitude, latitude, bisTypeId));
+                Point newPoint = new Point(busName, busAddress, longitude, latitude, bisTypeId);
+
+                //pointService.save(newPoint);
+
+                MapPointDTO dto = new MapPointDTO(newPoint);
 
                 dto.setCoordinates(new double[] {longitude, latitude});
 
                 pointsAsked.add(dto);
-
 
 
             }
