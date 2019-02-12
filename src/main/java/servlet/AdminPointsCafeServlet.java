@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 @WebServlet("/admin/cafe")
-public class CafeServlet extends HttpServlet {
+public class AdminPointsCafeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html utf-8");
@@ -23,7 +23,7 @@ public class CafeServlet extends HttpServlet {
         List <Point> points = pointService.getByBizType(1);
 
         request.setAttribute("points", points);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/cafe.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/admin_points_cafe.jsp");
         dispatcher.forward(request, response);
     }
 }

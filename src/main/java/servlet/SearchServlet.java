@@ -94,18 +94,20 @@ public class SearchServlet extends HttpServlet {
                 float longitude = jarrayCoord.getFloat(0);
                 float latitude = jarrayCoord.getFloat(1);
 
-//                pointsAsked.add(new Point(busName, busAddress, longitude, latitude, bisTypeId));
+                Point newPoint = new Point(busName, busAddress, longitude, latitude, bisTypeId);
 
+                //pointService.save(newPoint);
 
-                    pointsAsked.add(new Point(busName, busAddress, longitude, latitude, bizTypeId));
+                MapPointDTO dto = new MapPointDTO(newPoint);
 
+                dto.setCoordinates(new double[] {longitude, latitude});
+
+                pointsAsked.add(dto);
 
 
             }
 
         }
-
-
 
         Gson gson = new Gson();
 
@@ -115,7 +117,7 @@ public class SearchServlet extends HttpServlet {
         System.out.println(gson.toJson(pointsAsked));
         response.getWriter().write(gson.toJson(pointsAsked));
 
-        String toSend = gson.toJson(pointsAsked);
+        //String toSend = gson.toJson(pointsAsked);
 
     }
 
