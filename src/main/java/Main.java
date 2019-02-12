@@ -22,11 +22,6 @@ public class Main {
         BizType bizType5 = new BizType("одежда");
         bizTypeService.save(bizType5);
 
-
-
-
-
-
     }
 
 }

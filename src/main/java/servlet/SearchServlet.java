@@ -89,8 +89,6 @@ public class SearchServlet extends HttpServlet {
 
                 pointsAsked.add(dto);
 
-
-
             }
 
         }
@@ -105,7 +103,7 @@ public class SearchServlet extends HttpServlet {
         System.out.println(gson.toJson(pointsAsked));
         response.getWriter().write(gson.toJson(pointsAsked));
 
-        String toSend = gson.toJson(pointsAsked);
+        //String toSend = gson.toJson(pointsAsked);
 
     }
 
