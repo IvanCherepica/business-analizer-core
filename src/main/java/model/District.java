@@ -14,60 +14,61 @@ public class District {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "longitude")
-    private double longitude;
+    @Column(name = "population")
+    private int population;
 
-    @Column(name = "latitude")
-    private double latitude;// (JSON)
+    @Column(name = "area")
+    private double area;
 
-    public District() {
-    }
+    @Column(name = "coordinates")
+    private String coordinates;
 
-    public District(String name, double longitude, double latitude) {
+    public District() {};
+
+    public District(String name, int population, double area, String coordinates) {
         this.name = name;
-        this.longitude = longitude;
-        this.latitude = latitude;
+        this.population = population;
+        this.area = area;
+        this.coordinates = coordinates;
     }
 
     public long getId() {
         return id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public double getLongitude() {
-        return longitude;
-    }
-
-    public double getLatitude() {
-        return latitude;
-    }
-
     public void setId(long id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
+    public int getPopulation() {
+        return population;
     }
 
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
+    public void setPopulation(int population) {
+        this.population = population;
     }
 
-    @Override
-    public String toString() {
-        return "District{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", longitude=" + longitude +
-                ", latitude=" + latitude +
-                '}';
+    public double getArea() {
+        return area;
+    }
+
+    public void setArea(double area) {
+        this.area = area;
+    }
+
+    public String getCoordinates() {
+        return coordinates;
+    }
+
+    public void setCoordinates(String coordinates) {
+        this.coordinates = coordinates;
     }
 }

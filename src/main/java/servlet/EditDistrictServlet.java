@@ -37,7 +37,7 @@ public class EditDistrictServlet extends HttpServlet {
         double longitude = Double.parseDouble(request.getParameter("longitude"));
         double latitude = Double.parseDouble(request.getParameter("latitude"));
 
-        districtService.update(id, new District(name, longitude, latitude));
+        //districtService.update(id, new District(name, longitude, latitude));
 
         response.sendRedirect("/admin/districts");
     }
