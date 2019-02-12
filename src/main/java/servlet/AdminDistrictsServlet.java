@@ -1,6 +1,7 @@
 package servlet;
 
 import model.District;
+import model.Point;
 import service.DistrictServiceImpl;
 import service.Service;
 
@@ -28,4 +29,25 @@ public class AdminDistrictsServlet extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher("/admin_districts.jsp");
         dispatcher.forward(request, response);
     }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html utf-8");
+        request.setCharacterEncoding("utf-8");
+
+        Service<District> districtService= new DistrictServiceImpl();
+
+        String name = request.getParameter("name");
+        String crd = request.getParameter("crd");
+
+        double area = Double.parseDouble(request.getParameter("area"));
+        int population = Integer.parseInt(request.getParameter("population"));
+
+        System.out.println("ururur");
+
+        districtService.save(new District(name, population, area, crd));
+
+        response.sendRedirect("/admin/districts");
+
+    }
+
 }

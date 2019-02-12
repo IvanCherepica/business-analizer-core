@@ -69,6 +69,7 @@
     <!-- Trigger the modal with a button -->
 
     <!-- Modal -->
+    <%--<form action="${pageContext.servletContext.contextPath}/admin/districts" method="POST">--%>
     <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">
 
@@ -79,22 +80,36 @@
                     <h4 class="modal-title">Add new district</h4>
                 </div>
                 <div class="modal-body">
-                    <form action="/action_page.php">
-                        <div class="form-group">
+                    <form action="${pageContext.servletContext.contextPath}/admin/districts" method="POST">
+
+                        <%--<input type="hidden" name="id" value="${point.id}">--%>
+
+                        <div class="field">
                             <label for="name">Name:</label>
-                            <input type="text" class="form-control" id="name">
+                            <input type="text" class="form-control" id="name" name="name">
+                        </div>
+                        <div class="field">
+                            <label for="crd">Coordinates:</label>
+                            <input type="text" class="form-control" id="crd" name="crd">
                         </div>
                         <div class="form-group">
-                            <label for="crd">Coordinates:</label>
-                            <input type="text" class="form-control" id="crd">
+                            <label for="population">Population:</label>
+                            <input type="text" class="form-control" id="population" name="population">
                         </div>
-                        <button type="button" class="btn btn-danger">Add</button>
+                        <div class="form-group">
+                            <label for="area">Area:</label>
+                            <input type="text" class="form-control" id="area" name="area">
+                        </div>
+                        <%--<a href="${pageContext.servletContext.contextPath}/admin/districts"--%>
+                           <%--class="btn btn-default" role="button">Add</a>--%>
+                        <button type="submit" class="btn btn-danger">Add</button>
                     </form>
                 </div>
             </div>
 
         </div>
     </div>
+    <%--</form>--%>
 
 </div>
 
@@ -136,7 +151,7 @@
                 <tbody >
                 <tr>
                     <td>${district.getName()}</td>
-                    <td>${district.getLongitude()}/${district.getLatitude()}</td>
+                    <td>${district.getCoordinates()}</td>
                     <td>
                         <a href="${pageContext.servletContext.contextPath}/admin/districts/edit?id=${district.getId()}"
                                 class="btn btn-default" role="button">Edit</a>
