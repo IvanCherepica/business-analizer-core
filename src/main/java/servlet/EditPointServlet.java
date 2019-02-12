@@ -1,6 +1,8 @@
 package servlet;
 
+import model.BizType;
 import model.Point;
+import service.BizTypeServiceImpl;
 import service.PointServiceImpl;
 
 import javax.servlet.RequestDispatcher;
@@ -11,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/admin/points/edit")
+@WebServlet("/admin/cafe/edit")
 public class EditPointServlet extends HttpServlet {
 
 	private PointServiceImpl pointService = new PointServiceImpl();
@@ -25,7 +27,6 @@ public class EditPointServlet extends HttpServlet {
 		request.setAttribute("point", point);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/admin_points_edit.jsp");
 		dispatcher.forward(request, response);
-
 	}
 
 	@Override
@@ -41,10 +42,24 @@ public class EditPointServlet extends HttpServlet {
 
 		int typeId = Integer.parseInt(request.getParameter("typeId"));
 
-		System.out.println("ururur");
-
 		pointService.update(id, new Point(name, address, longitude, latitude, typeId));
 
-		response.sendRedirect("/admin/points");
+		switch (typeId) {
+			case 1:
+				response.sendRedirect("/admin/cafe");
+				break;
+			case 2:
+				response.sendRedirect("/admin/pharmacy");
+				break;
+			case 3:
+				response.sendRedirect("/admin/beauty");
+				break;
+			case 4:
+				response.sendRedirect("/admin/food");
+				break;
+			case 5:
+				response.sendRedirect("/admin/clothes");
+				break;
+		}
 	}
 }

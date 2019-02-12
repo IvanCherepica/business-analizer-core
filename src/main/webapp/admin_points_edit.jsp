@@ -73,7 +73,7 @@
                 <h1>Entity</h1>
                 <button formmethod="get" formaction="/admin/business" class="new">Business</button>
                 <button formmethod="get" formaction="/admin/districts" class="new">Districts</button>
-                <button formmethod="get" formaction="/admin/points" class="new">Points</button>
+                <button formmethod="get" formaction="/admin/cafe" class="new">Points</button>
             </form>
         </div>
     </div>
@@ -90,7 +90,7 @@
     <h2 align="left">
         <form>
             <button formmethod="get" formaction="/admin/cafe" class="btn btn-danger">Кафе</button>
-            <button formmethod="get" formaction="/admin/points" class="btn btn-info" >Аптеки</button>
+            <button formmethod="get" formaction="/admin/pharmacy" class="btn btn-info" >Аптеки</button>
             <button formmethod="get" formaction="/admin/beauty" class="btn btn-warning">Салоны крассоты</button>
             <button formmethod="get" formaction="/admin/food" class="btn btn-success" >Продукты</button>
             <button formmethod="get" formaction="/admin/clothes" class="btn btn-primary" >Одежда</button>
@@ -113,7 +113,7 @@
 
             <tbody >
 
-            <form action="${pageContext.servletContext.contextPath}/admin/points/edit" method="POST">
+            <form action="${pageContext.servletContext.contextPath}/admin/cafe/edit" method="POST">
 
                 <input type="hidden" name="id" value="${point.id}">
 

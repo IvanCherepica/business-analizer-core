@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 @WebServlet("/admin/beauty")
-public class BeautyServlet extends HttpServlet {
+public class AdminPointsBeautyServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html utf-8");
@@ -27,7 +27,7 @@ public class BeautyServlet extends HttpServlet {
         bpoints.add(new Point("Галька и галыш", "Гродненский пер., 12-14",59.934592, 30.334778,2 ));
 
         request.setAttribute("points", bpoints);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/beauty.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/admin_points_beauty.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -40,7 +40,7 @@ public class BeautyServlet extends HttpServlet {
         List <Point> bpoints = pointService.getByBizType(3);
 
         request.setAttribute("points", bpoints);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/beauty.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/admin_points_beauty.jsp");
         dispatcher.forward(request, response);
     }
 }
