@@ -360,7 +360,7 @@ function bt(val){
             { hintContent : zones.features[ind].properties.name}
             ,
             { fillColor: colorList[ind],
-                opacity: 0.5,
+                opacity: 0.7,
                 strokeColor: '#808080',
                 strokeWidth: 1}
         );
