@@ -106,7 +106,7 @@ public class SearchServlet extends HttpServlet {
 
                 MapPointDTO dto = new MapPointDTO(new Point(busName, busAddress, longitude, latitude, bisTypeId));
 
-                dto.setCoordinates(new double[] {latitude, longitude});
+                dto.setCoordinates(new double[] {longitude, latitude});
 
                 pointsAsked.add(dto);
 
