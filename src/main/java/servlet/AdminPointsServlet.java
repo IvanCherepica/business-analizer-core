@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.*;
 
-@WebServlet("/admin")
-public class AdminServlet extends HttpServlet {
+@WebServlet("/admin/points")
+public class AdminPointsServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html utf-8");
@@ -47,10 +47,12 @@ public class AdminServlet extends HttpServlet {
 //
 //        pointService.saveList(pointList);
 
-        List <Point> points = pointService.getAll();
+        //List <Point> points = pointService.getAll();
+        //По дефолту аптеки
+        List <Point> points = pointService.getByBizType(2);
 
         request.setAttribute("points", points);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/admin.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/admin_points.jsp");
         dispatcher.forward(request, response);
 
     }

@@ -52,7 +52,7 @@ public class LoginServlet extends HttpServlet {
             HttpSession session = request.getSession();
             session.setAttribute("admin", admin);
             response.setContentType("text/html");
-            response.sendRedirect("/admin");
+            response.sendRedirect("/admin/points");
             return;
         } else {
             response.sendRedirect("/user");

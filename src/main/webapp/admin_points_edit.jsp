@@ -87,55 +87,83 @@
     height: 100%;
    ">
     <h1>Admin panel</h1>
+    <h2 align="left">
+        <form>
+            <button formmethod="get" formaction="/admin/cafe" class="btn btn-danger">Кафе</button>
+            <button formmethod="get" formaction="/admin/points" class="btn btn-info" >Аптеки</button>
+            <button formmethod="get" formaction="/admin/beauty" class="btn btn-warning">Салоны крассоты</button>
+            <button formmethod="get" formaction="/admin/food" class="btn btn-success" >Продукты</button>
+            <button formmethod="get" formaction="/admin/clothes" class="btn btn-primary" >Одежда</button>
+        </form>
+    </h2>
 
     <div align="left">
         <table class = "table table-bordered">
-            <caption><h2>List of Districts</h2></caption>
-        <thead>
-        <tr class="info">
-            <th>Name</th>
-            <th>Longitude</th>
-            <th>Latitude</th>
-            <th>Options</th>
-        </tr>
-        </thead>
-
-        <tbody >
-
-        <form action="${pageContext.servletContext.contextPath}/admin/districts/edit" method="POST">
-            <input type="hidden" name="id" value="${district.id}">
-            <tr>
-                <td>
-                    <div class="field">
-                        <label for="name"></label>
-                        <input type="text" id="name" name="name" value="${district.name}" />
-                    </div>
-                </td>
-                <td>
-                    <div class="field">
-                        <label for="longitude"></label>
-                        <input type="text" id="longitude" name="longitude" value="${district.longitude}" />
-                    </div>
-
-                </td>
-
-                <td>
-                    <div class="field">
-                        <label for="latitude"></label>
-                        <input type="text" id="latitude" name="latitude" value="${district.latitude}" />
-                    </div>
-
-                </td>
-
-                <td>
-                    <div class="submit">
-                        <input type="submit" align="center" class="btn btn-default" role="button" value="Submit"/>
-                    </div>
-                </td>
+            <caption><h2>List of Points</h2></caption>
+            <thead>
+            <tr class="info">
+                <th>Name</th>
+                <th>Address</th>
+                <th>Longitude</th>
+                <th>Latitude</th>
+                <th>Business type</th>
+                <th>Options</th>
             </tr>
+            </thead>
 
-        </form>
-        </tbody>
+            <tbody >
+
+            <form action="${pageContext.servletContext.contextPath}/admin/points/edit" method="POST">
+
+                <input type="hidden" name="id" value="${point.id}">
+
+                <tr>
+                    <td>
+                        <div class="field">
+                            <label for="name"></label>
+                            <input type="text" id="name" name="name" value="${point.name}" />
+                        </div>
+                    </td>
+                    <td>
+                        <div class="field">
+                            <label for="addres"></label>
+                            <input type="text" id="addres" name="addres" value="${point.addres}" />
+                        </div>
+                    </td>
+                    <td>
+                        <div class="field">
+                            <label for="longitude"></label>
+                            <input type="text" id="longitude" name="longitude" value="${point.longitude}" />
+                        </div>
+
+                    </td>
+
+                    <td>
+                        <div class="field">
+                            <label for="latitude"></label>
+                            <input type="text" id="latitude" name="latitude" value="${point.latitude}" />
+                        </div>
+
+                    </td>
+
+                    <td>
+                        <div class="field">
+                            <label for="typeId"></label>
+                            <input type="number" id="typeId" name="typeId" min="1" max="5" value="${point.typeId}" />
+                        </div>
+                    </td>
+
+                    <td>
+                        <div class="submit">
+                            <input type="submit" align="center" class="btn btn-default" value="Submit"/>
+                        </div>
+                    </td>
+                </tr>
+
+            </form>
+
+            </tbody>
+
         </table>
     </div>
 </div>

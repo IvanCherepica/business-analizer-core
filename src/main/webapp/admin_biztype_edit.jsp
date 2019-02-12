@@ -87,46 +87,35 @@
     height: 100%;
    ">
     <h1>Admin panel</h1>
-            <h2 align="left">
-                <form>
-                    <button formmethod="get" formaction="/admin/cafe" class="btn btn-danger">Кафе</button>
-                    <button formmethod="get" formaction="/admin/points" class="btn btn-info" >Аптеки</button>
-                    <button formmethod="get" formaction="/admin/beauty" class="btn btn-warning">Салоны крассоты</button>
-                    <button formmethod="get" formaction="/admin/food" class="btn btn-success" >Продукты</button>
-                    <button formmethod="get" formaction="/admin/clothes" class="btn btn-primary" >Одежда</button>
-                </form>
-            </h2>
-            <div align="left">
-                <table class = "table table-bordered">
-                    <caption><h2>List of Points</h2></caption>
-                    <thead>
-                    <tr class="success">
-                        <th>Name</th>
-                        <th>Address</th>
-                        <th>Coordinate</th>
-                        <th>Business type</th>
-                        <th>Options</th>
-                    </tr>
-                    </thead>
-                    <c:forEach items="${points}" var="point" >
-                        <tbody >
-                        <tr>
-                            <td>${point.getName()}</td>
-                            <td>${point.getAddres()}</td>
-                            <td>${point.getLongitude()}/${point.getLatitude()}</td>
-                            <td>${point.getTypeId()}</td>
-                            <td>
-                                <a href="${pageContext.servletContext.contextPath}/admin/points/edit?id=${point.getId()}" class="btn btn-default" role="button">Edit</a>
-                                <a href="${pageContext.servletContext.contextPath}/admin/points/delete?id=${point.getId()}" class="btn btn-default" role="button">Delete</a>
-                                    <%--<button type="button" class="btn btn-defaul" rel="${pageContext.servletContext.contextPath}/admin/points/edit?id=${point.getId()}" >Edit</button>--%>
-                                    <%--<button type="button" class="btn btn-defaul" rel="${pageContext.servletContext.contextPath}/admin/points/delete?id=${point.get()}" >Delete</button>--%>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </c:forEach>
-                </table>
-            </div>
-        </div>
+
+    <div align="left">
+        <table class = "table table-bordered">
+            <caption><h2>List of Business Types</h2></caption>
+            <thead>
+            <tr class="info">
+                <th>Name</th>
+                <th>Options</th>
+            </tr>
+            </thead>
+            <tbody >
+            <form action="${pageContext.servletContext.contextPath}/admin/business/edit" method="POST">
+                <input type="hidden" name="id" value="${bizType.id}">
+                <tr>
+                    <td>
+                        <div class="field">
+                            <label for="name"></label>
+                            <input type="text" id="name" name="name" value="${bizType.name}" />
+                        </div>
+                    </td>
+                    <td>
+                        <div class="submit">
+                            <input type="submit" align="center" class="btn btn-default" role="button" value="Submit"/>
+                        </div>
+                    </td>
+                </tr>
+            </form>
+            </tbody>
+        </table>
     </div>
 </div>
 </body>
