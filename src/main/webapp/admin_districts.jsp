@@ -143,7 +143,9 @@
                 <thead>
             <tr class="info">
                 <th>Name</th>
-                <th>Сoordinate</th>
+                <th>Coordinates</th>
+                <th>Area</th>
+                <th>Population</th>
                 <th>Options</th>
             </tr>
             </thead>
@@ -152,6 +154,8 @@
                 <tr>
                     <td>${district.getName()}</td>
                     <td>${district.getCoordinates()}</td>
+                    <td>${district.getArea()}</td>
+                    <td>${district.getPopulation()}</td>
                     <td>
                         <a href="${pageContext.servletContext.contextPath}/admin/districts/edit?id=${district.getId()}"
                                 class="btn btn-default" role="button">Edit</a>
