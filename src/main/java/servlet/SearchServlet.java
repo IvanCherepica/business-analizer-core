@@ -89,11 +89,11 @@ public class SearchServlet extends HttpServlet {
 
                 pointsAsked.add(dto);
 
+
+
             }
 
         }
-
-
 
         Gson gson = new Gson();
 
