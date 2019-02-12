@@ -12,10 +12,13 @@ import java.util.List;
 import static util.DBHelper.createSessionFactory;
 
 public class BizTypeServiceImpl implements Service<BizType> {
+
     private Configuration configuration = DBHelper.getConfiguration();
     private SessionFactory sessionFactory = createSessionFactory(configuration);
 
     private BizTypeDao bizTypeDao = new BizTypeDao(sessionFactory);
+
+    public BizTypeServiceImpl() {};
 
     @Override
     public BizType get(long id) throws HibernateException {
@@ -24,7 +27,7 @@ public class BizTypeServiceImpl implements Service<BizType> {
 
     @Override
     public void save(BizType bizType) throws HibernateException {
-        save(bizType);
+        bizTypeDao.save(bizType);
     }
 
     @Override
