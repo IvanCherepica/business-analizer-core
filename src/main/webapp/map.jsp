@@ -6,11 +6,10 @@
     [<%@ page language="java" contentType="text/html;charset=UTF-8"%>]
     [<%@ page pageEncoding="UTF-8"%>]
     <title>Byseness analizer</title>
-    <!--<link rel="shortcut icon" href="/favicon.png" type="image/x-icon">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-    <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>-->
-    <link rel="stylesheet" href="bello-bootstrap-ui.min.css">
+    <link rel="shortcut icon" href="/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <script src="http://api-maps.yandex.ru/2.1/?load=package.full&lang=ru-RU" type="text/javascript"></script>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <%--<script src="/js/mapPlaceMarkt.js" type="text/javascript"></script>--%>
@@ -42,7 +41,16 @@
                 font-style: normal
             }
 
+            .uslText{
+
+                text-align: left;
+                font-family: arial,sans-serif;
+                font-size: 15px;
+            }
+
         }
+
+
         button.new {
             display: inline-block;
             font-family: arial,sans-serif;
@@ -52,10 +60,8 @@
             text-decoration: none;
             user-select: none;
             padding: .1em 1.2em;
-
             border: 1px solid rgba(0,0,0,.1);
             border-radius: 2px;
-            /*  background: rgb(245,245,245) linear-gradient(#f4f4f4, #f1f1f1);*/
             width:100%;
             height: 4em;
         }
@@ -75,11 +81,67 @@
             width:100%;
             height: 4em;
         }
+        button.anyNew{
+            margin-top: 3px;
+            display: inline-block;
+            font-family: arial,sans-serif;
+            font-size: 11px;
+            font-weight: bold;
+            color: rgb(68,68,68);
+            text-decoration: none;
+            user-select: none;
+            padding: .1em 1.2em;
+            border: 2px solid rgba(0,0,0,.1);
+            border-radius: 35px;
+            width:80%;
+            height: 4em;
+        }
+        button.anyNew:hover {
+            color: rgb(24,24,24);
+            border: 2px solid rgb(198,198,198);
+            background: #f7f7f7 linear-gradient(#f7f7f7, #f1f1f1);
+            box-shadow: 0 1px 2px rgba(0,0,0,.1);
+            width:80%;
+            height: 4em;
+        }
+        button.anyNew:active {
+            color: rgb(51,51,51);
+            border: 2px solid rgb(204,204,204);
+            background: rgb(238,238,238) linear-gradient(rgb(238,238,238), rgb(224,224,224));
+            box-shadow: 0 1px 2px rgba(0,0,0,.1) inset;
+            width:80%;
+            height: 4em;
+        }
+
+
+
+
     </style>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300&amp;subset=cyrillic" rel="stylesheet">
 </head>
 
 <body>
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Введите тип бизнес</h4>
+            </div>
+            <div class="modal-body">
+                <form >
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="formBT" >
+                    </div>
+                    <button type="button" class="btn btn-default" onclick="formFunct()" data-dismiss="modal">Показать</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
 <div id="map"; style="position: absolute;
     top: 0;
     left: 0;
@@ -90,7 +152,7 @@
 <div class="container-fluid" id = "sidebar" >
     <div class="row">
         <div class="wrapper">
-            <div class="right-sidebar"><div class = "bar-text"> <h2>Выберите тип бизнесса</h2>
+            <div class="right-sidebar"><div> <h2 class = "bar-text">Выберите тип бизнесса</h2>
 
                 <ul style="list-style-type: none; margin-left: 0; padding-left: 0;" id = "buttons">
 
@@ -99,7 +161,17 @@
                     <li><button class="new"  onclick="bt(3)" >Салон красоты</button></li>
                     <li><button class="new"  onclick="bt(4)" >Продукты</button></li>
                     <li><button class="new" onclick="bt(5)"> Одежда</button></li>
+                    <li><button class="anyNew" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"> Незнаете что выбрать?</button></li>
                 </ul>
+
+                <div style=" position: absolute;bottom: 0; height: 150px;"><ul style="list-style-type: none; margin-left: 0; padding-left: 15px; font-family: arial,sans-serif; font-size: 13px">
+                    <p class="uslText">Условные обозначеня</p>
+                    <li><div style="height: 10px; width: 13px; background:#ff0000; display: inline-block"></div><div style="margin-left: 5px; display: inline-block">Максимальное значение</div></li>
+                    <li><div style="height:10px; width: 13px; background:#ff7f2e; display: inline-block"></div><div style="margin-left: 5px; display: inline-block">Больше среднего колличества</div></li>
+                    <li><div style="height: 10px; width: 13px; background:#ffd31b; display: inline-block"></div><div style="margin-left: 5px; display: inline-block">Среднее колличество</div></li>
+                    <li><div style="height: 10px; width: 13px; background:#b3ff3a; display: inline-block"></div><div style="margin-left: 5px; display: inline-block">Меньше среднего колличества</div></li>
+                    <li><div style="height: 10px; width: 13px; background:#00ff00; display: inline-block"></div><div style="margin-left: 5px; display: inline-block">Минимальное колличество</div></li>
+                </ul></div>
             </div>
             </div>
         </div>
@@ -114,6 +186,11 @@
     opacity: 0.7;
     pointer-events: none;
     display: none"><div style="margin-top: 20%; text-align: center;"><img src="/ba.png" style=" height: 5%; width: 5%"></div><div style="margin-top: 5px; text-align: center;"><img src="/294.gif" style="width: 5%; height: 5%"></div>
+    <!-- Trigger the modal with a button -->
+
+
+    <!-- Modal -->
+
 <script>
 
     ymaps.ready(init);
@@ -254,32 +331,82 @@ function noDisable() {
     });
 
 }
-    function bt(val){
-            var message = val;
+function formFunct() {
+    var val = document.getElementById('formBT').value;
+    var message = val;
+    removeAll();
+    disable();
+    console.log(message);
+    var url = "/search?formType=" + message;
+
+    $.ajax({
+        url: url,//прописать ссылку на ямап апи
+        method: "get",
+        error: function (message) {
+            console.log(message);
+        },
+        success: function (data) {
+
+            console.log(data);
+            var myMap2 = myMap;
+            for (var key in data) {
+                var point = data[key];
+                myMap.geoObjects.add(
+                    new ymaps.Placemark(
+                        [point.latitude, point.longitude]));
+
+            }
+            noDisable()
+        }
+
+    });
+
+    function showDistrictByNumberByColor(ind, color) {
+        // Создаем многоугольник, используя вспомогательный класс Polygon.
+        var myPolygon = new ymaps.Polygon(
+            json[ind].geometry.coordinates
+            ,
+            {hintContent: json[ind].properties.Name}
+            ,
+            {
+                fillColor: color,
+                opacity: 0.5,
+                strokeColor: '#808080',
+                strokeWidth: 3
+            }
+        );
+        myMap.geoObjects.add(myPolygon);
+    }
+
+    showDistrictByNumberByColor(0, '#99FF00');
+    showDistrictByNumberByColor(0, '#009900')
+}
+    function bt(val) {
+        var message = val;
         removeAll();
         disable();
-            console.log(message);
-            var url = "/search?type="+message;
+        console.log(message);
+        var url = "/search?type=" + message;
 
-       $.ajax({
-           url: url,//прописать ссылку на ямап апи
-           method: "get",
-           error: function(message) {
-               console.log(message);
-           },
-           success: function(data) {
+        $.ajax({
+            url: url,//прописать ссылку на ямап апи
+            method: "get",
+            error: function (message) {
+                console.log(message);
+            },
+            success: function (data) {
 
-               console.log(data);
-               var myMap2 = myMap;
-               for(var key in data){
-                   var point = data[key];
-                   myMap.geoObjects.add(
-                       new ymaps.Placemark(
-                           [point.latitude,point.longitude]));
+                console.log(data);
+                var myMap2 = myMap;
+                for (var key in data) {
+                    var point = data[key];
+                    myMap.geoObjects.add(
+                        new ymaps.Placemark(
+                            [point.latitude, point.longitude]));
 
-                    }
-                    noDisable()
                 }
+                noDisable()
+            }
 
         });
 
@@ -288,12 +415,14 @@ function noDisable() {
             var myPolygon = new ymaps.Polygon(
                 json[ind].geometry.coordinates
                 ,
-                { hintContent : json[ind].properties.Name}
+                {hintContent: json[ind].properties.Name}
                 ,
-                { fillColor: color,
+                {
+                    fillColor: color,
                     opacity: 0.5,
                     strokeColor: '#808080',
-                    strokeWidth: 3}
+                    strokeWidth: 3
+                }
             );
             myMap.geoObjects.add(myPolygon);
         }

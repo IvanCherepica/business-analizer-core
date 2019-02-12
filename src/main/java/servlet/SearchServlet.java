@@ -26,12 +26,24 @@ public class SearchServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         List<Point> pointsAsked = new ArrayList<>();
-
-        int bisTypeId =Integer.parseInt(request.getParameter("type"));
-
-
+        int bizTypeId;
+        String bizType = null;
+        String formType;
         BizTypeServiceImpl btService = new BizTypeServiceImpl();
-        String bizType =btService.get(bisTypeId).getName();
+        try{
+           bizTypeId =Integer.parseInt(request.getParameter("type"));
+           bizType = btService.get(bizTypeId).getName();
+
+       } catch (NumberFormatException e){
+           bizTypeId = 6;
+       }
+        try{
+            formType = new String(request.getParameter("formType").getBytes("ISO-8859-1"),"UTF-8");
+            bizType = formType;
+        } catch (NullPointerException e){
+            e.printStackTrace();
+        }
+
 
         int maxNumberOfResults = 500;
 
@@ -82,7 +94,12 @@ public class SearchServlet extends HttpServlet {
                 float longitude = jarrayCoord.getFloat(0);
                 float latitude = jarrayCoord.getFloat(1);
 
-                pointsAsked.add(new Point(busName, busAddress, longitude, latitude, bisTypeId));
+//                pointsAsked.add(new Point(busName, busAddress, longitude, latitude, bisTypeId));
+
+
+                    pointsAsked.add(new Point(busName, busAddress, longitude, latitude, bizTypeId));
+
+
 
             }
 
