@@ -64,6 +64,9 @@
             border-radius: 2px;
             width:100%;
             height: 4em;
+            -moz-transition: background-color 0.3s 0.1s ease, box-shadow 0.3s 0.1s ease;
+            -o-transition: background-color 0.3s 0.1s ease, box-shadow 0.3s 0.1s ease;
+            -webkit-transition: background-color 0.3s 0.1s ease, box-shadow 0.3s 0.1s ease;
         }
         button.new:hover {
             color: rgb(24,24,24);
@@ -91,17 +94,22 @@
             text-decoration: none;
             user-select: none;
             padding: .1em 1.2em;
-            border: 2px solid rgba(0,0,0,.1);
-            border-radius: 35px;
-            width:80%;
+            border: 2px solid #5cb85c;
+            border-radius: 6px;
+            width:100%;
             height: 4em;
+            -moz-transition: background-color 0.2s 0.1s ease, color 0.2s 0.1s ease, box-shadow 0.2s 0.1s ease;
+            -o-transition: background-color 0.2s 0.1s ease, color 0.2s 0.1s ease, box-shadow 0.2s 0.1s ease;
+            -webkit-transition: background-color 0.2s 0.1s ease, color 0.2s 0.1s ease, box-shadow 0.2s 0.1s ease;
+
         }
         button.anyNew:hover {
-            color: rgb(24,24,24);
-            border: 2px solid rgb(198,198,198);
-            background: #f7f7f7 linear-gradient(#f7f7f7, #f1f1f1);
-            box-shadow: 0 1px 2px rgba(0,0,0,.1);
-            width:80%;
+            color: #ffffff;
+            border: 2px solid #5cb85c;
+            /*background: #5cb85c linear-gradient(#f7f7f7, #f1f1f1);*/
+            background: #5cb85c;
+            box-shadow: 5px 6px 10px rgba(0,0,0,.1);
+            width:100%;
             height: 4em;
         }
         button.anyNew:active {
@@ -109,8 +117,18 @@
             border: 2px solid rgb(204,204,204);
             background: rgb(238,238,238) linear-gradient(rgb(238,238,238), rgb(224,224,224));
             box-shadow: 0 1px 2px rgba(0,0,0,.1) inset;
-            width:80%;
+            width:100%;
             height: 4em;
+        }
+
+        .circle{
+            width: 10px;
+            height: 10px;
+            -webkit-border-radius: 25px;
+            -moz-border-radius: 25px;
+            border-radius: 25px;
+            display: inline-block
+
         }
 
 
@@ -128,14 +146,14 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Введите тип бизнес</h4>
+                <h4 class="modal-title">Введите тип бизнеса</h4>
             </div>
             <div class="modal-body">
                 <form >
                     <div class="form-group">
                         <input type="text" class="form-control" id="formBT" >
                     </div>
-                    <button type="button" class="btn btn-default" onclick="formFunct()" data-dismiss="modal">Показать</button>
+                    <button type="button" class="btn btn-success" onclick="formFunct()" data-dismiss="modal">Показать</button>
                 </form>
             </div>
         </div>
@@ -161,16 +179,16 @@
                     <li><button class="new"  onclick="bt(3)" >Салон красоты</button></li>
                     <li><button class="new"  onclick="bt(4)" >Продукты</button></li>
                     <li><button class="new" onclick="bt(5)"> Одежда</button></li>
-                    <li><button class="anyNew" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"> Незнаете что выбрать?</button></li>
+                    <li><div><button class="anyNew" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"> Незнаете что выбрать?</button></div></li>
                 </ul>
 
                 <div style=" position: absolute;bottom: 0; height: 150px;"><ul style="list-style-type: none; margin-left: 0; padding-left: 15px; font-family: arial,sans-serif; font-size: 13px">
                     <p class="uslText">Условные обозначеня</p>
-                    <li><div style="height: 10px; width: 13px; background:#ff0000; display: inline-block"></div><div style="margin-left: 5px; display: inline-block">Максимальное значение</div></li>
-                    <li><div style="height:10px; width: 13px; background:#ff7f2e; display: inline-block"></div><div style="margin-left: 5px; display: inline-block">Больше среднего колличества</div></li>
-                    <li><div style="height: 10px; width: 13px; background:#ffd31b; display: inline-block"></div><div style="margin-left: 5px; display: inline-block">Среднее колличество</div></li>
-                    <li><div style="height: 10px; width: 13px; background:#b3ff3a; display: inline-block"></div><div style="margin-left: 5px; display: inline-block">Меньше среднего колличества</div></li>
-                    <li><div style="height: 10px; width: 13px; background:#00ff00; display: inline-block"></div><div style="margin-left: 5px; display: inline-block">Минимальное колличество</div></li>
+                    <li><div class="circle" style="background: red;"></div><div style="margin-left: 5px; display: inline-block">Максимальное значение</div></li>
+                    <li><div class="circle" style="background: #ff7f2e;"></div><div style="margin-left: 5px; display: inline-block">Больше среднего колличества</div></li>
+                    <li><div class="circle" style="background:#ffd31b;"></div><div style="margin-left: 5px; display: inline-block">Среднее колличество</div></li>
+                    <li><div class="circle" style="background:#b3ff3a;"></div><div style="margin-left: 5px; display: inline-block">Меньше среднего колличества</div></li>
+                    <li><div class="circle" style="background:#00ff00;"></div><div style="margin-left: 5px; display: inline-block">Минимальное колличество</div></li>
                 </ul></div>
             </div>
             </div>
