@@ -7,6 +7,7 @@ import com.squareup.okhttp.Response;
 import model.Point;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import service.BizTypeServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -28,31 +29,9 @@ public class SearchServlet extends HttpServlet {
 
         int bisTypeId =Integer.parseInt(request.getParameter("type"));
 
-        String bizType = null;
 
-        switch (bisTypeId) {
-            case 1:
-                bizType = "кафе, рестораны" ;
-                break;
-            case 2:
-                bizType = "аптека";
-                break;
-            case 3:
-                bizType = "салоны красоты, барбер шоп, парикмахерские, спа, маникюр, студия красоты, солярии";
-                break;
-            case 4:
-                bizType = "маказины продукты";
-                break;
-            case 5:
-                bizType = "одежда";
-                break;
-        }
-
-        // 1 = кафе
-        // 2 = аптеки
-        // 3 = салон красоты
-        // 4 = продукты
-        // 5 = одежда
+        BizTypeServiceImpl btService = new BizTypeServiceImpl();
+        String bizType =btService.get(bisTypeId).getName();
 
         int maxNumberOfResults = 500;
 
