@@ -4,9 +4,12 @@ import com.google.gson.Gson;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
+import dto.MapPointDTO;
 import model.Point;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import service.BizTypeServiceImpl;
+import service.PointServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,35 +27,15 @@ public class SearchServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        List<Point> pointsAsked = new ArrayList<>();
+        //PointServiceImpl pointService = new PointServiceImpl();
+
+        List<MapPointDTO> pointsAsked = new ArrayList<>();
 
         int bisTypeId =Integer.parseInt(request.getParameter("type"));
 
-        String bizType = null;
 
-        switch (bisTypeId) {
-            case 1:
-                bizType = "кафе, рестораны" ;
-                break;
-            case 2:
-                bizType = "аптека";
-                break;
-            case 3:
-                bizType = "салоны красоты, барбер шоп, парикмахерские, спа, маникюр, студия красоты, солярии";
-                break;
-            case 4:
-                bizType = "маказины продукты";
-                break;
-            case 5:
-                bizType = "одежда";
-                break;
-        }
-
-        // 1 = кафе
-        // 2 = аптеки
-        // 3 = салон красоты
-        // 4 = продукты
-        // 5 = одежда
+        BizTypeServiceImpl btService = new BizTypeServiceImpl();
+        String bizType =btService.get(bisTypeId).getName();
 
         int maxNumberOfResults = 500;
 
@@ -103,13 +86,20 @@ public class SearchServlet extends HttpServlet {
                 float longitude = jarrayCoord.getFloat(0);
                 float latitude = jarrayCoord.getFloat(1);
 
-                pointsAsked.add(new Point(busName, busAddress, longitude, latitude, bisTypeId));
+                Point newPoint = new Point(busName, busAddress, longitude, latitude, bisTypeId);
+
+                //pointService.save(newPoint);
+
+                MapPointDTO dto = new MapPointDTO(newPoint);
+
+                dto.setCoordinates(new double[] {longitude, latitude});
+
+                pointsAsked.add(dto);
+
 
             }
 
         }
-
-
 
         Gson gson = new Gson();
 
@@ -119,7 +109,7 @@ public class SearchServlet extends HttpServlet {
         System.out.println(gson.toJson(pointsAsked));
         response.getWriter().write(gson.toJson(pointsAsked));
 
-        String toSend = gson.toJson(pointsAsked);
+        //String toSend = gson.toJson(pointsAsked);
 
     }
 
