@@ -32,7 +32,12 @@ public class EditBizTypeSevlet extends HttpServlet {
 
         long id = Long.parseLong(request.getParameter("id"));
         String name = request.getParameter("name");
-        bizTypeService.update(id, new BizType(name));
+        String searchTags = request.getParameter("searchTags");
+
+        BizType bizType = new BizType(name, searchTags);
+        bizType.setId(id);
+
+        bizTypeService.update(id, bizType);
 
         response.sendRedirect("/admin/business");
     }

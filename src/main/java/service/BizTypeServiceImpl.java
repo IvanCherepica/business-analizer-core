@@ -18,7 +18,7 @@ public class BizTypeServiceImpl implements Service<BizType> {
 
     private BizTypeDao bizTypeDao = new BizTypeDao(sessionFactory);
 
-    public BizTypeServiceImpl() {};
+    public BizTypeServiceImpl() {}
 
     @Override
     public BizType get(long id) throws HibernateException {

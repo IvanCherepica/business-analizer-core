@@ -20,7 +20,7 @@ public class AdminPointsCafeServlet extends HttpServlet {
 
         PointServiceImpl pointService = new PointServiceImpl();
 
-        List <Point> points = pointService.getByBizType(1);
+        List <Point> points = pointService.getByBizType(1L);
 
         request.setAttribute("points", points);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/admin_points_cafe.jsp");

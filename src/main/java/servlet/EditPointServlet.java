@@ -1,6 +1,8 @@
 package servlet;
 
+import model.BizType;
 import model.Point;
+import service.BizTypeServiceImpl;
 import service.PointServiceImpl;
 
 import javax.servlet.RequestDispatcher;
@@ -35,8 +37,12 @@ public class EditPointServlet extends HttpServlet {
 		double longitude = Double.parseDouble(request.getParameter("longitude"));
 		double latitude = Double.parseDouble(request.getParameter("latitude"));
 		int typeId = Integer.parseInt(request.getParameter("typeId"));
+		BizTypeServiceImpl btService = new BizTypeServiceImpl();
+		BizType bizType = btService.get(typeId);
+		Point point = new Point(name, address, longitude, latitude, bizType);
+		point.setId(id);
 
-		pointService.update(id, new Point(name, address, longitude, latitude, typeId));
+		pointService.update(id, point);
 
 		switch (typeId) {
 			case 1:

@@ -5,6 +5,7 @@ import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 import dto.MapPointDTO;
+import model.BizType;
 import model.Point;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -28,16 +29,18 @@ public class SearchServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         List<MapPointDTO> pointsAsked = new ArrayList<>();
-        int bizTypeId;
-        String bizType = null;
+        Long bizTypeId;
+        String bizTypeName = null;
+        BizType bizType = null;
         String formType;
         BizTypeServiceImpl btService = new BizTypeServiceImpl();
 
         boolean isBizTypeFound = false;
 
         try {
-           bizTypeId =Integer.parseInt(request.getParameter("type"));
-           bizType = btService.get(bizTypeId).getName();
+           bizTypeId =Long.parseLong(request.getParameter("type"));
+           bizTypeName = btService.get(bizTypeId).getSearchTags();
+           bizType = btService.get(bizTypeId);
            isBizTypeFound = true;
 
             PointServiceImpl pointService = new PointServiceImpl();
@@ -50,20 +53,20 @@ public class SearchServlet extends HttpServlet {
 
                 MapPointDTO dto = new MapPointDTO(newPoint);
 
-                dto.setCoordinates(new double[]{newPoint.getLongitude(), newPoint.getLatitude()});
+                dto.setCoordinates(new Double[]{newPoint.getLongitude(), newPoint.getLatitude()});
 
                 pointsAsked.add(dto);
             }
 
        } catch (NumberFormatException e){
-           bizTypeId = 6;
+           bizTypeId = 6L;
        }
 
         if (!isBizTypeFound) {
             try {
                 formType = request.getParameter("formType");
                 //formType = new String(request.getParameter("formType"));//.getBytes("ISO-8859-1"),"UTF-8");
-                bizType = formType;
+                bizTypeName = formType;
             } catch (NullPointerException e) {
                 e.printStackTrace();
             }
@@ -71,7 +74,7 @@ public class SearchServlet extends HttpServlet {
 
             int maxNumberOfResults = 500;
 
-            String url = "https://search-maps.yandex.ru/v1/?text=" + bizType + " Санкт Петербург|Питер|СПб&format=json&results=" + maxNumberOfResults + "&lang=ru_RU&apikey=c2c81851-dd41-473e-93e8-cf9ce455c58b";
+            String url = "https://search-maps.yandex.ru/v1/?text=" + bizTypeName + " Санкт Петербург|Питер|СПб&format=json&results=" + maxNumberOfResults + "&lang=ru_RU&apikey=c2c81851-dd41-473e-93e8-cf9ce455c58b";
 
 
             OkHttpClient client = new OkHttpClient();
@@ -115,16 +118,16 @@ public class SearchServlet extends HttpServlet {
                     JSONObject coord = jarrayGeom.getJSONObject(j);
                     JSONArray jarrayCoord = coord.getJSONArray("coordinates");
 
-                    float longitude = jarrayCoord.getFloat(0);
-                    float latitude = jarrayCoord.getFloat(1);
+                    Double longitude = jarrayCoord.getDouble(0);
+                    Double latitude = jarrayCoord.getDouble(1);
 
-                    Point newPoint = new Point(busName, busAddress, longitude, latitude, bizTypeId);
+                    Point newPoint = new Point(busName, busAddress, longitude, latitude, null);
 
 //                pointService.save(newPoint);
 
                     MapPointDTO dto = new MapPointDTO(newPoint);
 
-                    dto.setCoordinates(new double[]{longitude, latitude});
+                    dto.setCoordinates(new Double[]{longitude, latitude});
 
                     pointsAsked.add(dto);
 

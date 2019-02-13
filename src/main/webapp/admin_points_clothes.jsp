@@ -111,13 +111,13 @@
                     <c:forEach items="${points}" var="point" >
                         <tbody >
                         <tr>
-                            <td>${point.getName()}</td>
-                            <td>${point.getAddres()}</td>
-                            <td>${point.getLongitude()}/${point.getLatitude()}</td>
-                            <td>${point.getTypeId()}</td>
+                            <td>${point.name}</td>
+                            <td>${point.addres}</td>
+                            <td>${point.longitude}/${point.latitude}</td>
+                            <td>${point.bizType.id}</td>
                             <td>
-                                <a href="${pageContext.servletContext.contextPath}/admin/cafe/edit?id=${point.getId()}" class="btn btn-default" role="button">Edit</a>
-                                <a href="${pageContext.servletContext.contextPath}/admin/cafe/delete?id=${point.getId()}&typeId=${point.getTypeId()}" class="btn btn-default" role="button">Delete</a>
+                                <a href="${pageContext.servletContext.contextPath}/admin/cafe/edit?id=${point.id}" class="btn btn-default" role="button">Edit</a>
+                                <a href="${pageContext.servletContext.contextPath}/admin/cafe/delete?id=${point.id}&typeId=${point.bizType.id}" class="btn btn-default" role="button">Delete</a>
                             </td>
                         </tr>
                         </tbody>

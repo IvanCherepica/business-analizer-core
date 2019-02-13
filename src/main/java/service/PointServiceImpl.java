@@ -1,6 +1,7 @@
 package service;
 
 import dao.PointDao;
+import model.BizType;
 import model.Point;
 import org.hibernate.*;
 import org.hibernate.cfg.Configuration;
@@ -19,7 +20,8 @@ public class PointServiceImpl implements PointService {
 
     public PointServiceImpl() {}
 
-    public List<Point> getByBizType(Integer bizTypeId) {
+    public List<Point> getByBizType(Long bizTypeId) {
+        //return null;
         return pointDao.getByBizType(bizTypeId);
     }
 

@@ -94,16 +94,18 @@
             <thead>
             <tr class="active">
                 <th>Name</th>
+                <th>Tags for searching</th>
                 <th>Options</th>
             </tr>
             </thead>
             <c:forEach items="${bizTypes}" var="biztype" >
                 <tbody >
                 <tr>
-                    <td>${biztype.getName()}</td>
+                    <td>${biztype.name}</td>
+                    <td>${biztype.searchTags}</td>
                     <td>
-                        <a href="${pageContext.servletContext.contextPath}/admin/business/edit?id=${biztype.getId()}" class="btn btn-default" role="button">Edit</a>
-                        <a href="${pageContext.servletContext.contextPath}/admin/business/delete?id=${biztype.getId()}" class="btn btn-default" role="button">Delete</a>
+                        <a href="${pageContext.servletContext.contextPath}/admin/business/edit?id=${biztype.id}" class="btn btn-default" role="button">Edit</a>
+                        <a href="${pageContext.servletContext.contextPath}/admin/business/delete?id=${biztype.id}" class="btn btn-default" role="button">Delete</a>
                     </td>
                 </tr>
                 </tbody>
