@@ -39,7 +39,8 @@ public class SearchServlet extends HttpServlet {
            bizTypeId = 6;
        }
         try{
-            formType = new String(request.getParameter("formType").getBytes("ISO-8859-1"),"UTF-8");
+            formType = request.getParameter("formType");
+            //formType = new String(request.getParameter("formType"));//.getBytes("ISO-8859-1"),"UTF-8");
             bizType = formType;
         } catch (NullPointerException e){
             e.printStackTrace();

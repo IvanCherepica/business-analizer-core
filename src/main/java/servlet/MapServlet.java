@@ -14,6 +14,9 @@ public class MapServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html utf-8");
+
+        //request.setAttribute("districts", districts);
+
         RequestDispatcher dispatcher = request.getRequestDispatcher("/map.jsp");
         dispatcher.forward(request, response);
     }

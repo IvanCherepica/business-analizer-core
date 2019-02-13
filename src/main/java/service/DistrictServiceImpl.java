@@ -24,7 +24,7 @@ public class DistrictServiceImpl implements Service<District> {
 
     @Override
     public void save(District district) throws HibernateException {
-        save(district);
+        districtDao.save(district);
     }
 
     @Override

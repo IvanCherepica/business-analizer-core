@@ -24,11 +24,11 @@ public class EditBizTypeSevlet extends HttpServlet {
         request.setAttribute("bizType", bizType);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/admin_biztype_edit.jsp");
         dispatcher.forward(request, response);
-
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        request.setCharacterEncoding("utf-8");
 
         long id = Long.parseLong(request.getParameter("id"));
         String name = request.getParameter("name");

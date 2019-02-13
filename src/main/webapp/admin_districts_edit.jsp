@@ -94,17 +94,21 @@
         <thead>
         <tr class="info">
             <th>Name</th>
-            <th>Longitude</th>
-            <th>Latitude</th>
+            <th>Coordinates</th>
+            <th>Area</th>
+            <th>Population</th>
             <th>Options</th>
         </tr>
         </thead>
 
         <tbody >
 
+
+
         <form action="${pageContext.servletContext.contextPath}/admin/districts/edit" method="POST">
             <input type="hidden" name="id" value="${district.id}">
             <tr>
+
                 <td>
                     <div class="field">
                         <label for="name"></label>
@@ -113,16 +117,24 @@
                 </td>
                 <td>
                     <div class="field">
-                        <label for="longitude"></label>
-                        <input type="text" id="longitude" name="longitude" value="${district.longitude}" />
+                        <label for="crd"></label>
+                        <input type="text" id="crd" name="crd" value="${district.coordinates}" />
                     </div>
 
                 </td>
 
                 <td>
                     <div class="field">
-                        <label for="latitude"></label>
-                        <input type="text" id="latitude" name="latitude" value="${district.latitude}" />
+                        <label for="area"></label>
+                        <input type="text" id="area" name="area" value="${district.area}" />
+                    </div>
+
+                </td>
+
+                <td>
+                    <div class="field">
+                        <label for="population"></label>
+                        <input type="text" id="population" name="population" value="${district.population}" />
                     </div>
 
                 </td>
