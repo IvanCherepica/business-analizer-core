@@ -153,7 +153,7 @@
                 <tbody >
                 <tr>
                     <td>${district.getName()}</td>
-                    <td>${district.getCoordinates().substring(0,40).concat("...")}</td>
+                    <td>${district.getCoordinates().substring(0,50).concat("...")}</td>
                     <td>${district.getArea()}</td>
                     <td>${district.getPopulation()}</td>
                     <td>
