@@ -1,8 +1,6 @@
 package servlet;
 
-import model.BizType;
 import model.Point;
-import service.BizTypeServiceImpl;
 import service.PointServiceImpl;
 
 import javax.servlet.RequestDispatcher;
@@ -15,12 +13,10 @@ import java.io.IOException;
 
 @WebServlet("/admin/cafe/edit")
 public class EditPointServlet extends HttpServlet {
-
 	private PointServiceImpl pointService = new PointServiceImpl();
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 		long id = Long.parseLong(request.getParameter("id"));
 		Point point = pointService.get(id);
 
@@ -31,15 +27,13 @@ public class EditPointServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
 
 		long id = Long.parseLong(request.getParameter("id"));
-
 		String name = request.getParameter("name");
 		String address = request.getParameter("addres");
-
 		double longitude = Double.parseDouble(request.getParameter("longitude"));
 		double latitude = Double.parseDouble(request.getParameter("latitude"));
-
 		int typeId = Integer.parseInt(request.getParameter("typeId"));
 
 		pointService.update(id, new Point(name, address, longitude, latitude, typeId));

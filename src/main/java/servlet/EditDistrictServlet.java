@@ -18,18 +18,17 @@ public class EditDistrictServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         long id = Long.parseLong(request.getParameter("id"));
         District district = districtService.get(id);
 
         request.setAttribute("district", district);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/admin_districts_edit.jsp");
         dispatcher.forward(request, response);
-
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("utf-8");
 
         response.setContentType("text/html utf-8");
         request.setCharacterEncoding("utf-8");
