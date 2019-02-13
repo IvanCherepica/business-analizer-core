@@ -9,6 +9,7 @@ import model.Point;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import service.BizTypeServiceImpl;
+import service.PointServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -31,85 +32,106 @@ public class SearchServlet extends HttpServlet {
         String bizType = null;
         String formType;
         BizTypeServiceImpl btService = new BizTypeServiceImpl();
-        try{
+
+        boolean isBizTypeFound = false;
+
+        try {
            bizTypeId =Integer.parseInt(request.getParameter("type"));
            bizType = btService.get(bizTypeId).getName();
+           isBizTypeFound = true;
+
+            PointServiceImpl pointService = new PointServiceImpl();
+
+            List<Point> pointListFromBase = pointService.getByBizType(bizTypeId);
+
+            for (int i = 0; i < pointListFromBase.size(); i++) {
+
+                Point newPoint = pointListFromBase.get(i);
+
+                MapPointDTO dto = new MapPointDTO(newPoint);
+
+                dto.setCoordinates(new double[]{newPoint.getLongitude(), newPoint.getLatitude()});
+
+                pointsAsked.add(dto);
+            }
 
        } catch (NumberFormatException e){
            bizTypeId = 6;
        }
-        try{
-            formType = request.getParameter("formType");
-            //formType = new String(request.getParameter("formType"));//.getBytes("ISO-8859-1"),"UTF-8");
-            bizType = formType;
-        } catch (NullPointerException e){
-            e.printStackTrace();
-        }
+
+        if (!isBizTypeFound) {
+            try {
+                formType = request.getParameter("formType");
+                //formType = new String(request.getParameter("formType"));//.getBytes("ISO-8859-1"),"UTF-8");
+                bizType = formType;
+            } catch (NullPointerException e) {
+                e.printStackTrace();
+            }
 
 
-        int maxNumberOfResults = 500;
+            int maxNumberOfResults = 500;
 
-        String url = "https://search-maps.yandex.ru/v1/?text=" + bizType + " Санкт Петербург|Питер|СПб&format=json&results=" + maxNumberOfResults + "&lang=ru_RU&apikey=c2c81851-dd41-473e-93e8-cf9ce455c58b";
-
-
-        OkHttpClient client = new OkHttpClient();
-        Request requestHttp = new Request.Builder()
-                .url(url)
-                .build();
-        Response responses = null;
-
-        try {
-            responses = client.newCall(requestHttp).execute();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        String jsonData = null;
-
-        try {
-            jsonData = responses.body().string();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+            String url = "https://search-maps.yandex.ru/v1/?text=" + bizType + " Санкт Петербург|Питер|СПб&format=json&results=" + maxNumberOfResults + "&lang=ru_RU&apikey=c2c81851-dd41-473e-93e8-cf9ce455c58b";
 
 
+            OkHttpClient client = new OkHttpClient();
+            Request requestHttp = new Request.Builder()
+                    .url(url)
+                    .build();
+            Response responses = null;
 
-        System.out.println(jsonData);
+            try {
+                responses = client.newCall(requestHttp).execute();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
-        JSONObject jsonObject = new JSONObject(jsonData);
-        JSONArray jarrayFeature = jsonObject.getJSONArray("features");
+            String jsonData = null;
+
+            try {
+                jsonData = responses.body().string();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
 
-        for (int i = 0; i < jarrayFeature.length(); i++) {
+            System.out.println(jsonData);
 
-            JSONObject objectGeom = jarrayFeature.getJSONObject(i);
-            JSONArray jarrayGeom = objectGeom.getJSONArray("geometries");
-            JSONObject jarrayProp = objectGeom.getJSONObject("properties");
+            JSONObject jsonObject = new JSONObject(jsonData);
+            JSONArray jarrayFeature = jsonObject.getJSONArray("features");
 
-            String busName = jarrayProp.getString("name");
-            String busAddress = jarrayProp.getJSONObject("CompanyMetaData").getString("address");
 
-            for (int j = 0; j < jarrayGeom.length(); j++) {
+            for (int i = 0; i < jarrayFeature.length(); i++) {
 
-                JSONObject coord = jarrayGeom.getJSONObject(j);
-                JSONArray jarrayCoord = coord.getJSONArray("coordinates");
+                JSONObject objectGeom = jarrayFeature.getJSONObject(i);
+                JSONArray jarrayGeom = objectGeom.getJSONArray("geometries");
+                JSONObject jarrayProp = objectGeom.getJSONObject("properties");
 
-                float longitude = jarrayCoord.getFloat(0);
-                float latitude = jarrayCoord.getFloat(1);
+                String busName = jarrayProp.getString("name");
+                String busAddress = jarrayProp.getJSONObject("CompanyMetaData").getString("address");
 
-                Point newPoint = new Point(busName, busAddress, longitude, latitude, bizTypeId);
+                for (int j = 0; j < jarrayGeom.length(); j++) {
+
+                    JSONObject coord = jarrayGeom.getJSONObject(j);
+                    JSONArray jarrayCoord = coord.getJSONArray("coordinates");
+
+                    float longitude = jarrayCoord.getFloat(0);
+                    float latitude = jarrayCoord.getFloat(1);
+
+                    Point newPoint = new Point(busName, busAddress, longitude, latitude, bizTypeId);
 
 //                pointService.save(newPoint);
 
-                MapPointDTO dto = new MapPointDTO(newPoint);
+                    MapPointDTO dto = new MapPointDTO(newPoint);
 
-                dto.setCoordinates(new double[] {longitude, latitude});
+                    dto.setCoordinates(new double[]{longitude, latitude});
 
-                pointsAsked.add(dto);
+                    pointsAsked.add(dto);
 
+
+                }
 
             }
-
         }
 
         Gson gson = new Gson();
