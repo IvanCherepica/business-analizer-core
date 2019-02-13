@@ -120,7 +120,7 @@
                 <h1>Entity</h1>
                 <button formmethod="get" formaction="/admin/business" class="new">Business</button>
                 <button formmethod="get" formaction="/admin/districts" class="new">Districts</button>
-                <button formmethod="get" formaction="/admin/points" class="new">Points</button>
+                <button formmethod="get" formaction="/admin/cafe" class="new">Points</button>
             </form>
         </div>
     </div>
