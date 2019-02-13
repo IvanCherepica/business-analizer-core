@@ -9,7 +9,6 @@ import model.Point;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import service.BizTypeServiceImpl;
-import service.PointServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -27,19 +26,30 @@ public class SearchServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        //PointServiceImpl pointService = new PointServiceImpl();
-
         List<MapPointDTO> pointsAsked = new ArrayList<>();
-
-        int bisTypeId =Integer.parseInt(request.getParameter("type"));
-
-
+        int bizTypeId;
+        String bizType = null;
+        String formType;
         BizTypeServiceImpl btService = new BizTypeServiceImpl();
-        String bizType =btService.get(bisTypeId).getName();
+        try{
+           bizTypeId =Integer.parseInt(request.getParameter("type"));
+           bizType = btService.get(bizTypeId).getName();
+
+       } catch (NumberFormatException e){
+           bizTypeId = 6;
+       }
+        try{
+            formType = new String(request.getParameter("formType").getBytes("ISO-8859-1"),"UTF-8");
+            bizType = formType;
+        } catch (NullPointerException e){
+            e.printStackTrace();
+        }
+
 
         int maxNumberOfResults = 500;
 
-        String url = "https://search-maps.yandex.ru/v1/?text=" + bizType + ", Санкт-Петербург&format=json&results=" + maxNumberOfResults + "&type=biz&lang=ru_RU&apikey=c2c81851-dd41-473e-93e8-cf9ce455c58b";
+        String url = "https://search-maps.yandex.ru/v1/?text=" + bizType + " Санкт Петербург|Питер|СПб&format=json&results=" + maxNumberOfResults + "&lang=ru_RU&apikey=c2c81851-dd41-473e-93e8-cf9ce455c58b";
+
 
         OkHttpClient client = new OkHttpClient();
         Request requestHttp = new Request.Builder()
@@ -86,9 +96,9 @@ public class SearchServlet extends HttpServlet {
                 float longitude = jarrayCoord.getFloat(0);
                 float latitude = jarrayCoord.getFloat(1);
 
-                Point newPoint = new Point(busName, busAddress, longitude, latitude, bisTypeId);
+                Point newPoint = new Point(busName, busAddress, longitude, latitude, bizTypeId);
 
-                //pointService.save(newPoint);
+//                pointService.save(newPoint);
 
                 MapPointDTO dto = new MapPointDTO(newPoint);
 
