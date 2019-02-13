@@ -12,7 +12,10 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&coordorder=longlat&apikey=ef20360f-da6b-4ee7-be34-21ab7fabe266" type="text/javascript"></script>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script type="text/javascript" src = "districts.js"></script>
+
+    <script type="text/javascript">
+        <%@include file="/js/districts.js" %>
+    </script>
     <%--<script src="/js/mapPlaceMarkt.js" type="text/javascript"></script>--%>
 
 
@@ -208,7 +211,7 @@
     background: #FFFFFF;
     opacity: 0.7;
     pointer-events: none;
-    display: none"><div style="margin-top: 20%; text-align: center;"><img src="/ba.png" style=" height: 5%; width: 5%"></div><div style="margin-top: 5px; text-align: center;"><img src="/294.gif" style="width: 5%; height: 5%"></div>
+    display: none"><div style="margin-top: 20%; text-align: center;"><img src="/ba.png" style=" height: 5%; width: 5%"></div><div style="margin-top: 5px; text-align: center;"><img src="/dwl-animation.gif" style="width: 5%; height: 5%"></div>
 <script>
 
 </script>
