@@ -22,7 +22,7 @@ public class AdminFilter implements Filter {
         Admin admin = (Admin) session.getAttribute("admin");
         if (admin != null && admin.getLogin()!=null && admin.getPassword()!=null) {
         } else{
-            ((HttpServletResponse) response).sendRedirect("/user");
+            ((HttpServletResponse) response).sendRedirect("/user/map");
             return;
         }
         chain.doFilter(request, response);

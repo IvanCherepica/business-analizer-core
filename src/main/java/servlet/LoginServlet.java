@@ -44,7 +44,7 @@ public class LoginServlet extends HttpServlet {
         Admin admin = service.getAdminByLogin(login);
 
         if (admin == null) {
-            response.sendRedirect("/user");
+            response.sendRedirect("/user/map");
             return;
         }
 
@@ -55,7 +55,7 @@ public class LoginServlet extends HttpServlet {
             response.sendRedirect("/admin/business");
             return;
         } else {
-            response.sendRedirect("/user");
+            response.sendRedirect("/user/map");
         }
     }
 }
