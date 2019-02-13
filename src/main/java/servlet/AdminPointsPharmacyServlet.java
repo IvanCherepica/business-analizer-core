@@ -49,7 +49,7 @@ public class AdminPointsPharmacyServlet extends HttpServlet {
 
         //List <Point> points = pointService.getAll();
         //По дефолту аптеки
-        List <Point> points = pointService.getByBizType(2);
+        List <Point> points = pointService.getByBizType(2L);
 
         request.setAttribute("points", points);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/admin_points_pharmacy.jsp");

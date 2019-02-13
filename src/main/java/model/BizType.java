@@ -9,16 +9,20 @@ public class BizType {
     @Id
     @Column(name = "id", unique = true)
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
 
     @Column(name = "name")
     private String name;
 
+    @Column(name = "searchtags")
+    private String searchTags;
+
     public BizType() {
     }
 
-    public BizType(String name) {
+    public BizType(String name, String searchTags) {
         this.setName(name);
+        this.setSearchTags(searchTags);
     }
 
     public long getId() {
@@ -37,11 +41,12 @@ public class BizType {
         this.name = name;
     }
 
-    @Override
-    public String toString() {
-        return "BizType{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
+    public String getSearchTags() {
+        return searchTags;
     }
+
+    public void setSearchTags(String searchTags) {
+        this.searchTags = searchTags;
+    }
+    
 }

@@ -20,7 +20,7 @@ public class AdminPointsСlothesServlet extends HttpServlet {
 
         PointServiceImpl pointService = new PointServiceImpl();
 
-        List <Point> points = pointService.getByBizType(5);
+        List <Point> points = pointService.getByBizType(5L);
 
         request.setAttribute("points", points);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/admin_points_clothes.jsp");

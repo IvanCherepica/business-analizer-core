@@ -12,11 +12,11 @@ public class PointDao extends AbstractDao<Point> {
         super(sessionFactory);
     }
 
-    public List<Point> getByBizType(Integer bizTypeId) {
+    public List<Point> getByBizType(Long bizTypeId) {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
 
-        Query query = session.createQuery("FROM Point p WHERE p.typeId = :bizTypeId");
+        Query query = session.createQuery("FROM Point p WHERE p.bizType.id = :bizTypeId");
         query.setParameter("bizTypeId", bizTypeId);
 
         List<Point> result = query.list();

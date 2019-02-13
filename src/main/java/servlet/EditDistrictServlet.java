@@ -40,8 +40,10 @@ public class EditDistrictServlet extends HttpServlet {
         String crd = request.getParameter("crd");
         double area = Double.parseDouble(request.getParameter("area"));
         int population = Integer.parseInt(request.getParameter("population"));
+        District district = new District(name, population, area, crd);
+        district.setId(id);
 
-        districtService.update(id, new District(name, population, area, crd));
+        districtService.update(id, district);
 
         response.sendRedirect("/admin/districts");
     }
