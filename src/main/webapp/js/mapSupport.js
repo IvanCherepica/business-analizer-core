@@ -19,9 +19,7 @@ function init() {
             center: [30.25385, 59.90024],
             zoom: 10
         },
-        {
-            searchControlProvider: 'yandex#search'
-        }
+        { searchControlProvider: 'yandex#search'}
     );
 
     function showDistrictByNumver(ind) {
@@ -29,7 +27,7 @@ function init() {
         var myPolygon = new ymaps.Polygon(
             zones.features[ind].geometry.coordinates
             ,
-            { hintContent : zones.features[ind].properties.Name}
+            { hintContent : zones.features[ind].properties.name}
             ,
             { fillColor: '#ffd31b',
                 opacity: 0.5,
@@ -38,6 +36,7 @@ function init() {
         );
         myMap.geoObjects.add(myPolygon);
     }
+
 
     for (var i = 0; i < zones.features.length; i++) {
         showDistrictByNumver(i);
@@ -79,20 +78,27 @@ var objects = [];
 var listOfNumberOfElements = [];
 
 var result;
+
 function formFunct() {
+    var objects = [];
+    var listOfNumberOfElements = [];
+    jQuery.ajaxSetup({async:false});
     var val = document.getElementById('formBT').value;
     var message = val;
     removeAll();
     disable();
     console.log(message);
     var url = "/search?formType=" + message;
+
     $.ajax({
+
         url: url,//прописать ссылку на ямап апи
         method: "get",
         error: function (message) {
             console.log(message);
         },
         success: function (data) {
+            jQuery.ajaxSetup({async:false});
             console.log(data);
             console.log("1");
 
@@ -113,6 +119,7 @@ function formFunct() {
                 var objInsideDistrict = objects.searchInside(obj);
 
                 var len = objInsideDistrict._objects.length;
+
                 //console.log(obj.properties.name);
                 console.log(obj.properties._data.name);
                 console.log(len);
@@ -120,6 +127,7 @@ function formFunct() {
                 listOfNumberOfElements.push(len);
                 console.log(listOfNumberOfElements);
             });
+            jQuery.ajaxSetup({async:false});
 
             console.log("showDistrictByNumberByColor func is about to be used");
 
@@ -130,6 +138,7 @@ function formFunct() {
             noDisable()
         }
     });
+
     function getColor(num) {
         var resultColor = '#FF0000';
         if (num > 0.8) {
@@ -159,6 +168,8 @@ function formFunct() {
         return colorList;
     }
 
+
+
     function showDistrictByNumberByColor(ind) {
         console.log("showDistrictByNumberByColor started");
         var colorList = calculateColor(listOfNumberOfElements);
@@ -176,9 +187,11 @@ function formFunct() {
 
         myMap.geoObjects.add(myPolygon);
     }
+
 }
 
 function bt(val){
+    jQuery.ajaxSetup({async:false});
 
     var listOfNumberOfElements = [];
 
@@ -195,6 +208,7 @@ function bt(val){
             console.log(message);
         },
         success: function(data) {
+            jQuery.ajaxSetup({async:false});
             console.log(data);
             console.log("1");
 
@@ -216,13 +230,13 @@ function bt(val){
 
                 var len = objInsideDistrict._objects.length;
                 //console.log(obj.properties.name);
-                console.log(obj.properties._data.Name);
+                console.log(obj.properties._data.name);
                 console.log(len);
 
                 listOfNumberOfElements.push(len);
                 console.log(listOfNumberOfElements);
             });
-
+            jQuery.ajaxSetup({async:false});
             console.log("showDistrictByNumberByColor func is about to be used");
 
             for (var k = 0; k < zones.features.length; k++) {
