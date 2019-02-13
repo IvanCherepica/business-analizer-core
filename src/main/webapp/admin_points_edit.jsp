@@ -26,8 +26,9 @@
             </tr>
             </thead>
             <tbody >
-            <form action="${pageContext.servletContext.contextPath}/admin/cafe/edit" method="POST">
+            <form action="${pageContext.servletContext.contextPath}/admin/point/cafe/edit" method="POST">
                 <input type="hidden" name="id" value="${point.id}">
+                <input type="hidden" name="link" value="${point.bizType.link}">
                 <tr>
                     <td>
                         <div class="field">

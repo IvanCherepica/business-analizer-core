@@ -19,6 +19,7 @@
             <tr class="info">
                 <th>Name</th>
                 <th>Tags for searching</th>
+                <th>Link</th>
                 <th>Options</th>
             </tr>
             </thead>
@@ -27,6 +28,7 @@
                 <tr>
                     <td>${biztype.name}</td>
                     <td>${biztype.searchTags}</td>
+                    <td>${biztype.link}</td>
                     <td>
                         <a href="${pageContext.servletContext.contextPath}/admin/business/edit?id=${biztype.id}" class="btn btn-default" role="button">Edit</a>
                         <a href="${pageContext.servletContext.contextPath}/admin/business/delete?id=${biztype.id}" class="btn btn-default" role="button">Delete</a>

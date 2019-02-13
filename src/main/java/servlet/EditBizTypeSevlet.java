@@ -33,9 +33,10 @@ public class EditBizTypeSevlet extends HttpServlet {
         long id = Long.parseLong(request.getParameter("id"));
         String name = request.getParameter("name");
         String searchTags = request.getParameter("searchTags");
+        String link = request.getParameter("link");
 
-        BizType bizType = new BizType(name, searchTags);
-        bizType.setId(id);
+        BizType bizType = new BizType(name, searchTags,link);
+            bizType.setId(id);
 
         bizTypeService.update(id, bizType);
 

@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/admin/cafe/edit")
+@WebServlet("/admin/point/cafe/edit")
 public class EditPointServlet extends HttpServlet {
 	private PointServiceImpl pointService = new PointServiceImpl();
 
@@ -37,6 +37,7 @@ public class EditPointServlet extends HttpServlet {
 		double longitude = Double.parseDouble(request.getParameter("longitude"));
 		double latitude = Double.parseDouble(request.getParameter("latitude"));
 		int typeId = Integer.parseInt(request.getParameter("typeId"));
+		String link = request.getParameter("link");
 		BizTypeServiceImpl btService = new BizTypeServiceImpl();
 		BizType bizType = btService.get(typeId);
 		Point point = new Point(name, address, longitude, latitude, bizType);
@@ -44,22 +45,6 @@ public class EditPointServlet extends HttpServlet {
 
 		pointService.update(id, point);
 
-		switch (typeId) {
-			case 1:
-				response.sendRedirect("/admin/cafe");
-				break;
-			case 2:
-				response.sendRedirect("/admin/pharmacy");
-				break;
-			case 3:
-				response.sendRedirect("/admin/beauty");
-				break;
-			case 4:
-				response.sendRedirect("/admin/food");
-				break;
-			case 5:
-				response.sendRedirect("/admin/clothes");
-				break;
-		}
+		response.sendRedirect("/admin/point/" + link);
 	}
 }
