@@ -2,6 +2,7 @@ package servlet;
 
 import model.District;
 import service.DistrictServiceImpl;
+import service.Service;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -30,14 +31,18 @@ public class EditDistrictServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        response.setContentType("text/html utf-8");
+        request.setCharacterEncoding("utf-8");
+
+        Service<District> districtService= new DistrictServiceImpl();
+
         long id = Long.parseLong(request.getParameter("id"));
-
         String name = request.getParameter("name");
+        String crd = request.getParameter("crd");
+        double area = Double.parseDouble(request.getParameter("area"));
+        int population = Integer.parseInt(request.getParameter("population"));
 
-        double longitude = Double.parseDouble(request.getParameter("longitude"));
-        double latitude = Double.parseDouble(request.getParameter("latitude"));
-
-        districtService.update(id, new District(name, longitude, latitude));
+        districtService.update(id, new District(name, population, area, crd));
 
         response.sendRedirect("/admin/districts");
     }

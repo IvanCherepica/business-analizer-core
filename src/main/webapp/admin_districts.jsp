@@ -4,10 +4,9 @@
 <head>
     <title>Business analyzer</title>
     <link rel="shortcut icon" href="/favicon.png" type="image/x-icon">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-    <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="bello-bootstrap-ui.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <style>
         @media (min-width: 768px) {
             .wrapper {
@@ -66,6 +65,54 @@
 </head>
 <body>
 
+<div class="container">
+    <!-- Trigger the modal with a button -->
+
+    <!-- Modal -->
+    <%--<form action="${pageContext.servletContext.contextPath}/admin/districts" method="POST">--%>
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Add new district</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="${pageContext.servletContext.contextPath}/admin/districts" method="POST">
+
+                        <%--<input type="hidden" name="id" value="${point.id}">--%>
+
+                        <div class="field">
+                            <label for="name">Name:</label>
+                            <input type="text" class="form-control" id="name" name="name">
+                        </div>
+                        <div class="field">
+                            <label for="crd">Coordinates:</label>
+                            <input type="text" class="form-control" id="crd" name="crd">
+                        </div>
+                        <div class="form-group">
+                            <label for="population">Population:</label>
+                            <input type="text" class="form-control" id="population" name="population">
+                        </div>
+                        <div class="form-group">
+                            <label for="area">Area:</label>
+                            <input type="text" class="form-control" id="area" name="area">
+                        </div>
+                        <%--<a href="${pageContext.servletContext.contextPath}/admin/districts"--%>
+                           <%--class="btn btn-default" role="button">Add</a>--%>
+                        <button type="submit" class="btn btn-danger">Add</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <%--</form>--%>
+
+</div>
+
 <div class="container-fluid">
     <div class="left-sidebar">
         <div class = "bar-text">
@@ -89,11 +136,16 @@
     <h1>Admin panel</h1>
         <div align="left">
             <table class = "table table-bordered">
-                <caption><h2>List of Districts</h2></caption>
-            <thead>
+                <caption ><h2>List of Districts</h2></caption>
+                <div style="text-align: right">
+                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Add</button>
+                </div>
+                <thead>
             <tr class="info">
                 <th>Name</th>
-                <th>Сoordinate</th>
+                <th>Coordinates</th>
+                <th>Area</th>
+                <th>Population</th>
                 <th>Options</th>
             </tr>
             </thead>
@@ -101,7 +153,9 @@
                 <tbody >
                 <tr>
                     <td>${district.getName()}</td>
-                    <td>${district.getLongitude()}/${district.getLatitude()}</td>
+                    <td>${district.getCoordinates().substring(0,50).concat("...")}</td>
+                    <td>${district.getArea()}</td>
+                    <td>${district.getPopulation()}</td>
                     <td>
                         <a href="${pageContext.servletContext.contextPath}/admin/districts/edit?id=${district.getId()}"
                                 class="btn btn-default" role="button">Edit</a>
