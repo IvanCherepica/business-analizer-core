@@ -80,21 +80,21 @@
 </div>
 
 
-<div class="container-fluid" style="position: absolute;
+<div class="container-fluid" style=":position absolute;
     top: 0;
-    left: 10%;
+    margin-left: 20%;
     width: 80%;
     height: 100%;
    ">
     <h1>Admin panel</h1>
 
     <div align="left">
-        <table class = "table table-bordered">
+        <table class = "table table-bordered" style="width: 50%; box-shadow: 0 1px 9px rgba(0,0,0,.1);">
             <caption><h2>List of Business Types</h2></caption>
             <thead>
             <tr class="info">
                 <th>Name</th>
-                <th>Options</th>
+                <th style="width: 10%">Options</th>
             </tr>
             </thead>
             <tbody >
@@ -104,7 +104,7 @@
                     <td>
                         <div class="field">
                             <label for="name"></label>
-                            <input type="text" id="name" name="name" value="${bizType.name}" />
+                            <input type="text" id="name" name="name" value="${bizType.name}" style="width: 90%"/>
                         </div>
                     </td>
                     <td>

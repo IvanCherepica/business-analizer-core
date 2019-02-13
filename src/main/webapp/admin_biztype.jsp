@@ -82,14 +82,14 @@
 
 <div class="container-fluid" style="position: absolute;
     top: 0;
-    left: 10%;
+    left: 20%;
     width: 80%;
     height: 100%;
    ">
     <h1>Admin panel</h1>
 
     <div align="left">
-        <table class = "table table-bordered">
+        <table class = "table table-bordered" style="width: 60%; box-shadow: 0 1px 9px rgba(0,0,0,.1);" >
             <caption><h2>List of Business types</h2></caption>
             <thead>
             <tr class="active">
@@ -101,7 +101,7 @@
                 <tbody >
                 <tr>
                     <td>${biztype.getName()}</td>
-                    <td>
+                    <td style="width: 20%">
                         <a href="${pageContext.servletContext.contextPath}/admin/business/edit?id=${biztype.getId()}" class="btn btn-default" role="button">Edit</a>
                         <a href="${pageContext.servletContext.contextPath}/admin/business/delete?id=${biztype.getId()}" class="btn btn-default" role="button">Delete</a>
                     </td>
