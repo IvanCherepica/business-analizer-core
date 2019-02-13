@@ -1,40 +1,37 @@
-package model;
+package dto;
 
-import javax.persistence.*;
+import model.Point;
 
-@Entity
-@Table(name = "point")
-public class Point {
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-    @Id
-    @Column(name = "id", unique = true)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+public class MapPointDTO {
+
     private long id;
 
-    @Column(name = "name")
     private String name;
 
-    @Column(name = "addres")
     private String addres;
 
-    @Column(name = "longitude")
     private double longitude;
 
-    @Column(name = "latitude")
     private double latitude;
 
-    @Column(name = "typeId")
     private int typeId;
 
-    public Point() {
-    }
+    private String type =  "Point";
 
-    public Point(String name, String addres, double longitude, double latitude, int typeId) {
-        this.setName(name);
-        this.setAddres(addres);
-        this.setLongitude(longitude);
-        this.setLatitude(latitude);
-        this.setTypeId(typeId);
+    private double[] coordinates;
+
+    public MapPointDTO(Point point) {
+        this.id = point.getId();
+        this.name = point.getName();
+        this.addres = point.getAddres();
+        this.longitude = point.getLongitude();
+        this.latitude = point.getLatitude();
+        this.typeId = point.getTypeId();
     }
 
     public long getId() {
@@ -85,15 +82,19 @@ public class Point {
         this.typeId = typeId;
     }
 
-    @Override
-    public String toString() {
-        return "Point{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", addres='" + addres + '\'' +
-                ", longitude=" + longitude +
-                ", latitude=" + latitude +
-                ", typeId=" + typeId +
-                '}';
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public double[] getCoordinates() {
+        return coordinates;
+    }
+
+    public void setCoordinates(double[] coordinates) {
+        this.coordinates = coordinates;
     }
 }

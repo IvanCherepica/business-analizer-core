@@ -6,7 +6,6 @@ import javax.persistence.*;
 @Table(name = "district")
 public class District {
 
-
     @Id
     @Column(name = "id", unique = true)
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -15,21 +14,20 @@ public class District {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "coords")
-    private String coords; // (JSON)
+    @Column(name = "longitude")
+    private double longitude;
 
-    public District() {}
+    @Column(name = "latitude")
+    private double latitude;// (JSON)
 
-    public District(String name, String coords) {
-        this.setName(name);
-        this.setCoords(coords);
+    public District() {
     }
 
-//    public District(long id, String name, String coords) {
-//        this.setId(id);
-//        this.setName(name);
-//        this.setCoords(coords);
-//    }
+    public District(String name, double longitude, double latitude) {
+        this.name = name;
+        this.longitude = longitude;
+        this.latitude = latitude;
+    }
 
     public long getId() {
         return id;
@@ -39,8 +37,12 @@ public class District {
         return name;
     }
 
-    public String getCoords() {
-        return coords;
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public double getLatitude() {
+        return latitude;
     }
 
     public void setId(long id) {
@@ -51,7 +53,21 @@ public class District {
         this.name = name;
     }
 
-    public void setCoords(String coords) {
-        this.coords = coords;
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    @Override
+    public String toString() {
+        return "District{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", longitude=" + longitude +
+                ", latitude=" + latitude +
+                '}';
     }
 }
