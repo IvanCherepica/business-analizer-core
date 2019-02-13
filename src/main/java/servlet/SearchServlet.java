@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
+import dto.MapPointDTO;
 import model.Point;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -25,7 +26,7 @@ public class SearchServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        List<Point> pointsAsked = new ArrayList<>();
+        List<MapPointDTO> pointsAsked = new ArrayList<>();
         int bizTypeId;
         String bizType = null;
         String formType;
@@ -47,7 +48,8 @@ public class SearchServlet extends HttpServlet {
 
         int maxNumberOfResults = 500;
 
-        String url = "https://search-maps.yandex.ru/v1/?text=" + bizType + ", Санкт-Петербург&format=json&results=" + maxNumberOfResults + "&type=biz&lang=ru_RU&apikey=c2c81851-dd41-473e-93e8-cf9ce455c58b";
+        String url = "https://search-maps.yandex.ru/v1/?text=" + bizType + " Санкт Петербург|Питер|СПб&format=json&results=" + maxNumberOfResults + "&lang=ru_RU&apikey=c2c81851-dd41-473e-93e8-cf9ce455c58b";
+
 
         OkHttpClient client = new OkHttpClient();
         Request requestHttp = new Request.Builder()
@@ -94,9 +96,9 @@ public class SearchServlet extends HttpServlet {
                 float longitude = jarrayCoord.getFloat(0);
                 float latitude = jarrayCoord.getFloat(1);
 
-                Point newPoint = new Point(busName, busAddress, longitude, latitude, bisTypeId);
+                Point newPoint = new Point(busName, busAddress, longitude, latitude, bizTypeId);
 
-                //pointService.save(newPoint);
+//                pointService.save(newPoint);
 
                 MapPointDTO dto = new MapPointDTO(newPoint);
 
