@@ -3,7 +3,13 @@ ymaps.ready(init);
 var opacity_for_all = 0.7;
 
 function getColor(num) {
-    return getGradientColor('#00FF00', '#FF0000', num);
+    if (num > 0.5) {
+        return getGradientColor('#fffa00', '#FF0000', (num-0.5)*2);
+    } else {
+        return getGradientColor('#00FF00', '#fffa00', num*2);
+    }
+    // return getGradientColor('#00FF00', '#FF0000', num);
+    //return getGradientColor('#008200', '#FF0000', num);
 }
 
 getGradientColor = function(start_color, end_color, percent) {
