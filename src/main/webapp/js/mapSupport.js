@@ -243,7 +243,7 @@ function formFunct() {
             { hintContent : zones.features[ind].properties.name}
             ,
             { fillColor: colorList[ind],
-                opacity: 0.8,
+                opacity: 0.6,
                 strokeColor: '#808080',
                 strokeWidth: 1}
         );
