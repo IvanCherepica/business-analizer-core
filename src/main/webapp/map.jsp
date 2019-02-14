@@ -5,7 +5,7 @@
 <head>
     [<%@ page language="java" contentType="text/html;charset=UTF-8"%>]
     [<%@ page pageEncoding="UTF-8"%>]
-    <title>Byseness analizer</title>
+    <title>Business analyzer</title>
     <link rel="shortcut icon" href="/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -173,7 +173,7 @@
 <div class="container-fluid" id = "sidebar" >
     <div class="row">
         <div class="wrapper">
-            <div class="right-sidebar"><div> <h2 class = "bar-text">Выберите тип бизнесса</h2>
+            <div class="right-sidebar"><div> <h2 class = "bar-text">Выберите тип бизнеса</h2>
 
                 <ul style="list-style-type: none; margin-left: 0; padding-left: 0;" id = "buttons">
                     <c:forEach items="${bizTypes}" var="biztype" >

@@ -60,7 +60,7 @@ public class EditBizTypeSevlet extends HttpServlet {
 
         int maxNumberOfResults = 500;
 
-        String url = "https://search-maps.yandex.ru/v1/?text=" + searchTags + " Санкт Петербург|Питер|СПб&format=json&results=" + maxNumberOfResults + "&lang=ru_RU&apikey=c2c81851-dd41-473e-93e8-cf9ce455c58b";
+        String url = "https://search-maps.yandex.ru/v1/?text=" + searchTags + "&format=json&results=" + maxNumberOfResults + "&ll=30.30557800,59.91807704&spn=0.45,0.29&lang=ru_RU&apikey=c2c81851-dd41-473e-93e8-cf9ce455c58b";
 
         OkHttpClient client = new OkHttpClient();
         Request requestHttp = new Request.Builder()

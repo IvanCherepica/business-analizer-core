@@ -7,8 +7,8 @@ create table bizType
   link varchar(20) not null
 );
 
-INSERT INTO db_schema.bizType (id,link, name, searchTags) VALUES (1,'cafe','Кафе', 'кафе | рестораны');
+INSERT INTO db_schema.bizType (id,link, name, searchTags) VALUES (1,'cafe','Кафе', 'кафе');
 INSERT INTO db_schema.bizType (id,link, name, searchTags) VALUES (2,'pharmacy','Аптеки', 'аптека');
-INSERT INTO db_schema.bizType (id,link, name, searchTags) VALUES (3,'beauty','Салоны красоты', 'салоны красоты | барбер шоп | парикмахерские | спа | маникюр | студия красоты | солярий');
-INSERT INTO db_schema.bizType (id,link, name, searchTags) VALUES (4,'food','Продукты', 'магазин | продукты');
+INSERT INTO db_schema.bizType (id,link, name, searchTags) VALUES (3,'beauty','Салоны красоты', 'салоны красоты');
+INSERT INTO db_schema.bizType (id,link, name, searchTags) VALUES (4,'food','Продукты', 'продукты');
 INSERT INTO db_schema.bizType (id,link, name, searchTags) VALUES (5,'clothes','Одежда', 'одежда');
