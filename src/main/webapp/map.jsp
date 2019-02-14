@@ -182,6 +182,8 @@
                     <li><button class="new"  onclick="bt(3)" >Салон красоты</button></li>
                     <li><button class="new"  onclick="bt(4)" >Продукты</button></li>
                     <li><button class="new" onclick="bt(5)"> Одежда</button></li>
+                    <li><button class="new" onclick="includePopulation()"> Объектов на долю населения</button></li>
+                    <li><button class="new" onclick="includeArea()"> Объектов на квадратный метр</button></li>
                     <li><div><button class="anyNew" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"> Незнаете что выбрать?</button></div></li>
                 </ul>
 

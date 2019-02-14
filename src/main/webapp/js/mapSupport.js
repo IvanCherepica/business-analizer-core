@@ -3,7 +3,7 @@ ymaps.ready(init);
 var opacity_for_all = 0.7;
 
 isPerPopulationActivated = new Boolean(false);
-isPerAreaActivated = new Boolean(true);
+isPerAreaActivated = new Boolean(false);
 
 function getColor(num) {
     if (num > 0.5) {
@@ -150,24 +150,9 @@ function init() {
         { searchControlProvider: 'yandex#search'}
     );
 
-    // var listOfPopulationRealValues = [];
-    // var listOfPopulationOnes = [];
-    //
-    // var listOfAreaRealValues = [];
-    // var listOfAreaOnes = [];
-
     var deliveryZones = ymaps.geoQuery(zones);//.addToMap(myMap);
 
-    //var listOfNumberOfElements = [];
-    // var listOfPopulation = [];
-    // var listOfArea = [];
-
     deliveryZones.each(function (obj) {
-        //var color = obj.options.get('fillColor');
-        //color = color.substring(0, color.length - 2);
-        //obj.options.set({fillColor: color, fillOpacity: 0.4});
-        //var objInsideDistrict = objects.searchInside(obj);
-        //console.log(obj.properties.name);
 
         console.log(obj.properties._data.name);
         console.log(obj.properties._data.population);
@@ -254,6 +239,7 @@ var listOfNumberOfElements = [];
 var result;
 
 function formFunct() {
+    console.log("Value selected" + valueSelected);
     var objects = [];
     var listOfNumberOfElements = [];
     jQuery.ajaxSetup({async:false});
@@ -334,8 +320,22 @@ function formFunct() {
 
 }
 
+
+function includePopulation() {
+    isPerPopulationActivated = new Boolean(true);
+    bt(valueSelected);
+}
+function includeArea() {
+    isPerAreaActivated = new Boolean(true);
+    bt(valueSelected);
+}
+
+var valueSelected;
+
 function bt(val){
     jQuery.ajaxSetup({async:false});
+    valueSelected = val;
+    console.log("Value selected " + valueSelected);
 
     var listOfNumberOfElements = [];
 
