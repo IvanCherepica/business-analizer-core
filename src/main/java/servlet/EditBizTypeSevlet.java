@@ -46,68 +46,6 @@ public class EditBizTypeSevlet extends HttpServlet {
 
         bizTypeService.update(id, new BizType(name));
 
-        PointServiceImpl pointService = new PointServiceImpl();
-        List<Point> pointListToRemove = pointService.getByBizType((int) id);
-
-        //pointService.removeList(pointListToRemove);
-
-        List<Point> newPointList = new ArrayList<>();
-
-        int maxNumberOfResults = 500;
-
-        String url = "https://search-maps.yandex.ru/v1/?text=" + tags + " Санкт Петербург|Питер|СПб&format=json&results=" + maxNumberOfResults + "&lang=ru_RU&apikey=c2c81851-dd41-473e-93e8-cf9ce455c58b";
-
-        OkHttpClient client = new OkHttpClient();
-        Request requestHttp = new Request.Builder()
-                .url(url)
-                .build();
-        Response responses = null;
-
-        try {
-            responses = client.newCall(requestHttp).execute();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        String jsonData = null;
-
-        try {
-            jsonData = responses.body().string();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        System.out.println(jsonData);
-
-        JSONObject jsonObject = new JSONObject(jsonData);
-        JSONArray jarrayFeature = jsonObject.getJSONArray("features");
-
-
-        for (int i = 0; i < jarrayFeature.length(); i++) {
-
-            JSONObject objectGeom = jarrayFeature.getJSONObject(i);
-            JSONArray jarrayGeom = objectGeom.getJSONArray("geometries");
-            JSONObject jarrayProp = objectGeom.getJSONObject("properties");
-
-            String busName = jarrayProp.getString("name");
-            String busAddress = jarrayProp.getJSONObject("CompanyMetaData").getString("address");
-
-            for (int j = 0; j < jarrayGeom.length(); j++) {
-
-                JSONObject coord = jarrayGeom.getJSONObject(j);
-                JSONArray jarrayCoord = coord.getJSONArray("coordinates");
-
-                float longitude = jarrayCoord.getFloat(0);
-                float latitude = jarrayCoord.getFloat(1);
-
-                Point newPoint = new Point(busName, busAddress, longitude, latitude, (int)id);
-
-                newPointList.add(newPoint);
-            }
-        }
-
-        //pointService.saveList(newPointList);
-
         response.sendRedirect("/admin/business");
     }
 }
