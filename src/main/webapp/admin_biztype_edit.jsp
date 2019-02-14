@@ -6,20 +6,21 @@
 <%@ include file="admin_menu_entity.jsp" %>
 <div class="container-fluid" style="position: absolute;
     top: 0;
-    margin-left: 20%;
+    left: 10%;
     width: 80%;
     height: 100%;
    ">
     <h1>Admin panel</h1>
 
     <div align="left">
-        <table class = "table table-bordered" style="width: 50%; box-shadow: 0 1px 9px rgba(0,0,0,.1);">
+        <table class = "table table-bordered">
             <caption><h2>List of Business Types</h2></caption>
             <thead>
             <tr class="info">
                 <th>Name</th>
                 <th>Tags for searching</th>
-                <th style="width: 10%">Options</th>
+                <th>Link</th>
+                <th>Options</th>
             </tr>
             </thead>
             <tbody >
@@ -39,8 +40,14 @@
                         </div>
                     </td>
                     <td>
+                        <div class="field">
+                            <label for="name"></label>
+                            <input type="text" id="link" name="link" value="${bizType.link}" />
+                        </div>
+                    </td>
+                    <td>
                         <div class="submit">
-                            <input type="submit" align="center" class="btn btn-default" role="button" value="Submit"/>
+                            <input type="submit" align="center" class="btn btn-default" role="button" value="Submit and update database"/>
                         </div>
                     </td>
                 </tr>

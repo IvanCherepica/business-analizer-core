@@ -11,34 +11,34 @@ import java.io.*;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        String filePath = "C:\\Users\\Dell\\Desktop\\stepic_java_webserver-master\\business-analizer-core\\src\\main\\webapp\\SPB_districts.json";
-
-        FileInputStream fis = new FileInputStream(filePath);
-
-        InputStreamReader inputStreamReader  = new InputStreamReader(fis, "utf-8");
-        int i;
-        StringBuilder sb =new StringBuilder();
-
-        while ((i=inputStreamReader.read())!=-1){
-            sb.append((char) i);
-        }
-        String str = sb.toString();
-
-        JSONObject jsonObject = new JSONObject(str);
-        JSONArray arr = jsonObject.getJSONArray("districts");
-
-//        System.out.println(arr.getJSONObject(1).getJSONObject("properties").getString("name"));
-
-        DistrictServiceImpl districtService = new DistrictServiceImpl();
-        for(int a = 0; a<arr.length(); a++){
-            District district = new District(arr.getJSONObject(a).getJSONObject("properties").getString("name"),
-                    arr.getJSONObject(a).getJSONObject("properties").getInt("population"),
-                    arr.getJSONObject(a).getJSONObject("properties").getDouble("area"),
-                    arr.getJSONObject(a).getJSONObject("geometry").get("coordinates").toString());
-            districtService.save(district);
-        }
-
-        System.out.println("done");
+//        String filePath = "C:\\Users\\Dell\\Desktop\\stepic_java_webserver-master\\business-analizer-core\\src\\main\\webapp\\SPB_districts.json";
+//
+//        FileInputStream fis = new FileInputStream(filePath);
+//
+//        InputStreamReader inputStreamReader  = new InputStreamReader(fis, "utf-8");
+//        int i;
+//        StringBuilder sb =new StringBuilder();
+//
+//        while ((i=inputStreamReader.read())!=-1){
+//            sb.append((char) i);
+//        }
+//        String str = sb.toString();
+//
+//        JSONObject jsonObject = new JSONObject(str);
+//        JSONArray arr = jsonObject.getJSONArray("districts");
+//
+////        System.out.println(arr.getJSONObject(1).getJSONObject("properties").getString("name"));
+//
+//        DistrictServiceImpl districtService = new DistrictServiceImpl();
+//        for(int a = 0; a<arr.length(); a++){
+//            District district = new District(arr.getJSONObject(a).getJSONObject("properties").getString("name"),
+//                    arr.getJSONObject(a).getJSONObject("properties").getInt("population"),
+//                    arr.getJSONObject(a).getJSONObject("properties").getDouble("area"),
+//                    arr.getJSONObject(a).getJSONObject("geometry").get("coordinates").toString());
+//            districtService.save(district);
+//        }
+//
+//        System.out.println("done");
 //        System.out.println(arr.getJSONObject(0).get("name"));
 //        for(int b = 0; b<arr.length(); b++){
 //////

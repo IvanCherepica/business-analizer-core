@@ -9,11 +9,9 @@
 <html>
 <h2 align="left">
     <form>
-        <button formmethod="get" formaction="/admin/cafe" class="btn btn-danger">Кафе</button>
-        <button formmethod="get" formaction="/admin/pharmacy" class="btn btn-info" >Аптеки</button>
-        <button formmethod="get" formaction="/admin/beauty" class="btn btn-warning">Салоны красоты</button>
-        <button formmethod="get" formaction="/admin/food" class="btn btn-success" >Продукты</button>
-        <button formmethod="get" formaction="/admin/clothes" class="btn btn-primary" >Одежда</button>
+        <c:forEach items="${biztypes}" var="biztype" >
+            <button formmethod="get" formaction="/admin/point/${biztype.link}" class="btn btn-light">${biztype.name}</button>
+        </c:forEach>
     </form>
 </h2>
 </html>
