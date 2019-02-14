@@ -22,8 +22,8 @@ public class TestServlet extends HttpServlet {
 
         String userBusinessType = request.getParameter("type");
 
-        pointsAsked.add(new Point(userBusinessType, "ацуа", 11, 33, 1));
-        pointsAsked.add(new Point("dsa", userBusinessType, 22, 44, 1));
+//        pointsAsked.add(new Point(userBusinessType, "ацуа", 11, 33, 1));
+//        pointsAsked.add(new Point("dsa", userBusinessType, 22, 44, 1));
 
         Gson gson = new Gson();
 

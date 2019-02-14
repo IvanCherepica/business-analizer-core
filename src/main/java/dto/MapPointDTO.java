@@ -1,29 +1,25 @@
 package dto;
 
+import model.BizType;
 import model.Point;
-
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
 public class MapPointDTO {
 
-    private long id;
+    private Long id;
 
     private String name;
 
     private String addres;
 
-    private double longitude;
+    private Double longitude;
 
-    private double latitude;
+    private Double latitude;
 
-    private int typeId;
+    private BizType typeId;
 
     private String type =  "Point";
 
-    private double[] coordinates;
+    private Double[] coordinates;
 
     public MapPointDTO(Point point) {
         this.id = point.getId();
@@ -31,14 +27,14 @@ public class MapPointDTO {
         this.addres = point.getAddres();
         this.longitude = point.getLongitude();
         this.latitude = point.getLatitude();
-        this.typeId = point.getTypeId();
+        this.typeId = point.getBizType();
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -58,27 +54,27 @@ public class MapPointDTO {
         this.addres = addres;
     }
 
-    public double getLongitude() {
+    public Double getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(double longitude) {
+    public void setLongitude(Double longitude) {
         this.longitude = longitude;
     }
 
-    public double getLatitude() {
+    public Double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(double latitude) {
+    public void setLatitude(Double latitude) {
         this.latitude = latitude;
     }
 
-    public int getTypeId() {
+    public BizType getTypeId() {
         return typeId;
     }
 
-    public void setTypeId(int typeId) {
+    public void setTypeId(BizType typeId) {
         this.typeId = typeId;
     }
 
@@ -90,11 +86,11 @@ public class MapPointDTO {
         this.type = type;
     }
 
-    public double[] getCoordinates() {
+    public Double[] getCoordinates() {
         return coordinates;
     }
 
-    public void setCoordinates(double[] coordinates) {
+    public void setCoordinates(Double[] coordinates) {
         this.coordinates = coordinates;
     }
 }

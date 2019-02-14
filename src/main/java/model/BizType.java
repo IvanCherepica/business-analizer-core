@@ -9,24 +9,40 @@ public class BizType {
     @Id
     @Column(name = "id", unique = true)
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
 
     @Column(name = "name")
     private String name;
 
+    @Column(name = "searchtags")
+    private String searchTags;
+
+    @Column(name = "link")
+    private String link;
+
     public BizType() {
     }
 
-    public BizType(String name) {
+    public BizType(String name, String searchTags,String link) {
         this.setName(name);
+        this.setSearchTags(searchTags);
+        this.setLink(link);
     }
 
-    public long getId() {
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
     }
 
     public String getName() {
@@ -37,11 +53,12 @@ public class BizType {
         this.name = name;
     }
 
-    @Override
-    public String toString() {
-        return "BizType{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
+    public String getSearchTags() {
+        return searchTags;
     }
+
+    public void setSearchTags(String searchTags) {
+        this.searchTags = searchTags;
+    }
+
 }

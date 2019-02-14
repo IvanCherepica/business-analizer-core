@@ -66,7 +66,9 @@ public abstract class AbstractDao<T> {
 
         T entity = (T) session.get(persistentClass, id);
         session.delete(entity);
-
+//TODO При попытке удалить Type MySQLIntegrityConstraintViolationException: Cannot delete or update a parent row:
+// a foreign key constraint fails (`db_schema`.`point`, CONSTRAINT `point_ibfk_1` FOREIGN KEY (`typeId`)
+// REFERENCES `biztype` (`id`))
         transaction.commit();
         session.close();
     }
@@ -75,10 +77,9 @@ public abstract class AbstractDao<T> {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
 
-        T entity = (T) session.get(persistentClass, id);
-        session.delete(entity);
+        session.saveOrUpdate(t);
 
-        session.persist(t);
+//        session.persist(t);
 
         transaction.commit();
         session.close();

@@ -1,12 +1,12 @@
 create table point
 (
-  id        bigint auto_increment
-    primary key,
+  id        bigint auto_increment primary key,
   addres    varchar(255) null,
   latitude  double       null,
   longitude double       null,
   name      varchar(255) null,
-  typeId    int          null
+  typeId    bigint ,
+  FOREIGN KEY (typeId) REFERENCES biztype(id)
 );
 
 INSERT INTO db_schema.point (id, addres, latitude, longitude, name, typeId) VALUES (1, 'наб. канала Грибоедова, 5', 59.93962478637695, 30.32769012451172, 'Санкт-Петербург', 1);

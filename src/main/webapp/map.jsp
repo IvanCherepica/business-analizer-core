@@ -5,7 +5,7 @@
 <head>
     [<%@ page language="java" contentType="text/html;charset=UTF-8"%>]
     [<%@ page pageEncoding="UTF-8"%>]
-    <title>Byseness analizer</title>
+    <title>Business analyzer</title>
     <link rel="shortcut icon" href="/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -173,17 +173,17 @@
 <div class="container-fluid" id = "sidebar" >
     <div class="row">
         <div class="wrapper">
-            <div class="right-sidebar"><div> <h2 class = "bar-text">Выберите тип бизнесса</h2>
+            <div class="right-sidebar"><div> <h2 class = "bar-text">Выберите тип бизнеса</h2>
 
                 <ul style="list-style-type: none; margin-left: 0; padding-left: 0;" id = "buttons">
                     <c:forEach items="${bizTypes}" var="biztype" >
                         <li><button class="new" onclick="bt(${biztype.id})">${biztype.name}</button></li>
                     </c:forEach>
-                    <li><div><button class="anyNew" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"> Незнаете что выбрать?</button></div></li>
+                    <li><div><button class="anyNew" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"> Не знаете что выбрать?</button></div></li>
                 </ul>
 
                 <div style=" position: absolute;bottom: 0; height: 150px;"><ul style="list-style-type: none; margin-left: 0; padding-left: 15px; font-family: arial,sans-serif; font-size: 13px">
-                    <p class="uslText">Условные обозначеня</p>
+                    <p class="uslText">Условные обозначения</p>
                     <li><div class="circle" style="background: red;"></div><div style="margin-left: 5px; display: inline-block">Максимальное значение</div></li>
                     <li><div class="circle" style="background: #ff7f2e;"></div><div style="margin-left: 5px; display: inline-block">Больше среднего колличества</div></li>
                     <li><div class="circle" style="background:#ffd31b;"></div><div style="margin-left: 5px; display: inline-block">Среднее колличество</div></li>

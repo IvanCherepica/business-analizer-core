@@ -9,7 +9,7 @@ public class Point {
     @Id
     @Column(name = "id", unique = true)
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
 
     @Column(name = "name")
     private String name;
@@ -18,31 +18,29 @@ public class Point {
     private String addres;
 
     @Column(name = "longitude")
-    private double longitude;
+    private Double longitude;
 
     @Column(name = "latitude")
-    private double latitude;
+    private Double latitude;
 
-    @Column(name = "typeId")
-    private int typeId;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "typeId")
+    private BizType bizType;
 
     public Point() {
     }
 
-    public Point(String name, String addres, double longitude, double latitude, int typeId) {
-        this.setName(name);
-        this.setAddres(addres);
-        this.setLongitude(longitude);
-        this.setLatitude(latitude);
-        this.setTypeId(typeId);
+    public Point(String name, String addres, Double longitude, Double latitude, BizType bizType) {
+        this.name = name;
+        this.addres = addres;
+        this.longitude = longitude;
+        this.latitude = latitude;
+        this.bizType = bizType;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -65,35 +63,28 @@ public class Point {
         return longitude;
     }
 
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
-    }
 
     public double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(double latitude) {
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
+    }
+
+    public void setLatitude(Double latitude) {
         this.latitude = latitude;
     }
 
-    public int getTypeId() {
-        return typeId;
+    public BizType getBizType() {
+        return bizType;
     }
 
-    public void setTypeId(int typeId) {
-        this.typeId = typeId;
-    }
-
-    @Override
-    public String toString() {
-        return "Point{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", addres='" + addres + '\'' +
-                ", longitude=" + longitude +
-                ", latitude=" + latitude +
-                ", typeId=" + typeId +
-                '}';
+    public void setBizType(BizType bizType) {
+        this.bizType = bizType;
     }
 }
