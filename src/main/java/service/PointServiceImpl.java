@@ -54,4 +54,11 @@ public class PointServiceImpl implements PointService {
         return pointDao.getAll();
     }
 
+    public void removeList(List<Point> pointList) throws HibernateException{
+        for(Point point:pointList){
+            pointDao.remove(point.getId());
+        }
+    }
+
+
 }
