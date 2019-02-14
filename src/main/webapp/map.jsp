@@ -181,12 +181,9 @@
             <div class="right-sidebar"><div> <h2 class = "bar-text">Выберите тип бизнесса</h2>
 
                 <ul style="list-style-type: none; margin-left: 0; padding-left: 0;" id = "buttons">
-
-                    <li><button class="new" onclick="bt(1)">Кафе</button></li>
-                    <li><button class="new"  onclick="bt(2)">Аптека</button> </li>
-                    <li><button class="new"  onclick="bt(3)" >Салон красоты</button></li>
-                    <li><button class="new"  onclick="bt(4)" >Продукты</button></li>
-                    <li><button class="new" onclick="bt(5)"> Одежда</button></li>
+                    <c:forEach items="${bizTypes}" var="biztype" >
+                        <li><button class="new" onclick="bt(${biztype.id})">${biztype.name}</button></li>
+                    </c:forEach>
                     <li><div><button class="anyNew" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"> Незнаете что выбрать?</button></div></li>
                 </ul>
 

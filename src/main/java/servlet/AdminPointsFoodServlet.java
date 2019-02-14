@@ -21,7 +21,7 @@ public class AdminPointsFoodServlet extends HttpServlet {
 
         PointServiceImpl pointService = new PointServiceImpl();
 
-        List <Point> points = pointService.getByBizType(4);
+        List <Point> points = pointService.getByBizType(4L);
 
         request.setAttribute("points", points);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/admin_points_food.jsp");

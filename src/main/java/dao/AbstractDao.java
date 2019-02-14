@@ -75,10 +75,9 @@ public abstract class AbstractDao<T> {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
 
-        T entity = (T) session.get(persistentClass, id);
-        session.delete(entity);
+        session.saveOrUpdate(t);
 
-        session.persist(t);
+//        session.persist(t);
 
         transaction.commit();
         session.close();
