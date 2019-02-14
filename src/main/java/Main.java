@@ -6,10 +6,7 @@ import org.json.JSONObject;
 import service.BizTypeServiceImpl;
 import service.DistrictServiceImpl;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 
 public class Main {
 
@@ -17,18 +14,20 @@ public class Main {
         String filePath = "C:\\Users\\Dell\\Desktop\\stepic_java_webserver-master\\business-analizer-core\\src\\main\\webapp\\SPB_districts.json";
 
         FileInputStream fis = new FileInputStream(filePath);
+
+        InputStreamReader inputStreamReader  = new InputStreamReader(fis, "utf-8");
         int i;
         StringBuilder sb =new StringBuilder();
-        while ((i=fis.read())!=-1){
+
+        while ((i=inputStreamReader.read())!=-1){
             sb.append((char) i);
         }
         String str = sb.toString();
 
-
         JSONObject jsonObject = new JSONObject(str);
         JSONArray arr = jsonObject.getJSONArray("districts");
 
-        System.out.println(arr.getJSONObject(2).getJSONObject("geometry").get("coordinates"));
+//        System.out.println(arr.getJSONObject(1).getJSONObject("properties").getString("name"));
 
         DistrictServiceImpl districtService = new DistrictServiceImpl();
         for(int a = 0; a<arr.length(); a++){
