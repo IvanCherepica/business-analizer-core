@@ -1,9 +1,7 @@
 package util;
 
-import model.*;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-//import model.*;
 import model.Admin;
 import model.BizType;
 import model.District;
