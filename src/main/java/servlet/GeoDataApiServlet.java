@@ -29,6 +29,9 @@ public class GeoDataApiServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        req.setCharacterEncoding("utf-8");
+        resp.setCharacterEncoding("utf-8");
+
         List<District> districts = districtService.getAll();
         PrintWriter out = resp.getWriter();
         resp.setContentType("application/json;charset=utf-8");

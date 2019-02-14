@@ -47,7 +47,7 @@
                     </td>
                     <td>
                         <div class="submit">
-                            <input type="submit" align="center" class="btn btn-default" role="button" value="Submit"/>
+                            <input type="submit" align="center" class="btn btn-default" role="button" value="Submit and update database"/>
                         </div>
                     </td>
                 </tr>

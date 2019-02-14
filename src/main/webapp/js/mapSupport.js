@@ -2,14 +2,15 @@ ymaps.ready(init);
 
 var opacity_for_all = 0.7;
 
+isPerPopulationActivated = new Boolean(false);
+isPerAreaActivated = new Boolean(false);
+
 function getColor(num) {
     if (num > 0.5) {
         return getGradientColor('#fffa00', '#FF0000', (num-0.5)*2);
     } else {
         return getGradientColor('#00FF00', '#fffa00', num*2);
     }
-    // return getGradientColor('#00FF00', '#FF0000', num);
-    //return getGradientColor('#008200', '#FF0000', num);
 }
 
 getGradientColor = function(start_color, end_color, percent) {
@@ -52,39 +53,84 @@ getGradientColor = function(start_color, end_color, percent) {
     return '#' + diff_red + diff_green + diff_blue;
 };
 
-// function getColor(num) {
-//     var resultColor = '#FF0000';
-//     if (num > 0.8) {
-//         resultColor = '#FF0000';
-//     } else if (num > 0.6) {
-//         resultColor = '#ff7f2e';
-//     } else if (num > 0.4) {
-//         resultColor = '#ffd31b';
-//     } else if (num > 0.2) {
-//         resultColor = '#b3ff3a';
-//     } else {
-//         resultColor = '#00FF00';
-//     }
-//     return resultColor;
-// }
-
 
 function calculateColor(innerListOfNumberOfElements) {
+    jQuery.ajaxSetup({async:false});
     var maxNum = Math.max.apply(1, innerListOfNumberOfElements);
     var colorList = [];
-    console.log(maxNum);
+    console.log("maxNum " + maxNum);
 
-    for (var j = 0; j < innerListOfNumberOfElements.length; j++) {
-        console.log(innerListOfNumberOfElements[j]/maxNum);
-        colorList.push(getColor(innerListOfNumberOfElements[j]/maxNum));
+    if (isPerPopulationActivated == Boolean(true)) {
+        var innerPopulationList = listOfPopulationRealValues;
+    } else {
+        var innerPopulationList = listOfPopulationOnes;
     }
-    //console.log(colorList);
+    console.log("innerPopulationList " + innerPopulationList);
+
+    jQuery.ajaxSetup({async:false});
+    if (isPerAreaActivated == Boolean(true)) {
+        var innerAreaList = listOfAreaRealValues;
+    } else {
+        var innerAreaList = listOfAreaOnes;
+    }
+    console.log("innerAreaList " + innerAreaList);
+
+    var maxNumPopulation = Math.max.apply(1, innerPopulationList);
+    console.log("maxNumPopulation " + maxNumPopulation);
+    var maxNumArea = Math.max.apply(1, innerAreaList);
+    console.log("maxNumArea " + maxNumArea);
+
+    var colorCoefs = [];
+    console.log("colorCoefs here !!!!111111111111111111");
+
+    jQuery.ajaxSetup({async:false});
+    for (var k = 0; k < innerListOfNumberOfElements.length; k++) {
+        console.log("k " + k);
+
+        var numCompetitors = innerListOfNumberOfElements[k]/maxNum;
+        console.log("numCompetitors " + numCompetitors);
+        console.log("innerListOfNumberOfElements[k] " + innerListOfNumberOfElements[k]);
+
+        var numPopulation = innerPopulationList[k]/maxNumPopulation;
+        console.log("numPopulation " + numPopulation);
+        console.log("innerPopulationList[k] " + innerPopulationList[k]);
+
+        var numArea = innerAreaList[k]/maxNumArea;
+        console.log("numArea " + numArea);
+        console.log("innerAreaList[k] " + innerAreaList[k]);
+
+        var finalColorCoef = numCompetitors * numPopulation * numArea;
+
+        console.log("finalColorCoef " + finalColorCoef);
+        colorCoefs.push(finalColorCoef);
+    }
+
+    var maxColorCoefs = Math.max.apply(1, colorCoefs);
+
+    jQuery.ajaxSetup({async:false});
+    for (var j = 0; j < innerListOfNumberOfElements.length; j++) {
+
+        var normedColorCoef = colorCoefs[j]/maxColorCoefs;
+        console.log(normedColorCoef);
+        colorList.push(getColor(normedColorCoef));
+    }
+    console.log("colorList " + colorList);
     return colorList;
 }
+
 
 var myMap;
 
 var zones;
+
+var listOfPopulation = [];
+var listOfArea = [];
+
+var listOfPopulationRealValues = [];
+var listOfPopulationOnes = [];
+
+var listOfAreaRealValues = [];
+var listOfAreaOnes = [];
 
 function init() {
 
@@ -94,8 +140,8 @@ function init() {
     }).error(function () {
         console.error('error');
     });
-    jQuery.ajaxSetup({async:true});
-
+    jQuery.ajaxSetup({async:false});
+    console.log("zones " + zones);
 
     myMap = new ymaps.Map("map", {
             center: [30.25385, 59.90024],
@@ -103,6 +149,37 @@ function init() {
         },
         { searchControlProvider: 'yandex#search'}
     );
+
+    var deliveryZones = ymaps.geoQuery(zones);//.addToMap(myMap);
+
+    deliveryZones.each(function (obj) {
+
+        console.log(obj.properties._data.name);
+        console.log(obj.properties._data.population);
+        console.log(obj.properties._data.area);
+        // console.log(objInsideDistrict._objects.length);
+
+        // var len = objInsideDistrict._objects.length;
+        // console.log(len);
+
+        // listOfNumberOfElements.push(len);
+        // console.log(listOfNumberOfElements);
+
+
+        listOfPopulationRealValues.push(obj.properties._data.population);
+        listOfPopulationOnes.push(1);
+
+        listOfAreaRealValues.push(obj.properties._data.area);
+        listOfAreaOnes.push(1);
+
+
+    });
+
+    console.log("listOfPopulationRealValues " + listOfPopulationRealValues);
+    console.log("listOfPopulationOnes " + listOfPopulationOnes);
+
+    console.log("listOfAreaRealValues " + listOfAreaRealValues);
+    console.log("listOfAreaOnes " + listOfAreaOnes);
 
     function showDistrictByNumver(ind) {
         // Создаем многоугольник, используя вспомогательный класс Polygon.
@@ -162,6 +239,7 @@ var listOfNumberOfElements = [];
 var result;
 
 function formFunct() {
+    console.log("Value selected" + valueSelected);
     var objects = [];
     var listOfNumberOfElements = [];
     jQuery.ajaxSetup({async:false});
@@ -181,10 +259,10 @@ function formFunct() {
         },
         success: function (data) {
             jQuery.ajaxSetup({async:false});
-            console.log(data);
+            console.log("data " + data);
             console.log("1");
 
-            objects = ymaps.geoQuery(data).addToMap(myMap);
+            objects = ymaps.geoQuery(data);//.addToMap(myMap);
 
             console.log("2");
 
@@ -203,11 +281,11 @@ function formFunct() {
                 var len = objInsideDistrict._objects.length;
 
                 //console.log(obj.properties.name);
-                console.log(obj.properties._data.name);
-                console.log(len);
+                //console.log(obj.properties._data.name);
+                //console.log(len);
 
                 listOfNumberOfElements.push(len);
-                console.log(listOfNumberOfElements);
+                //console.log(listOfNumberOfElements);
             });
             jQuery.ajaxSetup({async:false});
 
@@ -242,8 +320,22 @@ function formFunct() {
 
 }
 
+
+function includePopulation() {
+    isPerPopulationActivated = !isPerPopulationActivated;
+    bt(valueSelected);
+}
+function includeArea() {
+    isPerAreaActivated = !isPerAreaActivated;
+    bt(valueSelected);
+}
+
+var valueSelected;
+
 function bt(val){
     jQuery.ajaxSetup({async:false});
+    valueSelected = val;
+    console.log("Value selected " + valueSelected);
 
     var listOfNumberOfElements = [];
 
@@ -264,7 +356,7 @@ function bt(val){
             console.log(data);
             console.log("1");
 
-            objects = ymaps.geoQuery(data).addToMap(myMap);
+            objects = ymaps.geoQuery(data);//.addToMap(myMap);
 
             console.log("2");
 
@@ -307,7 +399,7 @@ function bt(val){
         var myPolygon = new ymaps.Polygon(
             zones.features[ind].geometry.coordinates
             ,
-            { hintContent : zones.features[ind].properties.Name}
+            { hintContent : zones.features[ind].properties.name}
             ,
             { fillColor: colorList[ind],
                 opacity: opacity_for_all,
@@ -319,4 +411,3 @@ function bt(val){
     }
 
 }
-
