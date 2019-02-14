@@ -55,19 +55,66 @@ getGradientColor = function(start_color, end_color, percent) {
 
 
 function calculateColor(innerListOfNumberOfElements) {
+    jQuery.ajaxSetup({async:false});
     var maxNum = Math.max.apply(1, innerListOfNumberOfElements);
     var colorList = [];
-    console.log(maxNum);
+    console.log("maxNum " + maxNum);
 
-    var maxNumPopulation = Math.max.apply(1, listOfPopulation);
-    var maxNumArea = Math.max.apply(1, listOfArea);
-
-
-    for (var j = 0; j < innerListOfNumberOfElements.length; j++) {
-        console.log(innerListOfNumberOfElements[j]/maxNum);
-        colorList.push(getColor((innerListOfNumberOfElements[j]/maxNum) * (listOfPopulation[j]/maxNumPopulation) * (listOfArea[j]/maxNumArea)));
+    if (isPerPopulationActivated == Boolean(true)) {
+        var innerPopulationList = listOfPopulationRealValues;
+    } else {
+        var innerPopulationList = listOfPopulationOnes;
     }
-    //console.log(colorList);
+    console.log("innerPopulationList " + innerPopulationList);
+
+    jQuery.ajaxSetup({async:false});
+    if (isPerAreaActivated == Boolean(true)) {
+        var innerAreaList = listOfAreaRealValues;
+    } else {
+        var innerAreaList = listOfAreaOnes;
+    }
+    console.log("innerAreaList " + innerAreaList);
+
+    var maxNumPopulation = Math.max.apply(1, innerPopulationList);
+    console.log("maxNumPopulation " + maxNumPopulation);
+    var maxNumArea = Math.max.apply(1, innerAreaList);
+    console.log("maxNumArea " + maxNumArea);
+
+    var colorCoefs = [];
+    console.log("colorCoefs here !!!!111111111111111111");
+
+    jQuery.ajaxSetup({async:false});
+    for (var k = 0; k < innerListOfNumberOfElements.length; k++) {
+        console.log("k " + k);
+
+        var numCompetitors = innerListOfNumberOfElements[k]/maxNum;
+        console.log("numCompetitors " + numCompetitors);
+        console.log("innerListOfNumberOfElements[k] " + innerListOfNumberOfElements[k]);
+
+        var numPopulation = innerPopulationList[k]/maxNumPopulation;
+        console.log("numPopulation " + numPopulation);
+        console.log("innerPopulationList[k] " + innerPopulationList[k]);
+
+        var numArea = innerAreaList[k]/maxNumArea;
+        console.log("numArea " + numArea);
+        console.log("innerAreaList[k] " + innerAreaList[k]);
+
+        var finalColorCoef = numCompetitors * numPopulation * numArea;
+
+        console.log("finalColorCoef " + finalColorCoef);
+        colorCoefs.push(finalColorCoef);
+    }
+
+    var maxColorCoefs = Math.max.apply(1, colorCoefs);
+
+    jQuery.ajaxSetup({async:false});
+    for (var j = 0; j < innerListOfNumberOfElements.length; j++) {
+
+        var normedColorCoef = colorCoefs[j]/maxColorCoefs;
+        console.log(normedColorCoef);
+        colorList.push(getColor(normedColorCoef));
+    }
+    console.log("colorList " + colorList);
     return colorList;
 }
 
@@ -79,6 +126,12 @@ var zones;
 var listOfPopulation = [];
 var listOfArea = [];
 
+var listOfPopulationRealValues = [];
+var listOfPopulationOnes = [];
+
+var listOfAreaRealValues = [];
+var listOfAreaOnes = [];
+
 function init() {
 
     jQuery.ajaxSetup({async:false});
@@ -87,7 +140,7 @@ function init() {
     }).error(function () {
         console.error('error');
     });
-    jQuery.ajaxSetup({async:true});
+    jQuery.ajaxSetup({async:false});
     console.log("zones " + zones);
 
     myMap = new ymaps.Map("map", {
@@ -96,6 +149,12 @@ function init() {
         },
         { searchControlProvider: 'yandex#search'}
     );
+
+    // var listOfPopulationRealValues = [];
+    // var listOfPopulationOnes = [];
+    //
+    // var listOfAreaRealValues = [];
+    // var listOfAreaOnes = [];
 
     var deliveryZones = ymaps.geoQuery(zones);//.addToMap(myMap);
 
@@ -121,22 +180,21 @@ function init() {
         // listOfNumberOfElements.push(len);
         // console.log(listOfNumberOfElements);
 
-        if (isPerPopulationActivated == Boolean(true)) {
-            listOfPopulation.push(obj.properties._data.population);
-        } else {
-            listOfPopulation.push(1);
-        }
-        console.log(listOfPopulation);
 
-        if (isPerAreaActivated == Boolean(true)) {
-            listOfArea.push(obj.properties._data.area);
-        } else {
-            listOfArea.push(1);
-        }
-        console.log(listOfArea);
+        listOfPopulationRealValues.push(obj.properties._data.population);
+        listOfPopulationOnes.push(1);
+
+        listOfAreaRealValues.push(obj.properties._data.area);
+        listOfAreaOnes.push(1);
 
 
     });
+
+    console.log("listOfPopulationRealValues " + listOfPopulationRealValues);
+    console.log("listOfPopulationOnes " + listOfPopulationOnes);
+
+    console.log("listOfAreaRealValues " + listOfAreaRealValues);
+    console.log("listOfAreaOnes " + listOfAreaOnes);
 
     function showDistrictByNumver(ind) {
         // Создаем многоугольник, используя вспомогательный класс Polygon.
