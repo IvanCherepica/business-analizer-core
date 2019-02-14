@@ -72,7 +72,7 @@ getGradientColor = function(start_color, end_color, percent) {
 
 function calculateColor(innerListOfNumberOfElements) {
     jQuery.ajaxSetup({async:false});
-    var maxNum = median(innerListOfNumberOfElements); //Math.max.apply(1, innerListOfNumberOfElements);
+    var maxNum = Math.max.apply(1, innerListOfNumberOfElements); //median(innerListOfNumberOfElements); //
     var colorList = [];
     console.log("maxNum " + maxNum);
 
