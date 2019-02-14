@@ -5,6 +5,7 @@ import org.hibernate.SessionFactory;
 import service.AdminService;
 import service.AdminServiceImpl;
 import util.DBHelper;
+import util.SessionFactoryHolderSingleton;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -18,7 +19,7 @@ import java.sql.SQLException;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
-    private SessionFactory sessionFactory = DBHelper.createSessionFactory(DBHelper.getConfiguration());
+    private SessionFactory sessionFactory = SessionFactoryHolderSingleton.getSessionInstance(DBHelper.getConfiguration());
     private AdminService service = AdminServiceImpl.getInstance(sessionFactory);
 
     public LoginServlet() throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {

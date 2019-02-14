@@ -179,11 +179,11 @@
                     <c:forEach items="${bizTypes}" var="biztype" >
                         <li><button class="new" onclick="bt(${biztype.id})">${biztype.name}</button></li>
                     </c:forEach>
-                    <li><div><button class="anyNew" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"> Незнаете что выбрать?</button></div></li>
+                    <li><div><button class="anyNew" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"> Не знаете что выбрать?</button></div></li>
                 </ul>
 
                 <div style=" position: absolute;bottom: 0; height: 150px;"><ul style="list-style-type: none; margin-left: 0; padding-left: 15px; font-family: arial,sans-serif; font-size: 13px">
-                    <p class="uslText">Условные обозначеня</p>
+                    <p class="uslText">Условные обозначения</p>
                     <li><div class="circle" style="background: red;"></div><div style="margin-left: 5px; display: inline-block">Максимальное значение</div></li>
                     <li><div class="circle" style="background: #ff7f2e;"></div><div style="margin-left: 5px; display: inline-block">Больше среднего колличества</div></li>
                     <li><div class="circle" style="background:#ffd31b;"></div><div style="margin-left: 5px; display: inline-block">Среднее колличество</div></li>
