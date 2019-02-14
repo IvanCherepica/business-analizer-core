@@ -19,6 +19,7 @@
             <tr class="info">
                 <th>Name</th>
                 <th>Tags for searching</th>
+                <th>Link</th>
                 <th>Options</th>
             </tr>
             </thead>
@@ -36,6 +37,12 @@
                         <div class="field">
                             <label for="name"></label>
                             <input type="text" id="searchTags" name="searchTags" value="${bizType.searchTags}" />
+                        </div>
+                    </td>
+                    <td>
+                        <div class="field">
+                            <label for="name"></label>
+                            <input type="text" id="link" name="link" value="${bizType.link}" />
                         </div>
                     </td>
                     <td>

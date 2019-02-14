@@ -17,20 +17,32 @@ public class BizType {
     @Column(name = "searchtags")
     private String searchTags;
 
+    @Column(name = "link")
+    private String link;
+
     public BizType() {
     }
 
-    public BizType(String name, String searchTags) {
+    public BizType(String name, String searchTags,String link) {
         this.setName(name);
         this.setSearchTags(searchTags);
+        this.setLink(link);
     }
 
-    public long getId() {
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
     }
 
     public String getName() {
@@ -48,5 +60,5 @@ public class BizType {
     public void setSearchTags(String searchTags) {
         this.searchTags = searchTags;
     }
-    
+
 }
