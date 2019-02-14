@@ -322,11 +322,11 @@ function formFunct() {
 
 
 function includePopulation() {
-    isPerPopulationActivated = new Boolean(true);
+    isPerPopulationActivated = !isPerPopulationActivated;
     bt(valueSelected);
 }
 function includeArea() {
-    isPerAreaActivated = new Boolean(true);
+    isPerAreaActivated = !isPerAreaActivated;
     bt(valueSelected);
 }
 
