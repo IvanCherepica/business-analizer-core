@@ -6,7 +6,7 @@ isPerPopulationActivated = new Boolean(false);
 isPerAreaActivated = new Boolean(false);
 
 function getColor(num) {
-    var coef = 0.5;
+    var coef = 0.3;
     if (num > coef) {
         return getGradientColor('#fffa00', '#FF0000', (num-coef)/(1-coef));
     } else {
