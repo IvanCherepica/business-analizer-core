@@ -30,7 +30,7 @@ public class SearchServlet extends HttpServlet {
 
         List<MapPointDTO> pointsAsked = new ArrayList<>();
         Long bizTypeId;
-        String bizTypeName = null;
+        String bizTypeSearchTags = null;
         BizType bizType = null;
         String formType;
         BizTypeServiceImpl btService = new BizTypeServiceImpl();
@@ -39,7 +39,7 @@ public class SearchServlet extends HttpServlet {
 
         try {
            bizTypeId =Long.parseLong(request.getParameter("type"));
-           bizTypeName = btService.get(bizTypeId).getSearchTags();
+           bizTypeSearchTags = btService.get(bizTypeId).getSearchTags();
            bizType = btService.get(bizTypeId);
            isBizTypeFound = true;
 
@@ -66,7 +66,7 @@ public class SearchServlet extends HttpServlet {
             try {
                 formType = request.getParameter("formType");
                 //formType = new String(request.getParameter("formType"));//.getBytes("ISO-8859-1"),"UTF-8");
-                bizTypeName = formType;
+                bizTypeSearchTags = formType;
             } catch (NullPointerException e) {
                 e.printStackTrace();
             }
@@ -74,7 +74,8 @@ public class SearchServlet extends HttpServlet {
 
             int maxNumberOfResults = 500;
 
-            String url = "https://search-maps.yandex.ru/v1/?text=" + bizTypeName + " Санкт Петербург|Питер|СПб&format=json&results=" + maxNumberOfResults + "&lang=ru_RU&apikey=c2c81851-dd41-473e-93e8-cf9ce455c58b";
+//            описание параметров  https://tech.yandex.ru/maps/doc/geosearch/concepts/request-docpage/
+            String url = "https://search-maps.yandex.ru/v1/?text=" + bizTypeSearchTags + "&format=json&results=" + maxNumberOfResults + "&ll=30.30557800,59.91807704&spn=0.45,0.29&lang=ru_RU&apikey=c2c81851-dd41-473e-93e8-cf9ce455c58b";
 
 
             OkHttpClient client = new OkHttpClient();
