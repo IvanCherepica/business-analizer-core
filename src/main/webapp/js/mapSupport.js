@@ -2,14 +2,15 @@ ymaps.ready(init);
 
 var opacity_for_all = 0.7;
 
+isPerPopulationActivated = new Boolean(false);
+isPerAreaActivated = new Boolean(false);
+
 function getColor(num) {
     if (num > 0.5) {
         return getGradientColor('#fffa00', '#FF0000', (num-0.5)*2);
     } else {
         return getGradientColor('#00FF00', '#fffa00', num*2);
     }
-    // return getGradientColor('#00FF00', '#FF0000', num);
-    //return getGradientColor('#008200', '#FF0000', num);
 }
 
 getGradientColor = function(start_color, end_color, percent) {
@@ -52,39 +53,31 @@ getGradientColor = function(start_color, end_color, percent) {
     return '#' + diff_red + diff_green + diff_blue;
 };
 
-// function getColor(num) {
-//     var resultColor = '#FF0000';
-//     if (num > 0.8) {
-//         resultColor = '#FF0000';
-//     } else if (num > 0.6) {
-//         resultColor = '#ff7f2e';
-//     } else if (num > 0.4) {
-//         resultColor = '#ffd31b';
-//     } else if (num > 0.2) {
-//         resultColor = '#b3ff3a';
-//     } else {
-//         resultColor = '#00FF00';
-//     }
-//     return resultColor;
-// }
-
 
 function calculateColor(innerListOfNumberOfElements) {
     var maxNum = Math.max.apply(1, innerListOfNumberOfElements);
     var colorList = [];
     console.log(maxNum);
 
+    var maxNumPopulation = Math.max.apply(1, listOfPopulation);
+    var maxNumArea = Math.max.apply(1, listOfArea);
+
+
     for (var j = 0; j < innerListOfNumberOfElements.length; j++) {
         console.log(innerListOfNumberOfElements[j]/maxNum);
-        colorList.push(getColor(innerListOfNumberOfElements[j]/maxNum));
+        colorList.push(getColor((innerListOfNumberOfElements[j]/maxNum) * (listOfPopulation[j]/maxNumPopulation) * (listOfArea[j]/maxNumArea)));
     }
     //console.log(colorList);
     return colorList;
 }
 
+
 var myMap;
 
 var zones;
+
+var listOfPopulation = [];
+var listOfArea = [];
 
 function init() {
 
@@ -103,6 +96,47 @@ function init() {
         },
         { searchControlProvider: 'yandex#search'}
     );
+
+    var deliveryZones = ymaps.geoQuery(zones);//.addToMap(myMap);
+
+    //var listOfNumberOfElements = [];
+    // var listOfPopulation = [];
+    // var listOfArea = [];
+
+    deliveryZones.each(function (obj) {
+        //var color = obj.options.get('fillColor');
+        //color = color.substring(0, color.length - 2);
+        //obj.options.set({fillColor: color, fillOpacity: 0.4});
+        //var objInsideDistrict = objects.searchInside(obj);
+        //console.log(obj.properties.name);
+
+        console.log(obj.properties._data.name);
+        console.log(obj.properties._data.population);
+        console.log(obj.properties._data.area);
+        // console.log(objInsideDistrict._objects.length);
+
+        // var len = objInsideDistrict._objects.length;
+        // console.log(len);
+
+        // listOfNumberOfElements.push(len);
+        // console.log(listOfNumberOfElements);
+
+        if (isPerPopulationActivated == Boolean(true)) {
+            listOfPopulation.push(obj.properties._data.population);
+        } else {
+            listOfPopulation.push(1);
+        }
+        console.log(listOfPopulation);
+
+        if (isPerAreaActivated == Boolean(true)) {
+            listOfArea.push(obj.properties._data.area);
+        } else {
+            listOfArea.push(1);
+        }
+        console.log(listOfArea);
+
+
+    });
 
     function showDistrictByNumver(ind) {
         // Создаем многоугольник, используя вспомогательный класс Polygon.
@@ -184,7 +218,7 @@ function formFunct() {
             console.log(data);
             console.log("1");
 
-            objects = ymaps.geoQuery(data).addToMap(myMap);
+            objects = ymaps.geoQuery(data);//.addToMap(myMap);
 
             console.log("2");
 
