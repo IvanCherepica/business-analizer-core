@@ -138,10 +138,6 @@
             display: inline-block
 
         }
-
-
-
-
     </style>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300&amp;subset=cyrillic" rel="stylesheet">
 </head>
