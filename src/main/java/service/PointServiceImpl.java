@@ -5,21 +5,21 @@ import model.Point;
 import org.hibernate.*;
 import org.hibernate.cfg.Configuration;
 import util.DBHelper;
+import util.SessionFactoryHolderSingleton;
 
 import java.util.List;
-
-import static util.DBHelper.createSessionFactory;
 
 public class PointServiceImpl implements PointService {
 
     private Configuration configuration = DBHelper.getConfiguration();
-    private SessionFactory sessionFactory = createSessionFactory(configuration);
+    private SessionFactory  sessionFactory = SessionFactoryHolderSingleton.getSessionInstance(configuration);
 
     private PointDao pointDao = new PointDao(sessionFactory);
 
     public PointServiceImpl() {}
 
-    public List<Point> getByBizType(Integer bizTypeId) {
+    public List<Point> getByBizType(Long bizTypeId) {
+        //return null;
         return pointDao.getByBizType(bizTypeId);
     }
 
@@ -51,5 +51,12 @@ public class PointServiceImpl implements PointService {
     public List<Point> getAll() throws HibernateException {
         return pointDao.getAll();
     }
+
+    public void removeList(List<Point> pointList) throws HibernateException{
+        for(Point point:pointList){
+            pointDao.remove(point.getId());
+        }
+    }
+
 
 }

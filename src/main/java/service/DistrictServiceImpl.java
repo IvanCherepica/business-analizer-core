@@ -6,14 +6,13 @@ import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import util.DBHelper;
+import util.SessionFactoryHolderSingleton;
 
 import java.util.List;
 
-import static util.DBHelper.createSessionFactory;
-
 public class DistrictServiceImpl implements Service<District> {
     private Configuration configuration = DBHelper.getConfiguration();
-    private SessionFactory sessionFactory = createSessionFactory(configuration);
+    private SessionFactory  sessionFactory = SessionFactoryHolderSingleton.getSessionInstance(configuration);
 
     private DistrictDao districtDao = new DistrictDao(sessionFactory);
 
