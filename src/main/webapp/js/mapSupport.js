@@ -7,11 +7,27 @@ isPerPopulationActivated = new Boolean(false);
 isPerAreaActivated = new Boolean(false);
 
 function getColor(num) {
-    if (num > 0.5) {
-        return getGradientColor('#fffa00', '#FF0000', (num-0.5)*2);
+    var coef = 0.3;
+    if (num > coef) {
+        return getGradientColor('#fffa00', '#FF0000', (num-coef)/(1-coef));
     } else {
-        return getGradientColor('#00FF00', '#fffa00', num*2);
+        return getGradientColor('#00FF00', '#fffa00', num/coef);
     }
+}
+
+function median(values){
+    values.sort(function(a,b){
+        return a-b;
+    });
+
+    if(values.length ===0) return 0
+
+    var half = Math.floor(values.length / 2);
+
+    if (values.length % 2)
+        return values[half];
+    else
+        return (values[half - 1] + values[half]) / 2.0;
 }
 
 getGradientColor = function(start_color, end_color, percent) {
@@ -57,9 +73,11 @@ getGradientColor = function(start_color, end_color, percent) {
 
 function calculateColor(innerListOfNumberOfElements) {
     jQuery.ajaxSetup({async:false});
-    var maxNum = Math.max.apply(1, innerListOfNumberOfElements);
+    var maxNum = Math.max.apply(1, innerListOfNumberOfElements); //median(innerListOfNumberOfElements); //
     var colorList = [];
     console.log("maxNum " + maxNum);
+
+
 
     if (isPerPopulationActivated == Boolean(true)) {
         var innerPopulationList = listOfPopulationRealValues;
@@ -92,15 +110,15 @@ function calculateColor(innerListOfNumberOfElements) {
         console.log("numCompetitors " + numCompetitors);
         console.log("innerListOfNumberOfElements[k] " + innerListOfNumberOfElements[k]);
 
-        var numPopulation = innerPopulationList[k]/maxNumPopulation;
+        var numPopulation = innerPopulationList[k]; ///maxNumPopulation;
         console.log("numPopulation " + numPopulation);
         console.log("innerPopulationList[k] " + innerPopulationList[k]);
 
-        var numArea = innerAreaList[k]/maxNumArea;
+        var numArea = innerAreaList[k]; ///maxNumArea;
         console.log("numArea " + numArea);
         console.log("innerAreaList[k] " + innerAreaList[k]);
 
-        var finalColorCoef = numCompetitors * numPopulation * numArea;
+        var finalColorCoef = (numCompetitors / numPopulation) / numArea;
 
         console.log("finalColorCoef " + finalColorCoef);
         colorCoefs.push(finalColorCoef);
@@ -232,6 +250,7 @@ function noDisable() {
     });
 
 }
+var hardCodeCostylFormFunctValue = 123;
 
 var objects = [];
 
@@ -239,7 +258,10 @@ var listOfNumberOfElements = [];
 
 var result;
 
+var formListOfNumberOfElements;
+
 function formFunct() {
+    valueSelected = hardCodeCostylFormFunctValue;
     console.log("Value selected" + valueSelected);
     var objects = [];
     var listOfNumberOfElements = [];
@@ -288,6 +310,8 @@ function formFunct() {
                 listOfNumberOfElements.push(len);
                 //console.log(listOfNumberOfElements);
             });
+
+            formListOfNumberOfElements = listOfNumberOfElements;
             jQuery.ajaxSetup({async:false});
 
             console.log("showDistrictByNumberByColor func is about to be used");
@@ -296,7 +320,7 @@ function formFunct() {
                 showDistrictByNumberByColor(k);
             }
 
-            noDisable()
+            noDisable();
         }
     });
 
@@ -323,12 +347,86 @@ function formFunct() {
 
 
 function includePopulation() {
-    isPerPopulationActivated = !isPerPopulationActivated;
-    bt(valueSelected);
+
+    var checkBox = document.getElementById("myCheck");
+
+    opacity_for_all = 0.7;
+
+    function showDistrictByNumberByColor(ind) {
+        console.log("showDistrictByNumberByColor started");
+        var colorList = calculateColor(listOfNumberOfElements);
+        // Создаем многоугольник, используя вспомогательный класс Polygon.
+        var myPolygon = new ymaps.Polygon(
+            zones.features[ind].geometry.coordinates
+            ,
+            { hintContent : zones.features[ind].properties.name}
+            ,
+            { fillColor: colorList[ind],
+                opacity: opacity_for_all,
+                strokeColor: '#808080',
+                strokeWidth: 1}
+        );
+
+        myMap.geoObjects.add(myPolygon);
+    }
+
+    if (checkBox.checked == true) {
+        isPerPopulationActivated = Boolean(true);
+    } else {
+        isPerPopulationActivated = Boolean(false);
+    }
+    //isPerPopulationActivated = !isPerPopulationActivated;
+
+    if (valueSelected != hardCodeCostylFormFunctValue) {
+        bt(valueSelected);
+    } else {
+        listOfNumberOfElements = formListOfNumberOfElements;
+        for (var k = 0; k < zones.features.length; k++) {
+            showDistrictByNumberByColor(k);
+        }
+
+    }
+    //noDisable();
+
 }
 function includeArea() {
-    isPerAreaActivated = !isPerAreaActivated;
-    bt(valueSelected);
+    opacity_for_all = 0.7;
+    //removeAll();
+
+    function showDistrictByNumberByColor(ind) {
+        console.log("showDistrictByNumberByColor started");
+        var colorList = calculateColor(listOfNumberOfElements);
+        // Создаем многоугольник, используя вспомогательный класс Polygon.
+        var myPolygon = new ymaps.Polygon(
+            zones.features[ind].geometry.coordinates
+            ,
+            { hintContent : zones.features[ind].properties.name}
+            ,
+            { fillColor: colorList[ind],
+                opacity: opacity_for_all,
+                strokeColor: '#808080',
+                strokeWidth: 1}
+        );
+
+        myMap.geoObjects.add(myPolygon);
+    }
+
+    if (checkBox.checked == true) {
+        isPerAreaActivated = Boolean(true);
+    } else {
+        isPerAreaActivated = Boolean(false);
+    }
+
+    if (valueSelected != hardCodeCostylFormFunctValue) {
+        bt(valueSelected);
+    } else {
+        listOfNumberOfElements = formListOfNumberOfElements;
+        for (var k = 0; k < zones.features.length; k++) {
+            showDistrictByNumberByColor(k);
+        }
+
+    }
+    //noDisable();
 }
 
 var valueSelected;
