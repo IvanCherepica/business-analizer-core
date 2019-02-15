@@ -13,29 +13,29 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
-@WebServlet("/admin/point/beauty")
-public class AdminPointsBeautyServlet extends HttpServlet {
+@WebServlet("/admin/point")
+public class AdminPointsServlet extends HttpServlet {
 
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html utf-8");
 
-//        String url = request.getParameter("url");
-//        StringBuffer url = request.getRequestURL();
-//        String link = url.substring(url.indexOf("/admin/point/")+13);
 
         BizTypeServiceImpl bizTypeService = new BizTypeServiceImpl();
         List<BizType> bizTypeList = bizTypeService.getAll();
         request.setAttribute("biztypes",bizTypeList);//для динамической отрисовки кнопок
 
         PointServiceImpl pointService = new PointServiceImpl();
-        List <Point> bpoints = pointService.getByBizType(3L);
+        Long typeId = Long.parseLong(request.getParameter("typeId"));
+        if (typeId==0){ //если запрос пришел из admin_menu_entity.jsp, то открываем первый тип из листа
+            typeId = bizTypeList.get(0).getId();
+        }
+
+        List <Point> bpoints = pointService.getByBizType(typeId);//фильтрация по типу
         request.setAttribute("points", bpoints);
 
-
-
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/admin_points_beauty.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/admin_points.jsp");
         dispatcher.forward(request, response);
     }
 }

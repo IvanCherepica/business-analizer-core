@@ -26,7 +26,7 @@
             </tr>
             </thead>
             <tbody >
-            <form action="${pageContext.servletContext.contextPath}/admin/point/cafe/edit" method="POST">
+            <form action="${pageContext.servletContext.contextPath}/admin/point/edit" method="POST">
                 <input type="hidden" name="id" value="${point.id}">
                 <input type="hidden" name="link" value="${point.bizType.link}">
                 <tr>
@@ -47,24 +47,19 @@
                             <label for="longitude"></label>
                             <input type="text" id="longitude" name="longitude" value="${point.longitude}" />
                         </div>
-
                     </td>
-
                     <td>
                         <div class="field">
                             <label for="latitude"></label>
                             <input type="text" id="latitude" name="latitude" value="${point.latitude}" />
                         </div>
-
                     </td>
-
                     <td>
                         <div class="field">
                             <label for="typeId"></label>
                             <input type="number" id="typeId" name="typeId" min="1" max="5" value="${point.bizType.id}" />
                         </div>
                     </td>
-
                     <td>
                         <div class="submit">
                             <input type="submit" align="center" class="btn btn-default" value="Submit"/>

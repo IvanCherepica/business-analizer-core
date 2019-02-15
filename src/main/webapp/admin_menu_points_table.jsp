@@ -35,9 +35,13 @@
                     <td>${point.addres}</td>
                     <td>${point.longitude}/${point.latitude}</td>
                     <td>${point.bizType.name}</td>
-                    <td>
-                        <a href="${pageContext.servletContext.contextPath}/admin/point/cafe/edit?id=${point.id}&link=${point.bizType.link}" class="btn btn-default" role="button">Edit</a>
-                        <a href="${pageContext.servletContext.contextPath}/admin/point/cafe/delete?id=${point.id}&link=${point.bizType.link}" class="btn btn-default" role="button">Delete</a>
+                    <td width="10%"
+                        style="white-space: nowrap;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                                max-width: 25vw;">
+                        <a href="${pageContext.servletContext.contextPath}/admin/point/edit?id=${point.id}" name="link" value="${point.bizType.link}" class="btn btn-default" role="button">Edit</a>
+                        <a href="${pageContext.servletContext.contextPath}/admin/point/delete?id=${point.id}&typeId=${point.bizType.id}" class="btn btn-default" role="button">Delete</a>
                     </td>
                 </tr>
                 </tbody>
