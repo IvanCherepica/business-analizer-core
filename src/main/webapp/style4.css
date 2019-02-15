@@ -135,6 +135,12 @@ i, span {
     color: #7386D5;
     background: #fff;
 }
+
+/*#sidebar ul li a:focus {*/
+    /*color: #7386D5;*/
+    /*background: #fff;*/
+/*}*/
+
 #sidebar ul li a i {
     margin-right: 10px;
 }
