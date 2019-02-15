@@ -29,4 +29,20 @@ public class AdminBizTypeServlet extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher("/admin_biztype.jsp");
         dispatcher.forward(request, response);
     }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html utf-8");
+        request.setCharacterEncoding("utf-8");
+
+        Service<BizType> bizTypeService= new BizTypeServiceImpl();
+
+        String name = request.getParameter("name");
+        String searchTags = request.getParameter("searchTags");
+        String link = request.getParameter("link");
+
+        bizTypeService.save(new BizType(name, searchTags, link));
+
+        response.sendRedirect("/admin/business");
+    }
 }

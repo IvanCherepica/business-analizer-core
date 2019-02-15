@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/admin/point/cafe/edit")
+@WebServlet("/admin/point/edit")
 public class EditPointServlet extends HttpServlet {
 	private PointServiceImpl pointService = new PointServiceImpl();
 
@@ -45,6 +45,6 @@ public class EditPointServlet extends HttpServlet {
 
 		pointService.update(id, point);
 
-		response.sendRedirect("/admin/point/" + link);
+		response.sendRedirect("/admin/point?typeId=" + typeId);
 	}
 }

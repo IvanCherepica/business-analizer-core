@@ -14,7 +14,10 @@
                 <h1>Entity</h1>
                 <button formmethod="get" formaction="/admin/business" class="new">Business</button>
                 <button formmethod="get" formaction="/admin/districts" class="new">Districts</button>
-                <button formmethod="get" formaction="/admin/point/cafe" class="new">Points</button>
+                <button formmethod="get" formaction="/admin/point" name="typeId" value="0" class="new">Points</button>
+            </form>
+            <form>
+                <button formmethod="get" formaction="/user/map" class="btn">GO MAP</button>
             </form>
         </div>
     </div>
