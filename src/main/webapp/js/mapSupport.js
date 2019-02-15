@@ -80,6 +80,7 @@ function calculateColor(innerListOfNumberOfElements) {
     console.log("maxNum " + maxNum);
 
 
+
     if (isPerPopulationActivated == Boolean(true)) {
         var innerPopulationList = listOfPopulationRealValues;
     } else {
@@ -137,24 +138,6 @@ function calculateColor(innerListOfNumberOfElements) {
     console.log("colorList " + colorList);
     return colorList;
 }
-
-// function showDistrictByNumberByColor(ind) {
-//     console.log("showDistrictByNumberByColor started");
-//     var colorList = calculateColor(listOfNumberOfElements);
-//     // Создаем многоугольник, используя вспомогательный класс Polygon.
-//     var myPolygon = new ymaps.Polygon(
-//         zones.features[ind].geometry.coordinates
-//         ,
-//         { hintContent : zones.features[ind].properties.name}
-//         ,
-//         { fillColor: colorList[ind],
-//             opacity: opacity_for_all,
-//             strokeColor: '#808080',
-//             strokeWidth: 1}
-//     );
-//
-//     myMap.geoObjects.add(myPolygon);
-// }
 
 
 var myMap;
@@ -434,8 +417,6 @@ function includePopulation() {
 
 }
 function includeArea() {
-
-
     opacity_for_all = 0.7;
     //removeAll();
 
