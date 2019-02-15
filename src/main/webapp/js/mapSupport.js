@@ -17,20 +17,20 @@ function getColor(num) {
     }
 }
 
-function median(values){
-    values.sort(function(a,b){
-        return a-b;
-    });
-
-    if(values.length ===0) return 0
-
-    var half = Math.floor(values.length / 2);
-
-    if (values.length % 2)
-        return values[half];
-    else
-        return (values[half - 1] + values[half]) / 2.0;
-}
+// function median(values){
+//     values.sort(function(a,b){
+//         return a-b;
+//     });
+//
+//     if(values.length ===0) return 0
+//
+//     var half = Math.floor(values.length / 2);
+//
+//     if (values.length % 2)
+//         return values[half];
+//     else
+//         return (values[half - 1] + values[half]) / 2.0;
+// }
 
 getGradientColor = function(start_color, end_color, percent) {
     // strip the leading # if it's there
@@ -104,6 +104,7 @@ function calculateColor(innerListOfNumberOfElements) {
     console.log("colorCoefs here !!!!111111111111111111");
 
     jQuery.ajaxSetup({async:false});
+
     for (var k = 0; k < innerListOfNumberOfElements.length; k++) {
         console.log("k " + k);
 
@@ -161,9 +162,6 @@ var myMap;
 
 var zones;
 
-var listOfPopulation = [];
-var listOfArea = [];
-
 var listOfPopulationRealValues = [];
 var listOfPopulationOnes = [];
 
@@ -188,7 +186,7 @@ function init() {
         { searchControlProvider: 'yandex#search'}
     );
 
-    var deliveryZones = ymaps.geoQuery(zones);//.addToMap(myMap);
+    var deliveryZones = ymaps.geoQuery(zones).addToMap(myMap);
 
     deliveryZones.each(function (obj) {
 
@@ -226,7 +224,7 @@ function init() {
             ,
             { hintContent : zones.features[ind].properties.name}
             ,
-            { fillColor: '#ffd31b',
+            { fillColor: '#fffa00',
                 opacity: opacity_for_all,
                 strokeColor: '#808080',
                 strokeWidth: 1}
@@ -556,51 +554,6 @@ function includePoints() {
         noDisable();
     }
 
-
-
-    //var checkBox = document.getElementById("myCheck");
-
-    // opacity_for_all = 0.7;
-
-    //
-
-    //outerPoints.addToMap(myMap);
-
-    // function showDistrictByNumberByColor(ind) {
-    //     console.log("showDistrictByNumberByColor started");
-    //     var colorList = calculateColor(listOfNumberOfElements);
-    //     // Создаем многоугольник, используя вспомогательный класс Polygon.
-    //     var myPolygon = new ymaps.Polygon(
-    //         zones.features[ind].geometry.coordinates
-    //         ,
-    //         { hintContent : zones.features[ind].properties.name}
-    //         ,
-    //         { fillColor: colorList[ind],
-    //             opacity: opacity_for_all,
-    //             strokeColor: '#808080',
-    //             strokeWidth: 1}
-    //     );
-    //
-    //     myMap.geoObjects.add(myPolygon);
-    // }
-    //
-    // if (box3.checked == true) {
-    //     isPerPopulationActivated = Boolean(true);
-    // } else {
-    //     isPerPopulationActivated = Boolean(false);
-    // }
-    // //isPerPopulationActivated = !isPerPopulationActivated;
-    //
-    // if (valueSelected != hardCodeCostylFormFunctValue) {
-    //     bt(valueSelected);
-    // } else {
-    //     listOfNumberOfElements = formListOfNumberOfElements;
-    //     for (var k = 0; k < zones.features.length; k++) {
-    //         showDistrictByNumberByColor(k);
-    //     }
-    //
-    // }
-    //
 
 }
 
