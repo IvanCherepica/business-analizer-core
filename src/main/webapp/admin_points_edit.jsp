@@ -57,7 +57,7 @@
                     <td>
                         <div class="field">
                             <label for="typeId"></label>
-                            <input type="number" id="typeId" name="typeId" min="1" max="5" value="${point.bizType.id}" />
+                            <input type="number" id="typeId" name="typeId" value="${point.bizType.id}" />
                         </div>
                     </td>
                     <td>
