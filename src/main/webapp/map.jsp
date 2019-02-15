@@ -209,6 +209,9 @@
 
                         <input type="checkbox" id="box2" onclick="includeArea()">
                         <label for="box2">на 1 км<sup>2</sup></label>
+
+                        <input type="checkbox" id="box3" onclick="includePoints()">
+                        <label for="box3"> Добавить метки </label>
                     </div>
                     <!--                    свой вариант-->
                     <li class="active" style="margin-top: 15px; background:#6d7fcc;">
@@ -271,6 +274,14 @@
 
                 <!--                чекбоксы закрылись-->
 
+                <%--<div style=" position: absolute;bottom: 0; height: 150px;"><ul style="list-style-type: none; margin-left: 10px; padding-left: 15px;">--%>
+                    <%--<p style="color: white; font-family: 'Open Sans', sans-serif; font-size: 13px">Условные обозначения</p>--%>
+                    <%--<li><div class="circle" style="background: #da2421;"></div><div style="margin-left: 5px; display: inline-block; color: white; font-family: 'Open Sans', sans-serif; font-size: 10px">Максимальное значение</div></li>--%>
+                    <%--<li><div class="circle" style="background: #e37751;"></div><div style="margin-left: 5px; display: inline-block; margin-left: 5px; display: inline-block; color: white; font-family: 'Open Sans', sans-serif; font-size: 10px">Больше среднего колличества</div></li>--%>
+                    <%--<li><div class="circle" style="background:#e4bf64;"></div><div style="margin-left: 5px; display: inline-block; margin-left: 5px; display: inline-block; color: white; font-family: 'Open Sans', sans-serif; font-size: 10px">Среднее колличество</div></li>--%>
+                    <%--<li><div class="circle" style="background:#bad45f;"></div><div style="margin-left: 5px; display: inline-block; margin-left: 5px; display: inline-block; color: white; font-family: 'Open Sans', sans-serif; font-size: 10px">Меньше среднего колличества</div></li>--%>
+                    <%--<li><div class="circle" style="background:#53de51;"></div><div style="margin-left: 5px; display: inline-block; margin-left: 5px; display: inline-block; color: white; font-family: 'Open Sans', sans-serif; font-size: 10px">Минимальное колличество</div></li>--%>
+                <%--</ul></div>--%>
 
             </div>
             </div>
