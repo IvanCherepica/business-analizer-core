@@ -38,11 +38,8 @@ public class AdminDistrictsServlet extends HttpServlet {
 
         String name = request.getParameter("name");
         String crd = request.getParameter("crd");
-
         double area = Double.parseDouble(request.getParameter("area"));
         int population = Integer.parseInt(request.getParameter("population"));
-
-        System.out.println("ururur");
 
         districtService.save(new District(name, population, area, crd));
 

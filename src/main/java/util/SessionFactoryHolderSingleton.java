@@ -19,7 +19,7 @@ public class SessionFactoryHolderSingleton {
             synchronized (SessionFactoryHolderSingleton.class) {
                 localInstance = instance;
                 if (localInstance == null) {
-                    instance = localInstance = new SessionFactoryHolderSingleton(configuration);
+                    instance = new SessionFactoryHolderSingleton(configuration);
                 }
             }
         }

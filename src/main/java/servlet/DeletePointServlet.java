@@ -1,6 +1,5 @@
 package servlet;
 
-import service.BizTypeServiceImpl;
 import service.PointServiceImpl;
 
 import javax.servlet.ServletException;
@@ -10,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/admin/point/cafe/delete")
+@WebServlet("/admin/point/delete")
 public class DeletePointServlet extends HttpServlet {
 
 	private PointServiceImpl pointService = new PointServiceImpl();
@@ -18,10 +17,10 @@ public class DeletePointServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		long id = Long.parseLong(request.getParameter("id"));
-		String link = request.getParameter("link");
+		Long id = Long.parseLong(request.getParameter("id"));
+		String typeId = request.getParameter("typeId");
 		pointService.remove(id);
 
-		response.sendRedirect("/admin/point/" + link);
+		response.sendRedirect("/admin/point?typeId=" + typeId);
 	}
 }
