@@ -370,7 +370,7 @@ function includePopulation() {
         myMap.geoObjects.add(myPolygon);
     }
 
-    if (checkBox.checked == true) {
+    if (box1.checked == true) {
         isPerPopulationActivated = Boolean(true);
     } else {
         isPerPopulationActivated = Boolean(false);
@@ -411,7 +411,7 @@ function includeArea() {
         myMap.geoObjects.add(myPolygon);
     }
 
-    if (checkBox.checked == true) {
+    if (box2.checked == true) {
         isPerAreaActivated = Boolean(true);
     } else {
         isPerAreaActivated = Boolean(false);
@@ -429,9 +429,17 @@ function includeArea() {
     //noDisable();
 }
 
+function btonmap() {
+    $('#bt-on-map').css({
+        'display': 'block',
+    });
+
+}
+
 var valueSelected;
 
 function bt(val){
+    btonmap();
     jQuery.ajaxSetup({async:false});
     valueSelected = val;
     console.log("Value selected " + valueSelected);
@@ -440,7 +448,7 @@ function bt(val){
 
     var message = val;
     removeAll();
-    disable();
+    // disable();
     console.log(message);
     var url = "/search?type="+message;
 

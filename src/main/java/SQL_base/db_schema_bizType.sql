@@ -1,14 +1,14 @@
-create table bizType
+create table biztype
 (
-  id   bigint auto_increment
+  id         bigint auto_increment
     primary key,
-  name varchar(255) null,
-  searchTags varchar (1000) null,
-  link varchar(20) not null
-);
+  name       varchar(255)  null,
+  searchTags varchar(1000) null
+)
+  charset = utf8;
 
-INSERT INTO db_schema.bizType (id,link, name, searchTags) VALUES (1,'cafe','Кафе', 'кафе');
-INSERT INTO db_schema.bizType (id,link, name, searchTags) VALUES (2,'pharmacy','Аптеки', 'аптека');
-INSERT INTO db_schema.bizType (id,link, name, searchTags) VALUES (3,'beauty','Салоны красоты', 'салоны красоты');
-INSERT INTO db_schema.bizType (id,link, name, searchTags) VALUES (4,'food','Продукты', 'продукты');
-INSERT INTO db_schema.bizType (id,link, name, searchTags) VALUES (5,'clothes','Одежда', 'одежда');
+INSERT INTO db_schema.biztype (id, name, searchTags, link) VALUES (1, 'Кафе', 'кафе | рестораны', '/cafe_icon.png');
+INSERT INTO db_schema.biztype (id, name, searchTags, link) VALUES (2, 'Аптеки', 'аптека', '/drugs_icon.png');
+INSERT INTO db_schema.biztype (id, name, searchTags, link) VALUES (3, 'Салоны красоты', 'салоны красоты | барбер шоп | парикмахерские | спа | маникюр | студия красоты | солярий', '/beauty_icon.png');
+INSERT INTO db_schema.biztype (id, name, searchTags, link) VALUES (4, 'Продуктовые магазины', 'магазин | продукты', '/food_icon.png');
+INSERT INTO db_schema.biztype (id, name, searchTags, link) VALUES (5, 'Магазины одежды', 'одежда', '/clothes_icon.png');

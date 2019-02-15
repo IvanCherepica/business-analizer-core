@@ -156,6 +156,14 @@
 </head>
 
 <body>
+
+
+<div id="bt-on-map" style="display: none; z-index:200; position: absolute; height: 30px; width: 150px; border-radius: 6px; background: #7386D5;
+                margin-left: 48px; margin-top: 30px; text-align: center; box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.5);">
+    <p style="margin-top: auto;font-family:'Open Sans', sans-serif; font-size: 15px; color: #fff; font-weight: 300;">
+        ${biztype.name}
+    </p></div>
+
 <%--<div id="myModal" class="modal fade" role="dialog">--%>
     <%--<div class="modal-dialog">--%>
 
@@ -194,54 +202,83 @@
                 <div style="font-family:'Open Sans', sans-serif; font-size: 20px; font-weight:600; margin-left: 15px; margin-top: 15px">Выберите тип бизнеса</div>
 
                 <!--                кнопки с типами бизнеса-->
-                <ul style="list-style-type: none; margin-left: 0; padding-left: 0; margin-top: 15px; font-family: 'Open Sans', sans-serif" id = "buttons">
+                <ul style="list-style-type: none; margin-left: 0; padding-left: 0; margin-top: 15px; font-family: 'Open Sans', sans-serif; font-size: 17px; font-weight: 100;" id = "buttons">
                     <c:forEach items="${bizTypes}" var="biztype" >
-                        <li><a class="new" onclick="bt(${biztype.id})"><div class="boolets" style = "background: #ffffff"></div>&#160;&#160;${biztype.name}</a></li>
+                        <li><a class="new" onclick="bt(${biztype.id})"><img src="${biztype.link}" style="height: 20px; width: 20px">&#160;&#160;${biztype.name}</a></li>
                     </c:forEach>
                     <!--                    <li><div><button class="anyNew" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"> Не знаете что выбрать?</button></div></li>-->
                     <!--    кнопки с бихнес тайпами закрылись                -->
 
-                    <!--                    свой вариант-->
-                    <div style = "margin-left: auto; margin-right: auto; width: 90%;">
-                        <div style = "font-family:'Open Sans'; font-size: 13px; color: white; margin-top: 20px">Введите свой вариант</div>
-                        <div class="form-group" style="width: 90%; margin-top: 5px">
-                            <form  >
-                                <input type="text" class="form-control" id="formBT"  >
-                                <div style="margin-top:5px; border-radius: 5px;">
-                                    <button type="button" class="btn btn-large" onclick="formFunct()" style="width:100%; background: #6cdcb3; font-family:'Open Sans', sans-serif; color: #fffff;" >Показать</button>
-                                </div>
-                            </form>
-                        </div>
+                    <hr style ="opacity: 0.3; margin-top: -1px">
+
+                    <div style="margin-left: 15px; margin-top: 10px">
+                        <input type="checkbox" id="box1"  onclick="includePopulation()">
+                        <label for="box1">на 1 человека</label>
+
+                        <input type="checkbox" id="box2" onclick="includeArea()">
+                        <label for="box2">на 1 км<sup>2</sup></label>
                     </div>
+                    <!--                    свой вариант-->
+                    <li class="active" style="margin-top: 15px; background:#6d7fcc;">
+                        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">
+                            <i><img src="/search_icon.png" style="width: 22px; height: 22px"></i>
+                            Введите свой вариант
+                        </a>
+                        <ul class="collapse list-unstyled" id="homeSubmenu">
+
+                            <li><div style = "margin-left: auto; margin-right: auto; width: 90%;">
+                                <div style = "font-family:'Open Sans'; font-size: 13px; color: white; margin-top: 20px">Введите свой вариант</div>
+                                <div class="form-group" style="width: 90%; margin-top: 5px">
+                                    <form  >
+                                        <input type="text" class="form-control" id="formBT"  >
+                                        <div style="margin-top:5px; border-radius: 5px;">
+                                            <button type="button" class="btn btn-large" onclick="formFunct()" style="width:100%; background: #6cdcb3; font-family:'Open Sans', sans-serif; color: #fffff;" >Показать</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </ul>
+
+                    </li>
+                </ul>
+
+
+
+
+
+
+                    <%--<div style = "margin-left: auto; margin-right: auto; width: 90%;">--%>
+                        <%--<div style = "font-family:'Open Sans'; font-size: 13px; color: white; margin-top: 20px">Введите свой вариант</div>--%>
+                        <%--<div class="form-group" style="width: 90%; margin-top: 5px">--%>
+                            <%--<form  >--%>
+                                <%--<input type="text" class="form-control" id="formBT"  >--%>
+                                <%--<div style="margin-top:5px; border-radius: 5px;">--%>
+                                    <%--<button type="button" class="btn btn-large" onclick="formFunct()" style="width:100%; background: #6cdcb3; font-family:'Open Sans', sans-serif; color: #fffff;" >Показать</button>--%>
+                                <%--</div>--%>
+                            <%--</form>--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
                     <!--         свой вариант закрылся           -->
 
                     <!--                чекбоксы  -->
                 </ul>
 
-                <div style="margin-left: 15px">
-                    <input type="checkbox" id="box-1"  onclick="includePopulation()">
-                    <label for="box-1">С учетом плотности населения</label>
-
-                    <input type="checkbox" id="box-2" onclick="includeArea()">
-                    <label for="box-2"> С учетом площади</label>
+                <div style="margin-left: auto; margin-right: auto; width: 90%;">
+                    <div style = "width: 100%; font-family: 'Open Sans', sans-serif; color:#f7f7f7;">Уровень конкуренции</div>
+                    <table style = "width: 100%; font-family: 'Open Sans', sans-serif; color:#dbe2ff; margin-top: 5px">
+                        <tr><td colspan="2"><img src="/gradient.png" style="width: 100%" ></td></tr>
+                        <tr><td>min</td><td align="right">max</td></tr>
+                    </table>
                 </div>
 
-
-                <!--
-                                    <li><input type="checkbox" id="myCheck" onclick="includePopulation()">  С учетом плотности населения</li>
-                                    <li><input type="checkbox" id="myCheck" onclick="includeArea()">  С учетом площади</li>
-                -->
-
-                <!--                чекбоксы закрылись-->
-
-                <div style=" position: absolute;bottom: 0; height: 150px;"><ul style="list-style-type: none; margin-left: 10px; padding-left: 15px;">
-                    <p style="color: white; font-family: 'Open Sans', sans-serif; font-size: 13px">Условные обозначения</p>
-                    <li><div class="circle" style="background: #da2421;"></div><div style="margin-left: 5px; display: inline-block; color: white; font-family: 'Open Sans', sans-serif; font-size: 10px">Максимальное значение</div></li>
-                    <li><div class="circle" style="background: #e37751;"></div><div style="margin-left: 5px; display: inline-block; margin-left: 5px; display: inline-block; color: white; font-family: 'Open Sans', sans-serif; font-size: 10px">Больше среднего колличества</div></li>
-                    <li><div class="circle" style="background:#e4bf64;"></div><div style="margin-left: 5px; display: inline-block; margin-left: 5px; display: inline-block; color: white; font-family: 'Open Sans', sans-serif; font-size: 10px">Среднее колличество</div></li>
-                    <li><div class="circle" style="background:#bad45f;"></div><div style="margin-left: 5px; display: inline-block; margin-left: 5px; display: inline-block; color: white; font-family: 'Open Sans', sans-serif; font-size: 10px">Меньше среднего колличества</div></li>
-                    <li><div class="circle" style="background:#53de51;"></div><div style="margin-left: 5px; display: inline-block; margin-left: 5px; display: inline-block; color: white; font-family: 'Open Sans', sans-serif; font-size: 10px">Минимальное колличество</div></li>
-                </ul></div>
+            <%--<div style=" position: absolute;bottom: 0; height: 150px;"><ul style="list-style-type: none; margin-left: 10px; padding-left: 15px;">--%>
+                    <%--<p style="color: white; font-family: 'Open Sans', sans-serif; font-size: 13px">Условные обозначения</p>--%>
+                    <%--<li><div class="circle" style="background: #da2421;"></div><div style="margin-left: 5px; display: inline-block; color: white; font-family: 'Open Sans', sans-serif; font-size: 10px">Максимальное значение</div></li>--%>
+                    <%--<li><div class="circle" style="background: #e37751;"></div><div style="margin-left: 5px; display: inline-block; margin-left: 5px; display: inline-block; color: white; font-family: 'Open Sans', sans-serif; font-size: 10px">Больше среднего колличества</div></li>--%>
+                    <%--<li><div class="circle" style="background:#e4bf64;"></div><div style="margin-left: 5px; display: inline-block; margin-left: 5px; display: inline-block; color: white; font-family: 'Open Sans', sans-serif; font-size: 10px">Среднее колличество</div></li>--%>
+                    <%--<li><div class="circle" style="background:#bad45f;"></div><div style="margin-left: 5px; display: inline-block; margin-left: 5px; display: inline-block; color: white; font-family: 'Open Sans', sans-serif; font-size: 10px">Меньше среднего колличества</div></li>--%>
+                    <%--<li><div class="circle" style="background:#53de51;"></div><div style="margin-left: 5px; display: inline-block; margin-left: 5px; display: inline-block; color: white; font-family: 'Open Sans', sans-serif; font-size: 10px">Минимальное колличество</div></li>--%>
+                <%--</ul></div>--%>
 
             </div>
             </div>
@@ -257,6 +294,9 @@
     opacity: 0.7;
     pointer-events: none;
     display: none"><div style="margin-top: 20%; text-align: center;"><img src="/ba.png" style=" height: 5%; width: 5%"></div><div style="margin-top: 5px; text-align: center;"><img src="/dwl-animation.gif" style="width: 5%; height: 5%"></div>
+
+
+
 <script>
 
 </script>
