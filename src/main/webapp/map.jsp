@@ -56,9 +56,27 @@
         -webkit-border-radius: 25px;
         -moz-border-radius: 25px;
         border-radius: 25px;
-        display: inline-block
-
     }
+
+    .circleactive{
+        display: block;
+        width: 10px;
+        height: 10px;
+        -webkit-border-radius: 25px;
+        -moz-border-radius: 25px;
+        border-radius: 25px;
+        background: white;
+    }
+    .circledisable{
+        display: none;
+        width: 10px;
+        height: 10px;
+        -webkit-border-radius: 25px;
+        -moz-border-radius: 25px;
+        border-radius: 25px;
+        background: white;
+    }
+
     .boolets{
         width: 15px;
         height: 15px;
@@ -151,6 +169,8 @@
         transform: rotate(45deg);
 
     }
+
+
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300&amp;subset=cyrillic" rel="stylesheet">
 </style>
 </head>
@@ -196,7 +216,9 @@
                 <!--                кнопки с типами бизнеса-->
                 <ul style="list-style-type: none; margin-left: 0; padding-left: 0; margin-top: 15px; font-family: 'Open Sans', sans-serif; font-size: 17px; font-weight: 100;" id = "buttons">
                     <c:forEach items="${bizTypes}" var="biztype" >
-                        <li><a class="new" onclick="bt(${biztype.id})"><img src="${biztype.link}" style="height: 20px; width: 20px">&#160;&#160;${biztype.name}</a></li>
+                        <li><a class="new" onclick="bt(${biztype.id})"><img src="${biztype.link}" style="height: 20px; width: 20px">
+                            <div style="display: inline-block">&#160;&#160;${biztype.name}&#160;&#160;</div><div id = bool style="display: inline-block">
+                                <div class="mcircle"> <div id = ${biztype.id}  class="circledisable" style="background: white;"></div></div></div></a></li>
                     </c:forEach>
                     <!--                    <li><div><button class="anyNew" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"> Не знаете что выбрать?</button></div></li>-->
                     <!--    кнопки с бихнес тайпами закрылись                -->

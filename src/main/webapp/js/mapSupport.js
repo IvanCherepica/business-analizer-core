@@ -63,7 +63,6 @@ function calculateColor(innerListOfNumberOfElements) {
     jQuery.ajaxSetup({async:false});
     var maxNum = Math.max.apply(1, innerListOfNumberOfElements); //median(innerListOfNumberOfElements); //
     var colorList = [];
-    // console.log("maxNum " + maxNum);
 
 
 
@@ -72,7 +71,6 @@ function calculateColor(innerListOfNumberOfElements) {
     } else {
         var innerPopulationList = listOfPopulationOnes;
     }
-    // console.log("innerPopulationList " + innerPopulationList);
 
     jQuery.ajaxSetup({async:false});
     if (isPerAreaActivated == Boolean(true)) {
@@ -80,32 +78,23 @@ function calculateColor(innerListOfNumberOfElements) {
     } else {
         var innerAreaList = listOfAreaOnes;
     }
-    // console.log("innerAreaList " + innerAreaList);
 
     var maxNumPopulation = Math.max.apply(1, innerPopulationList);
-    // console.log("maxNumPopulation " + maxNumPopulation);
     var maxNumArea = Math.max.apply(1, innerAreaList);
-    // console.log("maxNumArea " + maxNumArea);
 
     var colorCoefs = [];
-    // console.log("colorCoefs here !!!!111111111111111111");
 
     jQuery.ajaxSetup({async:false});
 
     for (var k = 0; k < innerListOfNumberOfElements.length; k++) {
-        // console.log("k " + k);
 
         var numCompetitors = innerListOfNumberOfElements[k]/maxNum;
-        // console.log("numCompetitors " + numCompetitors);
-        // console.log("innerListOfNumberOfElements[k] " + innerListOfNumberOfElements[k]);
+
 
         var numPopulation = innerPopulationList[k]; ///maxNumPopulation;
-        // console.log("numPopulation " + numPopulation);
-        // console.log("innerPopulationList[k] " + innerPopulationList[k]);
+
 
         var numArea = innerAreaList[k]; ///maxNumArea;
-        // console.log("numArea " + numArea);
-        // console.log("innerAreaList[k] " + innerAreaList[k]);
 
         var finalColorCoef = (numCompetitors / numPopulation) / numArea;
 
@@ -159,18 +148,6 @@ function init() {
 
     deliveryZones.each(function (obj) {
 
-        // console.log(obj.properties._data.name);
-        // console.log(obj.properties._data.population);
-        // console.log(obj.properties._data.area);
-        // console.log(objInsideDistrict._objects.length);
-
-        // var len = objInsideDistrict._objects.length;
-        // console.log(len);
-
-        // listOfNumberOfElements.push(len);
-        // console.log(listOfNumberOfElements);
-
-
         listOfPopulationRealValues.push(obj.properties._data.population);
         listOfPopulationOnes.push(1);
 
@@ -180,11 +157,7 @@ function init() {
 
     });
 
-    // console.log("listOfPopulationRealValues " + listOfPopulationRealValues);
-    // console.log("listOfPopulationOnes " + listOfPopulationOnes);
-    //
-    // console.log("listOfAreaRealValues " + listOfAreaRealValues);
-    // console.log("listOfAreaOnes " + listOfAreaOnes);
+
 
     function showDistrictByNumver(ind) {
         // Создаем многоугольник, используя вспомогательный класс Polygon.
@@ -278,53 +251,24 @@ function formFunct() {
             }
 
 
-            // var dataPoints = data;
-            //
-            // console.log("Point names started");
-            // for (var k = 0; k < dataPoints.length; k++) {
-            //
-            //     console.log(dataPoints[k].name);
-            //
-            //     myPlacemark = new ymaps.Placemark(dataPoints[k].coordinates, {
-            //         //balloonContentHeader: dataPoints[k].name,
-            //         balloonContentBody: dataPoints[k].name,
-            //         balloonContentFooter: dataPoints[k].addres,
-            //         // hintContent: "Хинт метки"
-            //     });
-            //
-            //     //myMap.geoObjects.add(myPlacemark);
-            //
-            // }
-            // console.log("Point names ended");
-            //
-            // objects = ymaps.geoQuery(dataPoints);
+
 
             objects = ymaps.geoQuery(data);//.addToMap(myMap);
 
             outerPoints = objects;
 
-            // console.log("2");
 
             var deliveryZones = ymaps.geoQuery(zones).addToMap(myMap);
 
-            // console.log("3");
-
-            // console.log("is about to start deliveryZones");
 
             deliveryZones.each(function (obj) {
-                //var color = obj.options.get('fillColor');
-                //color = color.substring(0, color.length - 2);
-                //obj.options.set({fillColor: color, fillOpacity: 0.4});
+
                 var objInsideDistrict = objects.searchInside(obj);
 
                 var len = objInsideDistrict._objects.length;
 
-                //console.log(obj.properties.name);
-                //console.log(obj.properties._data.name);
-                //console.log(len);
 
                 listOfNumberOfElements.push(len);
-                //console.log(listOfNumberOfElements);
             });
 
             formListOfNumberOfElements = listOfNumberOfElements;
@@ -364,7 +308,6 @@ function formFunct() {
 
 function includePopulation() {
 
-    //var checkBox = document.getElementById("myCheck");
 
     opacity_for_all = 0.7;
 
@@ -372,9 +315,7 @@ function includePopulation() {
     disable();
 
     function showDistrictByNumberByColor(ind) {
-        // console.log("showDistrictByNumberByColor started");
         var colorList = calculateColor(listOfNumberOfElements);
-        // Создаем многоугольник, используя вспомогательный класс Polygon.
         var myPolygon = new ymaps.Polygon(
             zones.features[ind].geometry.coordinates
             ,
@@ -394,7 +335,7 @@ function includePopulation() {
     } else {
         isPerPopulationActivated = Boolean(false);
     }
-    //isPerPopulationActivated = !isPerPopulationActivated;
+
 
     if (valueSelected != hardCodeCostylFormFunctValue) {
         bt(valueSelected);
@@ -413,9 +354,7 @@ function includePopulation() {
         noDisable();
 
     } else {
-        // removeAll();
-        // disable();
-        // console.log("includePoints started!!!! False");
+
         isPointsAdded = new Boolean(false);
     }
 
@@ -424,15 +363,15 @@ function includePopulation() {
 }
 function includeArea() {
     opacity_for_all = 0.7;
-    //removeAll();
+
 
     removeAll();
     disable();
 
     function showDistrictByNumberByColor(ind) {
-        // console.log("showDistrictByNumberByColor started");
+
         var colorList = calculateColor(listOfNumberOfElements);
-        // Создаем многоугольник, используя вспомогательный класс Polygon.
+
         var myPolygon = new ymaps.Polygon(
             zones.features[ind].geometry.coordinates
             ,
@@ -469,9 +408,6 @@ function includeArea() {
         noDisable();
 
     } else {
-        // removeAll();
-        // disable();
-        // console.log("includePoints started!!!! False");
         isPointsAdded = new Boolean(false);
     }
 
@@ -481,9 +417,7 @@ function includeArea() {
 function includePoints() {
 
     function showDistrictByNumberByColor(ind) {
-        // console.log("showDistrictByNumberByColor started");
         var colorList = calculateColor(listOfNumberOfElements);
-        // Создаем многоугольник, используя вспомогательный класс Polygon.
         var myPolygon = new ymaps.Polygon(
             zones.features[ind].geometry.coordinates
             ,
@@ -502,10 +436,8 @@ function includePoints() {
 
         isPointsAdded = Boolean(true);
 
-        // console.log("includePoints started!!!! True");
-        // console.log("outerPoints " + outerPoints)
+
         outerPoints.addToMap(myMap);
-        // console.log("outerPoints added");
         noDisable();
 
     } else {
@@ -543,21 +475,77 @@ function includePoints() {
         noDisable();
     }
 
-
 }
+
+
+
+
+
+
+function boolit(val) {
+
+    var id ="#"+String(val);
+    // document.getElementById(id).classList.add('circleactive');
+    document.getElementById(val).className = "circleactive";
+}
+
+// function disAllBoolit() {
+//
+//     $('#bool').css({
+//         'display': 'none',
+//     });
+//
+//
+// }
+
+if(document.getElementsByClassName) {
+    getElementsByClass = function(classList, node) {
+        return (node || document).getElementsByClassName(classList)
+    }
+} else {
+
+    getElementsByClass = function(classList, node) {
+        var node = node || document,
+            list = node.getElementsByTagName('*'),
+            length = list.length,
+            classArray = classList.split(/\s+/),
+            classes = classArray.length,
+            result = [], i,j
+        for(i = 0; i < length; i++) {
+            for(j = 0; j < classes; j++)  {
+                if(list[i].className.search('\\b' + classArray[j] + '\\b') != -1) {
+                    result.push(list[i])
+                    break
+                }
+            }
+        }
+        return result
+    }
+}
+
+
+
+function booDisable() {
+    var elements = getElementsByClass('circleactive');
+    for (var i=0; i<elements.length; i++)  {
+        elements[i].className = elements[i].className.replace('circleactive', 'circledisable')
+    }
+}
+
+
 
 var outerPoints;
 
 var valueSelected;
 
 function bt(val){
+    booDisable();
+    boolit(val);
     jQuery.ajaxSetup({async:false});
     valueSelected = val;
-    // console.log("Value selected " + valueSelected);
 
     var listOfNumberOfElements = [];
 
-    // var message = val;
     removeAll();
     disable();
     // console.log(message);
@@ -577,59 +565,26 @@ function bt(val){
             if (isPointsAdded == Boolean(true)) {
                 objects = ymaps.geoQuery(data).addToMap(myMap);
             } else {
-                objects = ymaps.geoQuery(data);//.addToMap(myMap);
+                objects = ymaps.geoQuery(data);
             }
-
-            // var dataPoints = data;
-            //
-            // console.log("Point names started");
-            // for (var k = 0; k < dataPoints.length; k++) {
-            //
-            //     console.log(dataPoints[k].name);
-            //
-            //     myPlacemark = new ymaps.Placemark(dataPoints[k].coordinates, {
-            //         //balloonContentHeader: dataPoints[k].name,
-            //         balloonContentBody: dataPoints[k].name,
-            //         balloonContentFooter: dataPoints[k].addres,
-            //         // hintContent: "Хинт метки"
-            //     });
-            //
-            //     //myMap.geoObjects.add(myPlacemark);
-            //
-            // }
-            // console.log("Point names ended");
-            //
-            // objects = ymaps.geoQuery(dataPoints);
-
-            //objects = ymaps.geoQuery(data);//.addToMap(myMap);
 
             outerPoints = objects;
 
-            //console.log("2");
 
             var deliveryZones = ymaps.geoQuery(zones).addToMap(myMap);
 
-            //console.log("3");
 
             console.log("is about to start deliveryZones " + '[' + new Date().toUTCString() + '] ');
 
-            //jQuery.ajaxSetup({async:true});
             deliveryZones.each(function (obj) {
-                //var color = obj.options.get('fillColor');
-                //color = color.substring(0, color.length - 2);
-                //obj.options.set({fillColor: color, fillOpacity: 0.4});
+
                 var objInsideDistrict = objects.searchInside(obj);
 
                 var len = objInsideDistrict._objects.length;
-                //console.log(obj.properties.name);
-                //console.log(obj.properties._data.name);
-                //console.log(len);
 
                 listOfNumberOfElements.push(len);
-                //console.log(listOfNumberOfElements);
             });
             jQuery.ajaxSetup({async:false});
-            // console.log("showDistrictByNumberByColor func is about to be used " + '[' + new Date().toUTCString() + '] ');
 
             for (var k = 0; k < zones.features.length; k++) {
                 showDistrictByNumberByColor(k);
@@ -642,9 +597,7 @@ function bt(val){
     });
 
     function showDistrictByNumberByColor(ind) {
-        // console.log("showDistrictByNumberByColor started");
         var colorList = calculateColor(listOfNumberOfElements);
-        // Создаем многоугольник, используя вспомогательный класс Polygon.
         var myPolygon = new ymaps.Polygon(
             zones.features[ind].geometry.coordinates
             ,
