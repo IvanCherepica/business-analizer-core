@@ -7,7 +7,12 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<div class="container-fluid">
+<div class="container-fluid" style="position: fixed;
+    top: 0;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+   ">
     <div class="left-sidebar">
         <div class = "bar-text">
             <form>
@@ -17,7 +22,7 @@
                 <button formmethod="get" formaction="/admin/point" name="typeId" value="0" class="new">Points</button>
             </form>
             <form>
-                <button formmethod="get" formaction="/user/map" class="btn">GO MAP</button>
+                <button formmethod="get" formaction="/user/map" class="btn btn-default">GO TO MAP</button>
             </form>
         </div>
     </div>

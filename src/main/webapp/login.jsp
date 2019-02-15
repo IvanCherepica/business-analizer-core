@@ -23,10 +23,14 @@
                 <form action="${pageContext.request.contextPath}/login" method="POST">
                     <div class="form-group login-group">
                         <input type="text" class="form-control" id="uName" name="login" required/>
+                    </div>
+                    <div class="form-group login-group">
                         <input type="password" class="form-control" type="text" id="uPass" name="password"
                                required placeholder="Password" />
                     </div>
-                    <input type="submit" class="btn btn-defaul" value="Sign in"/>
+                    <div>
+                        <input type="submit" class="btn btn-defaul" value="Sign in"/>
+                    </div>
                 </form>
             </div>
         </div>
