@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=cyrillic" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&coordorder=longlat&apikey=ef20360f-da6b-4ee7-be34-21ab7fabe266" type="text/javascript"></script>    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <%--<script src="/js/mapPlaceMarkt.js" type="text/javascript"></script>--%>
 
@@ -17,182 +19,230 @@
     <%--<script type="text/javascript">--%>
         <%--<%@include file="/js/mapPlaceMarkt.js" %>--%>
     <%--</script>--%>
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script type="text/javascript">
         <%@include file="/js/mapSupport.js" %>
     </script>
-    <style>
-        @media (min-width: 768px) {
-            .wrapper {
-                overflow: auto;
-            }
-            .right-sidebar {
-                float: left
-            }
-            .right-sidebar{
-                position: absolute;
-                top: 0;
-                left: 80%;
-                width: 20%;
-                height: 100%;
-                background-color:#e6e6e6;
-            }
-            .bar-text{
-                text-align: center;
-                font-family: 'Open Sans', Arial, sans-serif;
-                font-weight: 600;
-                font-style: normal
-            }
-
-            .uslText{
-
-                text-align: left;
-                font-family: arial,sans-serif;
-                font-size: 15px;
-            }
-
-        }
-        button.new {
-            display: inline-block;
-            font-family: arial,sans-serif;
-            font-size: 11px;
-            font-weight: bold;
-            color: rgb(68,68,68);
-            text-decoration: none;
-            user-select: none;
-            padding: .1em 1.2em;
-
-            border: 1px solid rgba(0,0,0,.1);
-            border-radius: 2px;
-            /*  background: rgb(245,245,245) linear-gradient(#f4f4f4, #f1f1f1);*/
-            width:100%;
-            height: 4em;
-            -moz-transition: background-color 0.3s 0.1s ease, box-shadow 0.3s 0.1s ease;
-            -o-transition: background-color 0.3s 0.1s ease, box-shadow 0.3s 0.1s ease;
-            -webkit-transition: background-color 0.3s 0.1s ease, box-shadow 0.3s 0.1s ease;
-        }
-        button.new:hover {
-            color: rgb(24,24,24);
-            border: 1px solid rgb(198,198,198);
-            background: #f7f7f7 linear-gradient(#f7f7f7, #f1f1f1);
-            box-shadow: 0 1px 2px rgba(0,0,0,.1);
-            width:100%;
-            height: 4em;
-        }
-        button.new:active {
-            color: rgb(51,51,51);
-            border: 1px solid rgb(204,204,204);
-            background: rgb(238,238,238) linear-gradient(rgb(238,238,238), rgb(224,224,224));
-            box-shadow: 0 1px 2px rgba(0,0,0,.1) inset;
-            width:100%;
-            height: 4em;
-        }
-        button.anyNew{
-            margin-top: 3px;
-            display: inline-block;
-            font-family: arial,sans-serif;
-            font-size: 11px;
-            font-weight: bold;
-            color: rgb(68,68,68);
-            text-decoration: none;
-            user-select: none;
-            padding: .1em 1.2em;
-            border: 2px solid #5cb85c;
-            border-radius: 6px;
-            width:100%;
-            height: 4em;
-            -moz-transition: background-color 0.2s 0.1s ease, color 0.2s 0.1s ease, box-shadow 0.2s 0.1s ease;
-            -o-transition: background-color 0.2s 0.1s ease, color 0.2s 0.1s ease, box-shadow 0.2s 0.1s ease;
-            -webkit-transition: background-color 0.2s 0.1s ease, color 0.2s 0.1s ease, box-shadow 0.2s 0.1s ease;
-
-        }
-        button.anyNew:hover {
-            color: #ffffff;
-            border: 2px solid #5cb85c;
-            /*background: #5cb85c linear-gradient(#f7f7f7, #f1f1f1);*/
-            background: #5cb85c;
-            box-shadow: 5px 6px 10px rgba(0,0,0,.1);
-            width:100%;
-            height: 4em;
-        }
-        button.anyNew:active {
-            color: rgb(51,51,51);
-            border: 2px solid rgb(204,204,204);
-            background: rgb(238,238,238) linear-gradient(rgb(238,238,238), rgb(224,224,224));
-            box-shadow: 0 1px 2px rgba(0,0,0,.1) inset;
-            width:100%;
-            height: 4em;
-        }
-
-        .circle{
-            width: 10px;
-            height: 10px;
-            -webkit-border-radius: 25px;
-            -moz-border-radius: 25px;
-            border-radius: 25px;
-            display: inline-block
-
-        }
-
-
-
-
+    <style >
+    <%@include file= "/style4.css"%>
     </style>
+   <style>
+    @media (min-width: 768px) {
+        .wrapper {
+            overflow: auto;
+        }
+        .right-sidebar {
+            float: left
+        }
+        .right-sidebar{
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 100%;
+            background-color:#7386D5;
+        }
+        .bar-text{
+            font-family:'Open Sans', sans-serif;
+            font-weight: 600;
+            font-style: normal
+        }
+
+    }
+
+    .circle{
+        width: 10px;
+        height: 10px;
+        -webkit-border-radius: 25px;
+        -moz-border-radius: 25px;
+        border-radius: 25px;
+        display: inline-block
+
+    }
+    .boolets{
+        width: 15px;
+        height: 15px;
+        -webkit-border-radius: 25px;
+        -moz-border-radius: 25px;
+        border-radius: 25px;
+        display: inline-block
+
+    }
+
+
+    .checkbox {
+        position:relative;
+        padding-left:5px;
+        -moz-border-radius: 2px;
+        -webkit-border-radius: 2px;
+        -khtml-border-radius: 2px;
+
+    }
+    .checkbox input[type=checkbox] {
+        display:none;
+        background: #ffffff;
+        -moz-border-radius: 2px;
+        -webkit-border-radius: 2px;
+        -khtml-border-radius: 2px;
+    }
+    .checkbox label:after {
+        content:'';
+        display:block;
+        height:14px;
+        width:14px;
+        outline:0px solid #ffffff;
+        position:absolute;
+        top:0;
+        left:0;
+        background: #ffffff;
+        -moz-border-radius: 2px;
+        -webkit-border-radius: 2px;
+        -khtml-border-radius: 2px;
+    }
+    .checkbox input[type=checkbox]:checked + label:after {
+        outline:0px solid #ffffff;
+        border:2px solid #fff;
+        width:14px;
+        height:14px;
+        background-color:#63849F;
+    }
+
+    /*Checkboxes styles*/
+    input[type="checkbox"] { display: none; }
+
+    input[type="checkbox"] + label {
+        display: block;
+        position: relative;
+        padding-left: 35px;
+        margin-bottom: 20px;
+        font: 14px/20px 'Open Sans', Arial, sans-serif;
+        color: #ffffff;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+    }
+
+    input[type="checkbox"] + label:last-child { margin-bottom: 0; }
+
+    input[type="checkbox"] + label:before {
+        content: '';
+        display: block;
+        width: 20px;
+        height: 20px;
+        border: 3px solid #ffffff;
+        position: absolute;
+        left: 0;
+        top: 0;
+        opacity: .6;
+        -webkit-transition: all .12s, border-color .08s;
+        transition: all .12s, border-color .08s;
+    }
+
+    input[type="checkbox"]:checked + label:before {
+        width: 10px;
+        top: -5px;
+        left: 5px;
+        border-radius: 0;
+        opacity: 1;
+        border-top-color: transparent;
+        border-left-color: transparent;
+        -webkit-transform: rotate(45deg);
+        transform: rotate(45deg);
+
+    }
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300&amp;subset=cyrillic" rel="stylesheet">
+</style>
 </head>
 
 <body>
-<div id="myModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
+<%--<div id="myModal" class="modal fade" role="dialog">--%>
+    <%--<div class="modal-dialog">--%>
 
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Введите тип бизнеса</h4>
-            </div>
-            <div class="modal-body">
-                <form >
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="formBT" >
-                    </div>
-                    <button type="button" class="btn btn-success" onclick="formFunct()" data-dismiss="modal">Показать</button>
-                </form>
-            </div>
-        </div>
+        <%--<!-- Modal content-->--%>
+        <%--<div class="modal-content">--%>
+            <%--<div class="modal-header">--%>
+                <%--<button type="button" class="close" data-dismiss="modal">&times;</button>--%>
+                <%--<h4 class="modal-title">Введите тип бизнеса</h4>--%>
+            <%--</div>--%>
+            <%--<div class="modal-body">--%>
+                <%--<form >--%>
+                    <%--<div class="form-group">--%>
+                        <%--<input type="text" class="form-control" id="formBT" >--%>
+                    <%--</div>--%>
+                    <%--<button type="button" class="btn btn-success" onclick="formFunct()" data-dismiss="modal">Показать</button>--%>
+                <%--</form>--%>
+            <%--</div>--%>
+        <%--</div>--%>
 
-    </div>
-</div>
+    <%--</div>--%>
+<%--</div>--%>
 <div id="map"; style="position: absolute;
     top: 0;
     left: 0;
-    width: 80%;
+    width: 100%;
     height: 100%;
    "></div>
 
-<div class="container-fluid" id = "sidebar" >
+<div class="container-fluid" id = "sidebar"  >
     <div class="row">
         <div class="wrapper">
-            <div class="right-sidebar"><div> <h2 class = "bar-text">Выберите тип бизнеса</h2>
+            <div class="right-sidebar" style = "box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.5);" ><div>
+                <div style=" background: #6d7fcc; height: 100px">
+                    <img src="/ba_logo.png" style="height: 54px; width: 190px; opacity: 0.9; margin-top: 15px; margin-left: 15px">
+                </div>
+                <div style="font-family:'Open Sans', sans-serif; font-size: 20px; font-weight:600; margin-left: 15px; margin-top: 15px">Выберите тип бизнеса</div>
 
-                <ul style="list-style-type: none; margin-left: 0; padding-left: 0;" id = "buttons">
+                <!--                кнопки с типами бизнеса-->
+                <ul style="list-style-type: none; margin-left: 0; padding-left: 0; margin-top: 15px; font-family: 'Open Sans', sans-serif" id = "buttons">
                     <c:forEach items="${bizTypes}" var="biztype" >
-                        <li><button class="new" onclick="bt(${biztype.id})">${biztype.name}</button></li>
+                        <li><a class="new" onclick="bt(${biztype.id})"><div class="boolets" style = "background: #ffffff"></div>&#160;&#160;${biztype.name}</a></li>
                     </c:forEach>
-                    <li><div><button class="anyNew" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"> Не знаете что выбрать?</button></div></li>
-                    <li><input type="checkbox" id="myCheck" onclick="includePopulation()">  С учетом плотности населения</li>
-                    <li><input type="checkbox" id="myCheck" onclick="includeArea()">  С учетом площади</li>
+                    <!--                    <li><div><button class="anyNew" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"> Не знаете что выбрать?</button></div></li>-->
+                    <!--    кнопки с бихнес тайпами закрылись                -->
 
+                    <!--                    свой вариант-->
+                    <div style = "margin-left: auto; margin-right: auto; width: 90%;">
+                        <div style = "font-family:'Open Sans'; font-size: 13px; color: white; margin-top: 20px">Введите свой вариант</div>
+                        <div class="form-group" style="width: 90%; margin-top: 5px">
+                            <form  >
+                                <input type="text" class="form-control" id="formBT"  >
+                                <div style="margin-top:5px; border-radius: 5px;">
+                                    <button type="button" class="btn btn-large" onclick="formFunct()" style="width:100%; background: #6cdcb3; font-family:'Open Sans', sans-serif; color: #fffff;" >Показать</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!--         свой вариант закрылся           -->
+
+                    <!--                чекбоксы  -->
                 </ul>
 
-                <div style=" position: absolute;bottom: 0; height: 150px;"><ul style="list-style-type: none; margin-left: 0; padding-left: 15px; font-family: arial,sans-serif; font-size: 13px">
-                    <p class="uslText">Условные обозначения</p>
-                    <li><div class="circle" style="background: red;"></div><div style="margin-left: 5px; display: inline-block">Максимальное значение</div></li>
-                    <li><div class="circle" style="background: #ff7f2e;"></div><div style="margin-left: 5px; display: inline-block">Больше среднего колличества</div></li>
-                    <li><div class="circle" style="background:#ffd31b;"></div><div style="margin-left: 5px; display: inline-block">Среднее колличество</div></li>
-                    <li><div class="circle" style="background:#b3ff3a;"></div><div style="margin-left: 5px; display: inline-block">Меньше среднего колличества</div></li>
-                    <li><div class="circle" style="background:#00ff00;"></div><div style="margin-left: 5px; display: inline-block">Минимальное колличество</div></li>
+                <div style="margin-left: 15px">
+                    <input type="checkbox" id="box-1"  onclick="includePopulation()">
+                    <label for="box-1">С учетом плотности населения</label>
+
+                    <input type="checkbox" id="box-2" onclick="includeArea()">
+                    <label for="box-2"> С учетом площади</label>
+                </div>
+
+
+                <!--
+                                    <li><input type="checkbox" id="myCheck" onclick="includePopulation()">  С учетом плотности населения</li>
+                                    <li><input type="checkbox" id="myCheck" onclick="includeArea()">  С учетом площади</li>
+                -->
+
+                <!--                чекбоксы закрылись-->
+
+                <div style=" position: absolute;bottom: 0; height: 150px;"><ul style="list-style-type: none; margin-left: 10px; padding-left: 15px;">
+                    <p style="color: white; font-family: 'Open Sans', sans-serif; font-size: 13px">Условные обозначения</p>
+                    <li><div class="circle" style="background: #da2421;"></div><div style="margin-left: 5px; display: inline-block; color: white; font-family: 'Open Sans', sans-serif; font-size: 10px">Максимальное значение</div></li>
+                    <li><div class="circle" style="background: #e37751;"></div><div style="margin-left: 5px; display: inline-block; margin-left: 5px; display: inline-block; color: white; font-family: 'Open Sans', sans-serif; font-size: 10px">Больше среднего колличества</div></li>
+                    <li><div class="circle" style="background:#e4bf64;"></div><div style="margin-left: 5px; display: inline-block; margin-left: 5px; display: inline-block; color: white; font-family: 'Open Sans', sans-serif; font-size: 10px">Среднее колличество</div></li>
+                    <li><div class="circle" style="background:#bad45f;"></div><div style="margin-left: 5px; display: inline-block; margin-left: 5px; display: inline-block; color: white; font-family: 'Open Sans', sans-serif; font-size: 10px">Меньше среднего колличества</div></li>
+                    <li><div class="circle" style="background:#53de51;"></div><div style="margin-left: 5px; display: inline-block; margin-left: 5px; display: inline-block; color: white; font-family: 'Open Sans', sans-serif; font-size: 10px">Минимальное колличество</div></li>
                 </ul></div>
+
             </div>
             </div>
         </div>
