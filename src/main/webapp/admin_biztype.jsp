@@ -6,14 +6,14 @@
 <%@ include file="admin_menu_entity.jsp" %>
 <div class="container-fluid" style="position: absolute;
     top: 0;
-    left: 10%;
+    left: 20%;
     width: 80%;
     height: 100%;
    ">
     <h1>Admin panel</h1>
 
     <div align="left">
-        <table class = "table table-bordered">
+        <table class = "table table-bordered" style="width: 60%; box-shadow: 0 1px 9px rgba(0,0,0,.1);" >
             <caption><h2>List of Business types</h2></caption>
             <thead>
             <tr class="info">

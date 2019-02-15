@@ -1,5 +1,6 @@
 ymaps.ready(init);
 
+
 var opacity_for_all = 0.7;
 
 isPerPopulationActivated = new Boolean(false);
