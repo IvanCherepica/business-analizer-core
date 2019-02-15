@@ -24,7 +24,7 @@
                 <th>Name</th>
                 <th>Address</th>
                 <th>Coordinate</th>
-                <th>Business type</th>
+                <th>Type</th>
                 <th>Options</th>
             </tr>
             </thead>

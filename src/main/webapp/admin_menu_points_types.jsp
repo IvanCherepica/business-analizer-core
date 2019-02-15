@@ -10,7 +10,7 @@
 <h2 align="left">
     <form>
         <c:forEach items="${biztypes}" var="biztype" >
-            <button formmethod="get" formaction="/admin/point" name="typeId" value="${biztype.id}" class="btn btn-light">${biztype.name}</button>
+            <button formmethod="get" formaction="/admin/point" name="typeId" value="${biztype.id}" class="btn btn-default">${biztype.name}</button>
         </c:forEach>
     </form>
 </h2>
