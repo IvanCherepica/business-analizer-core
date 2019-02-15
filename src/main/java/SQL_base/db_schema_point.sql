@@ -6,7 +6,7 @@ create table point
   longitude double       null,
   name      varchar(255) null,
   typeId    bigint ,
-  FOREIGN KEY (typeId) REFERENCES biztype(id)
+  FOREIGN KEY (typeId) REFERENCES bizType(id)
 );
 
 INSERT INTO db_schema.point (id, addres, latitude, longitude, name, typeId) VALUES (1, 'наб. канала Грибоедова, 5', 59.93962478637695, 30.32769012451172, 'Санкт-Петербург', 1);
