@@ -6,6 +6,8 @@ var opacity_for_all = 0.7;
 isPerPopulationActivated = new Boolean(false);
 isPerAreaActivated = new Boolean(false);
 
+isPointsAdded = new Boolean(false);
+
 function getColor(num) {
     var coef = 0.3;
     if (num > coef) {
@@ -78,7 +80,6 @@ function calculateColor(innerListOfNumberOfElements) {
     console.log("maxNum " + maxNum);
 
 
-
     if (isPerPopulationActivated == Boolean(true)) {
         var innerPopulationList = listOfPopulationRealValues;
     } else {
@@ -136,6 +137,24 @@ function calculateColor(innerListOfNumberOfElements) {
     console.log("colorList " + colorList);
     return colorList;
 }
+
+// function showDistrictByNumberByColor(ind) {
+//     console.log("showDistrictByNumberByColor started");
+//     var colorList = calculateColor(listOfNumberOfElements);
+//     // Создаем многоугольник, используя вспомогательный класс Polygon.
+//     var myPolygon = new ymaps.Polygon(
+//         zones.features[ind].geometry.coordinates
+//         ,
+//         { hintContent : zones.features[ind].properties.name}
+//         ,
+//         { fillColor: colorList[ind],
+//             opacity: opacity_for_all,
+//             strokeColor: '#808080',
+//             strokeWidth: 1}
+//     );
+//
+//     myMap.geoObjects.add(myPolygon);
+// }
 
 
 var myMap;
@@ -250,7 +269,7 @@ function noDisable() {
     });
 
 }
-var hardCodeCostylFormFunctValue = 123;
+var hardCodeCostylFormFunctValue = -1;
 
 var objects = [];
 
@@ -285,7 +304,15 @@ function formFunct() {
             console.log("data " + data);
             console.log("1");
 
+            if (isPointsAdded == Boolean(true)) {
+                objects = ymaps.geoQuery(data).addToMap(myMap);
+            } else {
+                objects = ymaps.geoQuery(data);//.addToMap(myMap);
+            }
+
             objects = ymaps.geoQuery(data);//.addToMap(myMap);
+
+            outerPoints = objects;
 
             console.log("2");
 
@@ -348,9 +375,12 @@ function formFunct() {
 
 function includePopulation() {
 
-    var checkBox = document.getElementById("myCheck");
+    //var checkBox = document.getElementById("myCheck");
 
     opacity_for_all = 0.7;
+
+    removeAll();
+    disable();
 
     function showDistrictByNumberByColor(ind) {
         console.log("showDistrictByNumberByColor started");
@@ -370,7 +400,7 @@ function includePopulation() {
         myMap.geoObjects.add(myPolygon);
     }
 
-    if (checkBox.checked == true) {
+    if (box1.checked == true) {
         isPerPopulationActivated = Boolean(true);
     } else {
         isPerPopulationActivated = Boolean(false);
@@ -386,12 +416,31 @@ function includePopulation() {
         }
 
     }
-    //noDisable();
+
+    if (box3.checked == true) {
+
+        isPointsAdded = Boolean(true);
+        outerPoints.addToMap(myMap);
+        noDisable();
+
+    } else {
+        // removeAll();
+        // disable();
+        console.log("includePoints started!!!! False");
+        isPointsAdded = new Boolean(false);
+    }
+
+    noDisable();
 
 }
 function includeArea() {
+
+
     opacity_for_all = 0.7;
     //removeAll();
+
+    removeAll();
+    disable();
 
     function showDistrictByNumberByColor(ind) {
         console.log("showDistrictByNumberByColor started");
@@ -411,7 +460,7 @@ function includeArea() {
         myMap.geoObjects.add(myPolygon);
     }
 
-    if (checkBox.checked == true) {
+    if (box2.checked == true) {
         isPerAreaActivated = Boolean(true);
     } else {
         isPerAreaActivated = Boolean(false);
@@ -426,8 +475,136 @@ function includeArea() {
         }
 
     }
-    //noDisable();
+
+    if (box3.checked == true) {
+        isPointsAdded = Boolean(true);
+        outerPoints.addToMap(myMap);
+        noDisable();
+
+    } else {
+        // removeAll();
+        // disable();
+        console.log("includePoints started!!!! False");
+        isPointsAdded = new Boolean(false);
+    }
+
+    noDisable();
 }
+
+function includePoints() {
+
+    function showDistrictByNumberByColor(ind) {
+        console.log("showDistrictByNumberByColor started");
+        var colorList = calculateColor(listOfNumberOfElements);
+        // Создаем многоугольник, используя вспомогательный класс Polygon.
+        var myPolygon = new ymaps.Polygon(
+            zones.features[ind].geometry.coordinates
+            ,
+            { hintContent : zones.features[ind].properties.name}
+            ,
+            { fillColor: colorList[ind],
+                opacity: opacity_for_all,
+                strokeColor: '#808080',
+                strokeWidth: 1}
+        );
+
+        myMap.geoObjects.add(myPolygon);
+    }
+
+    if (box3.checked == true) {
+
+        isPointsAdded = Boolean(true);
+
+        console.log("includePoints started!!!! True");
+        console.log("outerPoints " + outerPoints)
+        outerPoints.addToMap(myMap);
+        console.log("outerPoints added");
+        noDisable();
+
+    } else {
+        removeAll();
+        disable();
+        console.log("includePoints started!!!! False");
+        isPointsAdded = new Boolean(false);
+
+        function showDistrictByNumberByColor(ind) {
+            console.log("showDistrictByNumberByColor started");
+            var colorList = calculateColor(listOfNumberOfElements);
+            // Создаем многоугольник, используя вспомогательный класс Polygon.
+            var myPolygon = new ymaps.Polygon(
+                zones.features[ind].geometry.coordinates
+                ,
+                { hintContent : zones.features[ind].properties.name}
+                ,
+                { fillColor: colorList[ind],
+                    opacity: opacity_for_all,
+                    strokeColor: '#808080',
+                    strokeWidth: 1}
+            );
+
+            myMap.geoObjects.add(myPolygon);
+        }
+
+        if (valueSelected != hardCodeCostylFormFunctValue) {
+            bt(valueSelected);
+        } else {
+            listOfNumberOfElements = formListOfNumberOfElements;
+            for (var k = 0; k < zones.features.length; k++) {
+                showDistrictByNumberByColor(k);
+            }
+        }
+        noDisable();
+    }
+
+
+
+    //var checkBox = document.getElementById("myCheck");
+
+    // opacity_for_all = 0.7;
+
+    //
+
+    //outerPoints.addToMap(myMap);
+
+    // function showDistrictByNumberByColor(ind) {
+    //     console.log("showDistrictByNumberByColor started");
+    //     var colorList = calculateColor(listOfNumberOfElements);
+    //     // Создаем многоугольник, используя вспомогательный класс Polygon.
+    //     var myPolygon = new ymaps.Polygon(
+    //         zones.features[ind].geometry.coordinates
+    //         ,
+    //         { hintContent : zones.features[ind].properties.name}
+    //         ,
+    //         { fillColor: colorList[ind],
+    //             opacity: opacity_for_all,
+    //             strokeColor: '#808080',
+    //             strokeWidth: 1}
+    //     );
+    //
+    //     myMap.geoObjects.add(myPolygon);
+    // }
+    //
+    // if (box3.checked == true) {
+    //     isPerPopulationActivated = Boolean(true);
+    // } else {
+    //     isPerPopulationActivated = Boolean(false);
+    // }
+    // //isPerPopulationActivated = !isPerPopulationActivated;
+    //
+    // if (valueSelected != hardCodeCostylFormFunctValue) {
+    //     bt(valueSelected);
+    // } else {
+    //     listOfNumberOfElements = formListOfNumberOfElements;
+    //     for (var k = 0; k < zones.features.length; k++) {
+    //         showDistrictByNumberByColor(k);
+    //     }
+    //
+    // }
+    //
+
+}
+
+var outerPoints;
 
 var valueSelected;
 
@@ -455,7 +632,15 @@ function bt(val){
             console.log(data);
             console.log("1");
 
-            objects = ymaps.geoQuery(data);//.addToMap(myMap);
+            if (isPointsAdded == Boolean(true)) {
+                objects = ymaps.geoQuery(data).addToMap(myMap);
+            } else {
+                objects = ymaps.geoQuery(data);//.addToMap(myMap);
+            }
+
+            //objects = ymaps.geoQuery(data);//.addToMap(myMap);
+
+            outerPoints = objects;
 
             console.log("2");
 
