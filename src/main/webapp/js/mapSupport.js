@@ -17,20 +17,6 @@ function getColor(num) {
     }
 }
 
-function median(values){
-    values.sort(function(a,b){
-        return a-b;
-    });
-
-    if(values.length ===0) return 0
-
-    var half = Math.floor(values.length / 2);
-
-    if (values.length % 2)
-        return values[half];
-    else
-        return (values[half - 1] + values[half]) / 2.0;
-}
 
 getGradientColor = function(start_color, end_color, percent) {
     // strip the leading # if it's there
@@ -77,7 +63,7 @@ function calculateColor(innerListOfNumberOfElements) {
     jQuery.ajaxSetup({async:false});
     var maxNum = Math.max.apply(1, innerListOfNumberOfElements); //median(innerListOfNumberOfElements); //
     var colorList = [];
-    console.log("maxNum " + maxNum);
+    // console.log("maxNum " + maxNum);
 
 
 
@@ -86,7 +72,7 @@ function calculateColor(innerListOfNumberOfElements) {
     } else {
         var innerPopulationList = listOfPopulationOnes;
     }
-    console.log("innerPopulationList " + innerPopulationList);
+    // console.log("innerPopulationList " + innerPopulationList);
 
     jQuery.ajaxSetup({async:false});
     if (isPerAreaActivated == Boolean(true)) {
@@ -94,35 +80,36 @@ function calculateColor(innerListOfNumberOfElements) {
     } else {
         var innerAreaList = listOfAreaOnes;
     }
-    console.log("innerAreaList " + innerAreaList);
+    // console.log("innerAreaList " + innerAreaList);
 
     var maxNumPopulation = Math.max.apply(1, innerPopulationList);
-    console.log("maxNumPopulation " + maxNumPopulation);
+    // console.log("maxNumPopulation " + maxNumPopulation);
     var maxNumArea = Math.max.apply(1, innerAreaList);
-    console.log("maxNumArea " + maxNumArea);
+    // console.log("maxNumArea " + maxNumArea);
 
     var colorCoefs = [];
-    console.log("colorCoefs here !!!!111111111111111111");
+    // console.log("colorCoefs here !!!!111111111111111111");
 
     jQuery.ajaxSetup({async:false});
+
     for (var k = 0; k < innerListOfNumberOfElements.length; k++) {
-        console.log("k " + k);
+        // console.log("k " + k);
 
         var numCompetitors = innerListOfNumberOfElements[k]/maxNum;
-        console.log("numCompetitors " + numCompetitors);
-        console.log("innerListOfNumberOfElements[k] " + innerListOfNumberOfElements[k]);
+        // console.log("numCompetitors " + numCompetitors);
+        // console.log("innerListOfNumberOfElements[k] " + innerListOfNumberOfElements[k]);
 
         var numPopulation = innerPopulationList[k]; ///maxNumPopulation;
-        console.log("numPopulation " + numPopulation);
-        console.log("innerPopulationList[k] " + innerPopulationList[k]);
+        // console.log("numPopulation " + numPopulation);
+        // console.log("innerPopulationList[k] " + innerPopulationList[k]);
 
         var numArea = innerAreaList[k]; ///maxNumArea;
-        console.log("numArea " + numArea);
-        console.log("innerAreaList[k] " + innerAreaList[k]);
+        // console.log("numArea " + numArea);
+        // console.log("innerAreaList[k] " + innerAreaList[k]);
 
         var finalColorCoef = (numCompetitors / numPopulation) / numArea;
 
-        console.log("finalColorCoef " + finalColorCoef);
+        // console.log("finalColorCoef " + finalColorCoef);
         colorCoefs.push(finalColorCoef);
     }
 
@@ -132,10 +119,10 @@ function calculateColor(innerListOfNumberOfElements) {
     for (var j = 0; j < innerListOfNumberOfElements.length; j++) {
 
         var normedColorCoef = colorCoefs[j]/maxColorCoefs;
-        console.log(normedColorCoef);
+        // console.log(normedColorCoef);
         colorList.push(getColor(normedColorCoef));
     }
-    console.log("colorList " + colorList);
+    // console.log("colorList " + colorList);
     return colorList;
 }
 
@@ -143,9 +130,6 @@ function calculateColor(innerListOfNumberOfElements) {
 var myMap;
 
 var zones;
-
-var listOfPopulation = [];
-var listOfArea = [];
 
 var listOfPopulationRealValues = [];
 var listOfPopulationOnes = [];
@@ -162,7 +146,7 @@ function init() {
         console.error('error');
     });
     jQuery.ajaxSetup({async:false});
-    console.log("zones " + zones);
+    // console.log("zones " + zones);
 
     myMap = new ymaps.Map("map", {
             center: [30.25385, 59.90024],
@@ -171,13 +155,13 @@ function init() {
         { searchControlProvider: 'yandex#search'}
     );
 
-    var deliveryZones = ymaps.geoQuery(zones);//.addToMap(myMap);
+    var deliveryZones = ymaps.geoQuery(zones).addToMap(myMap);
 
     deliveryZones.each(function (obj) {
 
-        console.log(obj.properties._data.name);
-        console.log(obj.properties._data.population);
-        console.log(obj.properties._data.area);
+        // console.log(obj.properties._data.name);
+        // console.log(obj.properties._data.population);
+        // console.log(obj.properties._data.area);
         // console.log(objInsideDistrict._objects.length);
 
         // var len = objInsideDistrict._objects.length;
@@ -196,11 +180,11 @@ function init() {
 
     });
 
-    console.log("listOfPopulationRealValues " + listOfPopulationRealValues);
-    console.log("listOfPopulationOnes " + listOfPopulationOnes);
-
-    console.log("listOfAreaRealValues " + listOfAreaRealValues);
-    console.log("listOfAreaOnes " + listOfAreaOnes);
+    // console.log("listOfPopulationRealValues " + listOfPopulationRealValues);
+    // console.log("listOfPopulationOnes " + listOfPopulationOnes);
+    //
+    // console.log("listOfAreaRealValues " + listOfAreaRealValues);
+    // console.log("listOfAreaOnes " + listOfAreaOnes);
 
     function showDistrictByNumver(ind) {
         // Создаем многоугольник, используя вспомогательный класс Polygon.
@@ -209,7 +193,7 @@ function init() {
             ,
             { hintContent : zones.features[ind].properties.name}
             ,
-            { fillColor: '#ffd31b',
+            { fillColor: '#fff926',
                 opacity: opacity_for_all,
                 strokeColor: '#808080',
                 strokeWidth: 1}
@@ -264,7 +248,7 @@ var formListOfNumberOfElements;
 
 function formFunct() {
     valueSelected = hardCodeCostylFormFunctValue;
-    console.log("Value selected" + valueSelected);
+    // console.log("Value selected" + valueSelected);
     var objects = [];
     var listOfNumberOfElements = [];
     jQuery.ajaxSetup({async:false});
@@ -272,7 +256,7 @@ function formFunct() {
     var message = val;
     removeAll();
     disable();
-    console.log(message);
+    // console.log(message);
     var url = "/search?formType=" + message;
 
     $.ajax({
@@ -284,8 +268,8 @@ function formFunct() {
         },
         success: function (data) {
             jQuery.ajaxSetup({async:false});
-            console.log("data " + data);
-            console.log("1");
+            // console.log("data " + data);
+            // console.log("1");
 
             if (isPointsAdded == Boolean(true)) {
                 objects = ymaps.geoQuery(data).addToMap(myMap);
@@ -293,17 +277,39 @@ function formFunct() {
                 objects = ymaps.geoQuery(data);//.addToMap(myMap);
             }
 
+
+            // var dataPoints = data;
+            //
+            // console.log("Point names started");
+            // for (var k = 0; k < dataPoints.length; k++) {
+            //
+            //     console.log(dataPoints[k].name);
+            //
+            //     myPlacemark = new ymaps.Placemark(dataPoints[k].coordinates, {
+            //         //balloonContentHeader: dataPoints[k].name,
+            //         balloonContentBody: dataPoints[k].name,
+            //         balloonContentFooter: dataPoints[k].addres,
+            //         // hintContent: "Хинт метки"
+            //     });
+            //
+            //     //myMap.geoObjects.add(myPlacemark);
+            //
+            // }
+            // console.log("Point names ended");
+            //
+            // objects = ymaps.geoQuery(dataPoints);
+
             objects = ymaps.geoQuery(data);//.addToMap(myMap);
 
             outerPoints = objects;
 
-            console.log("2");
+            // console.log("2");
 
             var deliveryZones = ymaps.geoQuery(zones).addToMap(myMap);
 
-            console.log("3");
+            // console.log("3");
 
-            console.log("is about to start deliveryZones");
+            // console.log("is about to start deliveryZones");
 
             deliveryZones.each(function (obj) {
                 //var color = obj.options.get('fillColor');
@@ -324,7 +330,7 @@ function formFunct() {
             formListOfNumberOfElements = listOfNumberOfElements;
             jQuery.ajaxSetup({async:false});
 
-            console.log("showDistrictByNumberByColor func is about to be used");
+            // console.log("showDistrictByNumberByColor func is about to be used");
 
             for (var k = 0; k < zones.features.length; k++) {
                 showDistrictByNumberByColor(k);
@@ -336,7 +342,7 @@ function formFunct() {
 
 
     function showDistrictByNumberByColor(ind) {
-        console.log("showDistrictByNumberByColor started");
+        // console.log("showDistrictByNumberByColor started");
         var colorList = calculateColor(listOfNumberOfElements);
         // Создаем многоугольник, используя вспомогательный класс Polygon.
         var myPolygon = new ymaps.Polygon(
@@ -366,7 +372,7 @@ function includePopulation() {
     disable();
 
     function showDistrictByNumberByColor(ind) {
-        console.log("showDistrictByNumberByColor started");
+        // console.log("showDistrictByNumberByColor started");
         var colorList = calculateColor(listOfNumberOfElements);
         // Создаем многоугольник, используя вспомогательный класс Polygon.
         var myPolygon = new ymaps.Polygon(
@@ -409,7 +415,7 @@ function includePopulation() {
     } else {
         // removeAll();
         // disable();
-        console.log("includePoints started!!!! False");
+        // console.log("includePoints started!!!! False");
         isPointsAdded = new Boolean(false);
     }
 
@@ -424,7 +430,7 @@ function includeArea() {
     disable();
 
     function showDistrictByNumberByColor(ind) {
-        console.log("showDistrictByNumberByColor started");
+        // console.log("showDistrictByNumberByColor started");
         var colorList = calculateColor(listOfNumberOfElements);
         // Создаем многоугольник, используя вспомогательный класс Polygon.
         var myPolygon = new ymaps.Polygon(
@@ -465,7 +471,7 @@ function includeArea() {
     } else {
         // removeAll();
         // disable();
-        console.log("includePoints started!!!! False");
+        // console.log("includePoints started!!!! False");
         isPointsAdded = new Boolean(false);
     }
 
@@ -475,7 +481,7 @@ function includeArea() {
 function includePoints() {
 
     function showDistrictByNumberByColor(ind) {
-        console.log("showDistrictByNumberByColor started");
+        // console.log("showDistrictByNumberByColor started");
         var colorList = calculateColor(listOfNumberOfElements);
         // Создаем многоугольник, используя вспомогательный класс Polygon.
         var myPolygon = new ymaps.Polygon(
@@ -496,20 +502,20 @@ function includePoints() {
 
         isPointsAdded = Boolean(true);
 
-        console.log("includePoints started!!!! True");
-        console.log("outerPoints " + outerPoints)
+        // console.log("includePoints started!!!! True");
+        // console.log("outerPoints " + outerPoints)
         outerPoints.addToMap(myMap);
-        console.log("outerPoints added");
+        // console.log("outerPoints added");
         noDisable();
 
     } else {
         removeAll();
         disable();
-        console.log("includePoints started!!!! False");
+        // console.log("includePoints started!!!! False");
         isPointsAdded = new Boolean(false);
 
         function showDistrictByNumberByColor(ind) {
-            console.log("showDistrictByNumberByColor started");
+            // console.log("showDistrictByNumberByColor started");
             var colorList = calculateColor(listOfNumberOfElements);
             // Создаем многоугольник, используя вспомогательный класс Polygon.
             var myPolygon = new ymaps.Polygon(
@@ -538,51 +544,6 @@ function includePoints() {
     }
 
 
-
-    //var checkBox = document.getElementById("myCheck");
-
-    // opacity_for_all = 0.7;
-
-    //
-
-    //outerPoints.addToMap(myMap);
-
-    // function showDistrictByNumberByColor(ind) {
-    //     console.log("showDistrictByNumberByColor started");
-    //     var colorList = calculateColor(listOfNumberOfElements);
-    //     // Создаем многоугольник, используя вспомогательный класс Polygon.
-    //     var myPolygon = new ymaps.Polygon(
-    //         zones.features[ind].geometry.coordinates
-    //         ,
-    //         { hintContent : zones.features[ind].properties.name}
-    //         ,
-    //         { fillColor: colorList[ind],
-    //             opacity: opacity_for_all,
-    //             strokeColor: '#808080',
-    //             strokeWidth: 1}
-    //     );
-    //
-    //     myMap.geoObjects.add(myPolygon);
-    // }
-    //
-    // if (box3.checked == true) {
-    //     isPerPopulationActivated = Boolean(true);
-    // } else {
-    //     isPerPopulationActivated = Boolean(false);
-    // }
-    // //isPerPopulationActivated = !isPerPopulationActivated;
-    //
-    // if (valueSelected != hardCodeCostylFormFunctValue) {
-    //     bt(valueSelected);
-    // } else {
-    //     listOfNumberOfElements = formListOfNumberOfElements;
-    //     for (var k = 0; k < zones.features.length; k++) {
-    //         showDistrictByNumberByColor(k);
-    //     }
-    //
-    // }
-    //
-
 }
 
 var outerPoints;
@@ -592,26 +553,26 @@ var valueSelected;
 function bt(val){
     jQuery.ajaxSetup({async:false});
     valueSelected = val;
-    console.log("Value selected " + valueSelected);
+    // console.log("Value selected " + valueSelected);
 
     var listOfNumberOfElements = [];
 
-    var message = val;
+    // var message = val;
     removeAll();
     disable();
-    console.log(message);
-    var url = "/search?type="+message;
+    // console.log(message);
+    var url = "/search?type="+valueSelected;
 
     $.ajax({
         url: url,//прописать ссылку на ямап апи
         method: "get",
-        error: function(message) {
-            console.log(message);
+        error: function(valueSelected) {
+            console.log(valueSelected);
         },
         success: function(data) {
             jQuery.ajaxSetup({async:false});
-            console.log(data);
-            console.log("1");
+            // console.log(data);
+            //console.log("1");
 
             if (isPointsAdded == Boolean(true)) {
                 objects = ymaps.geoQuery(data).addToMap(myMap);
@@ -619,18 +580,40 @@ function bt(val){
                 objects = ymaps.geoQuery(data);//.addToMap(myMap);
             }
 
+            // var dataPoints = data;
+            //
+            // console.log("Point names started");
+            // for (var k = 0; k < dataPoints.length; k++) {
+            //
+            //     console.log(dataPoints[k].name);
+            //
+            //     myPlacemark = new ymaps.Placemark(dataPoints[k].coordinates, {
+            //         //balloonContentHeader: dataPoints[k].name,
+            //         balloonContentBody: dataPoints[k].name,
+            //         balloonContentFooter: dataPoints[k].addres,
+            //         // hintContent: "Хинт метки"
+            //     });
+            //
+            //     //myMap.geoObjects.add(myPlacemark);
+            //
+            // }
+            // console.log("Point names ended");
+            //
+            // objects = ymaps.geoQuery(dataPoints);
+
             //objects = ymaps.geoQuery(data);//.addToMap(myMap);
 
             outerPoints = objects;
 
-            console.log("2");
+            //console.log("2");
 
             var deliveryZones = ymaps.geoQuery(zones).addToMap(myMap);
 
-            console.log("3");
+            //console.log("3");
 
-            console.log("is about to start deliveryZones");
+            console.log("is about to start deliveryZones " + '[' + new Date().toUTCString() + '] ');
 
+            //jQuery.ajaxSetup({async:true});
             deliveryZones.each(function (obj) {
                 //var color = obj.options.get('fillColor');
                 //color = color.substring(0, color.length - 2);
@@ -639,18 +622,19 @@ function bt(val){
 
                 var len = objInsideDistrict._objects.length;
                 //console.log(obj.properties.name);
-                console.log(obj.properties._data.name);
-                console.log(len);
+                //console.log(obj.properties._data.name);
+                //console.log(len);
 
                 listOfNumberOfElements.push(len);
-                console.log(listOfNumberOfElements);
+                //console.log(listOfNumberOfElements);
             });
             jQuery.ajaxSetup({async:false});
-            console.log("showDistrictByNumberByColor func is about to be used");
+            // console.log("showDistrictByNumberByColor func is about to be used " + '[' + new Date().toUTCString() + '] ');
 
             for (var k = 0; k < zones.features.length; k++) {
                 showDistrictByNumberByColor(k);
             }
+            console.log("BT per value showDistrictByNumberByColor  " + '[' + new Date().toUTCString() + '] ');
 
             noDisable()
         }
@@ -658,7 +642,7 @@ function bt(val){
     });
 
     function showDistrictByNumberByColor(ind) {
-        console.log("showDistrictByNumberByColor started");
+        // console.log("showDistrictByNumberByColor started");
         var colorList = calculateColor(listOfNumberOfElements);
         // Создаем многоугольник, используя вспомогательный класс Polygon.
         var myPolygon = new ymaps.Polygon(
