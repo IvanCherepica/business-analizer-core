@@ -236,31 +236,36 @@
                         <label for="box3"> Добавить метки </label>
                     </div>
                     <!--                    свой вариант-->
-                    <li class="active" style="margin-top: 15px; background:#6d7fcc;">
-                        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">
-                            <i><img src="/search_icon.png" style="width: 22px; height: 22px"></i>
-                            Введите свой вариант
-                        </a>
-                        <ul class="collapse list-unstyled" id="homeSubmenu">
+                    <%--<li class="active" style="margin-top: 15px; background:#6d7fcc;">--%>
+                        <%--<a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">--%>
+                            <%--<i><img src="/search_icon.png" style="width: 22px; height: 22px"></i>--%>
+                            <%--Введите свой вариант--%>
+                        <%--</a>--%>
+                        <%--<ul class="collapse list-unstyled" id="homeSubmenu">--%>
 
-                            <li><div style = "margin-left: auto; margin-right: auto; width: 90%;">
-                                <div style = "font-family:'Open Sans'; font-size: 13px; color: white; margin-top: 20px">Введите свой вариант</div>
-                                <div class="form-group" style="width: 90%; margin-top: 5px">
-                                    <form  >
-                                        <input type="text" class="form-control" id="formBT"  >
-                                        <div style="margin-top:5px; border-radius: 5px;">
-                                            <button type="button" class="btn btn-large" onclick="formFunct()" style="width:100%; background: #6cdcb3; font-family:'Open Sans', sans-serif; color: #fffff;" >Показать</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </ul>
+                            <%--<li><div style = "margin-left: auto; margin-right: auto; width: 90%;">--%>
+                                <%--<div style = "font-family:'Open Sans'; font-size: 13px; color: white; margin-top: 20px">Введите свой вариант</div>--%>
+                                <%--<div class="form-group" style="width: 90%; margin-top: 5px">--%>
+                                    <%--<form  >--%>
+                                        <%--<input type="text" class="form-control" id="formBT"  >--%>
+                                        <%--<div style="margin-top:5px; border-radius: 5px;">--%>
+                                            <%--<button type="button" class="btn btn-large" onclick="formFunct()" style="width:100%; background: #6cdcb3; font-family:'Open Sans', sans-serif; color: #fffff;" >Показать</button>--%>
+                                        <%--</div>--%>
+                                    <%--</form>--%>
+                                <%--</div>--%>
+                            <%--</div>--%>
+                        <%--</ul>--%>
 
-                    </li>
+
+                    <table style="width: 100%; margin-top: 5px">
+                        <tr><td valign="top" style="padding: 5px"><button type="button"  onclick="formFunct()" style ="background-color: Transparent;
+            background-repeat:no-repeat;
+            border: none;
+            cursor:pointer;
+            overflow: hidden;" ><img src="/search_icon.png" style="width: 30px; height: 30px; display: inline-block"></button></td>
+                            <td style="padding: 5px; margin-left: 5px"><form><input type="text" class="form-control" id="formBT" style = "display: inline-block" placeholder="Введите свой вариант"></form></td>
+                    </table>
                 </ul>
-
-
-
 
 
 
