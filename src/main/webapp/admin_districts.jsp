@@ -26,21 +26,22 @@
                         <form action="${pageContext.servletContext.contextPath}/admin/districts" method="POST">
                             <div class="field">
                                 <label for="name">Name:</label>
-                                <input type="text" class="form-control" id="name" name="name">
+                                <input type="text" class="form-control" id="name" name="name" required>
                             </div>
                             <div class="field">
                                 <label for="crd">Coordinates:</label>
-                                <input type="text" class="form-control" id="crd" name="crd">
+                                <input type="text" class="form-control" id="crd" name="crd" required>
                             </div>
                             <div class="form-group">
                                 <label for="population">Population:</label>
-                                <input type="text" class="form-control" id="population" name="population">
+                                <input type="number" min="0" class="form-control" id="population" name="population" required>
                             </div>
                             <div class="form-group">
                                 <label for="area">Area:</label>
-                                <input type="text" class="form-control" id="area" name="area">
+                                <input type="number" min="0" class="form-control" id="area" name="area" required>
                             </div>
                             <button type="submit" class="btn btn-danger">Add</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                         </form>
                     </div>
                 </div>

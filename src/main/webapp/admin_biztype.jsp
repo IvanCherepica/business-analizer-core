@@ -26,17 +26,18 @@
                         <form action="${pageContext.servletContext.contextPath}/admin/business" method="POST">
                             <div class="field">
                                 <label for="name">Name:</label>
-                                <input type="text" class="form-control" id="name" name="name">
+                                <input type="text" class="form-control" id="name" name="name" required>
                             </div>
                             <div class="field">
                                 <label for="crd">SearchTags:</label>
-                                <input type="text" class="form-control" id="crd" name="searchTags">
+                                <input type="text" class="form-control" id="crd" name="searchTags" required>
                             </div>
                             <div class="form-group">
                                 <label for="population">Link:</label>
                                 <input type="text" class="form-control" id="population" name="link">
                             </div>
                             <button type="submit" class="btn btn-danger">Add</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                         </form>
                     </div>
                 </div>
@@ -65,8 +66,33 @@
                         <td>${biztype.searchTags}</td>
                         <td>${biztype.link}</td>
                         <td>
+
                             <a href="${pageContext.servletContext.contextPath}/admin/business/edit?id=${biztype.id}" class="btn btn-default" role="button">Edit</a>
-                            <a href="${pageContext.servletContext.contextPath}/admin/business/delete?id=${biztype.id}" class="btn btn-default" role="button">Delete</a>
+                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal${biztype.id}">Delete</button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="myModal${biztype.id}" role="dialog">
+                                <div class="modal-dialog">
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">Delete all connected points?</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="${pageContext.servletContext.contextPath}/admin/business/delete" method="GET">
+                                                <input type="hidden" name="id" value="${biztype.id}">
+                                                <button type="submit" class="btn btn-danger">Yes</button>
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+
                         </td>
                     </tr>
                     </tbody>
