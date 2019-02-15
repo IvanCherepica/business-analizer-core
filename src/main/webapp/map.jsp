@@ -180,6 +180,9 @@
                         <li><button class="new" onclick="bt(${biztype.id})">${biztype.name}</button></li>
                     </c:forEach>
                     <li><div><button class="anyNew" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"> Не знаете что выбрать?</button></div></li>
+                    <li><input type="checkbox" id="myCheck" onclick="includePopulation()">  С учетом плотности населения</li>
+                    <li><input type="checkbox" id="myCheck" onclick="includeArea()">  С учетом площади</li>
+
                 </ul>
 
                 <div style=" position: absolute;bottom: 0; height: 150px;"><ul style="list-style-type: none; margin-left: 0; padding-left: 15px; font-family: arial,sans-serif; font-size: 13px">
@@ -203,7 +206,9 @@
     background: #FFFFFF;
     opacity: 0.7;
     pointer-events: none;
-    display: none"><div style="margin-top: 20%; text-align: center;"><img src="/ba.png" style=" height: 5%; width: 5%"></div><div style="margin-top: 5px; text-align: center;"><img src="/294.gif" style="width: 5%; height: 5%"></div>
-</div>
+    display: none"><div style="margin-top: 20%; text-align: center;"><img src="/ba.png" style=" height: 5%; width: 5%"></div><div style="margin-top: 5px; text-align: center;"><img src="/dwl-animation.gif" style="width: 5%; height: 5%"></div>
+<script>
+
+</script>
 </body>
 </html>
