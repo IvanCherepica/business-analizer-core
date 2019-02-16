@@ -10,19 +10,19 @@
     width: 80%;
     height: 100%;
    ">
-    <h1>Admin panel</h1>
+    <h1>Панель администратора</h1>
     <%@ include file="admin_menu_points_types.jsp" %>
     <div align="left">
         <table class = "table table-bordered">
-            <caption><h2>List of Points</h2></caption>
+            <caption><h2>Представители бизнес направления</h2></caption>
             <thead>
             <tr class="info">
-                <th>Name</th>
-                <th>Address</th>
-                <th>Longitude</th>
-                <th>Latitude</th>
-                <th>Business type</th>
-                <th>Options</th>
+                <th>Название</th>
+                <th>Адрес</th>
+                <th>Долгота</th>
+                <th>Широта</th>
+                <th>Направление бизнеса</th>
+                <th>Опции</th>
             </tr>
             </thead>
             <tbody >
@@ -62,7 +62,7 @@
                     </td>
                     <td>
                         <div class="submit">
-                            <input type="submit" align="center" class="btn btn-default" value="Submit"/>
+                            <input type="submit" align="center" class="btn btn-default" value="Подтвердить"/>
                         </div>
                     </td>
                 </tr>

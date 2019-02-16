@@ -16,13 +16,13 @@
     <div class="left-sidebar">
         <div class = "bar-text">
             <form>
-                <h1>Entity</h1>
-                <button formmethod="get" formaction="/admin/business" class="new">Business</button>
-                <button formmethod="get" formaction="/admin/districts" class="new">Districts</button>
-                <button formmethod="get" formaction="/admin/point" name="typeId" value="0" class="new">Points</button>
+                <h1></h1>
+                <button formmethod="get" formaction="/admin/business" class="new">Направления</button>
+                <button formmethod="get" formaction="/admin/districts" class="new">Округа</button>
+                <button formmethod="get" formaction="/admin/point" name="typeId" value="0" class="new">Представители</button>
             </form>
             <form>
-                <button formmethod="get" formaction="/user/map" class="btn btn-default">GO TO MAP</button>
+                <button formmethod="get" formaction="/user/map" class="btn btn-default">Перейти на карту</button>
             </form>
         </div>
     </div>

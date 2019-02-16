@@ -10,18 +10,18 @@
     width: 80%;
     height: 100%;
    ">
-    <h1>Admin panel</h1>
+    <h1>Панель администратора</h1>
 
     <div align="left">
         <table class = "table table-bordered">
-            <caption><h2>List of Districts</h2></caption>
+            <caption><h2>Список округов</h2></caption>
         <thead>
         <tr class="info">
-            <th>Name</th>
-            <th>Coordinates</th>
-            <th>Area</th>
-            <th>Population</th>
-            <th>Options</th>
+            <th>Название</th>
+            <th>Координаты</th>
+            <th>Площадь</th>
+            <th>Население</th>
+            <th>Опции</th>
         </tr>
         </thead>
 
@@ -63,7 +63,7 @@
 
                 <td>
                     <div class="submit">
-                        <input type="submit" align="center" class="btn btn-default" role="button" value="Submit"/>
+                        <input type="submit" align="center" class="btn btn-default" role="button" value="Подтвердить"/>
                     </div>
                 </td>
             </tr>

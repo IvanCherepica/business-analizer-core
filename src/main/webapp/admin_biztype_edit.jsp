@@ -10,17 +10,17 @@
     width: 80%;
     height: 100%;
    ">
-    <h1>Admin panel</h1>
+    <h1>Панель администратора</h1>
 
     <div align="left">
         <table class = "table table-bordered">
-            <caption><h2>List of Business Types</h2></caption>
+            <caption><h2>Направления бизнеса</h2></caption>
             <thead>
             <tr class="info">
-                <th>Name</th>
-                <th>Tags for searching</th>
-                <th>Link</th>
-                <th>Options</th>
+                <th>Названия</th>
+                <th>Теги для поиска</th>
+                <th>Иконка</th>
+                <th>Опции</th>
             </tr>
             </thead>
             <tbody >
@@ -47,7 +47,7 @@
                     </td>
                     <td>
                         <div class="submit">
-                            <input type="submit" align="center" class="btn btn-default" role="button" value="Submit and update database"/>
+                            <input type="submit" align="center" class="btn btn-default" role="button" value="Ввести и обновить базу"/>
                         </div>
                     </td>
                 </tr>
